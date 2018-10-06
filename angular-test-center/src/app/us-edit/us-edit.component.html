@@ -1,0 +1,107 @@
+<div class="ui-g">
+    <div class="ui-g-12 ui-md-6 ui-lg-8">
+       
+            <span class="ui-float-label">
+                <input id="float-input" type="text" pInputText> 
+                <label for="float-input">Título</label>
+            </span>
+            <br>
+            <span class="ui-float-label">
+               <p-dropdown [options]="cities" [(ngModel)]="selectedCity" 
+                           optionLabel="name" [showClear]="true"></p-dropdown>    
+               <label for="float-text">Autor</label>
+           </span>
+           <br>
+           <span class="ui-float-label">
+              <p-calendar [(ngModel)]="date3" [showIcon]="true"></p-calendar>
+              <label for="float-text">Data Criação</label>
+          </span>
+         <br>
+          <span class="ui-float-label">
+              <p-calendar [(ngModel)]="date8" [timeOnly]="true"></p-calendar>
+              <label for="float-text">Tempo Estimado</label>
+          </span>
+          <br>
+          <span class="ui-float-label">
+              <p-calendar [(ngModel)]="date8" [timeOnly]="true"></p-calendar> 
+              <label for="float-text">Tempo Decorrido</label>
+          </span>
+          <br>
+            <span class="ui-float-label">
+                <textarea id="float-text" rows="5" cols="30" pInputTextarea></textarea> 
+                <label for="float-text">Descricao</label>
+            </span>
+           <br>
+
+          
+<!--
+           <p-table [value]="cars">
+              <ng-template pTemplate="header">
+                  <tr>
+                      <th>Id</th>
+                      <th>Ordem</th>
+                      <th>Descrição</th>
+                  </tr>
+              </ng-template>
+              <ng-template pTemplate="body" let-rowData>
+                  <tr>
+                      <td pEditableColumn>
+                          <p-cellEditor>
+                              <ng-template pTemplate="input">
+                                  <input type="text" [(ngModel)]="rowData.brand">
+                              </ng-template>
+                              <ng-template pTemplate="output">
+                                  {{rowData.brand}}
+                              </ng-template>
+                          </p-cellEditor>
+                      </td>
+                      <td pEditableColumn>
+                          <p-cellEditor>
+                              <ng-template pTemplate="input">
+                                  <input type="text" [(ngModel)]="rowData.color">
+                              </ng-template>
+                              <ng-template pTemplate="output">
+                                  {{car.color}}
+                              </ng-template>
+                          </p-cellEditor>
+                      </td>
+                      <td pEditableColumn>
+                          <p-cellEditor>
+                              <ng-template pTemplate="input">
+                                  <input type="text" [(ngModel)]="rowData.brand">
+                              </ng-template>
+                              <ng-template pTemplate="output">
+                                  {{rowData.brand}}
+                              </ng-template>
+                          </p-cellEditor>
+                      </td>
+                  </tr>
+              </ng-template>
+          </p-table>
+        -->
+          
+    </div>
+    <div class="ui-g-12 ui-md-6 ui-lg-4">
+      <p-panel header="Parecer da Qualidade" [toggleable]="true" [style]="{'margin-bottom':'20px'}">
+          <span class="ui-float-label">
+            <p-dropdown [options]="cities" [(ngModel)]="selectedCity" placeholder="" 
+                        optionLabel="name" [showClear]="true"
+                        id="float-drop"></p-dropdown>  
+            <label for="float-text">Parecer</label>            
+          </span> 
+          <br> 
+          <span class="ui-float-label"> 
+              <textarea pInputTextarea [(ngModel)]="property" id="float-text"></textarea>
+              <label for="float-text">Descrição</label>   
+          </span>         
+      </p-panel>
+    </div>
+</div>
+<div class="ui-g">
+    <div class="ui-g-12 ui-md-6 ui-lg-12">
+
+    </div>
+
+</div>
+
+<button pButton type="button" label="Salvar"></button>
