@@ -30,18 +30,18 @@ public class UsuarioController {
 	}
 	
 	@PostMapping
-	public Usuario saveUsuario(@RequestBody Usuario usuario) {
-		 return this.service.saveUsuario(usuario);
+	public void saveUsuario(@RequestBody Usuario usuario) {
+		 this.service.saveUsuario(usuario);
 	}
 	
 	@PutMapping
-	public Usuario updateUsuario(@RequestBody Usuario usuario) {
-		return this.service.updateUsuario(usuario);
+	public void updateUsuario(@RequestBody Usuario usuario) {
+		this.service.updateUsuario(usuario);
 	}
 			
 	@DeleteMapping
-	public Usuario deleteUsuario(@PathVariable("email") String email) {
-		return this.service.deleteUsuario(email);
+	public void deleteUsuario(@PathVariable("email") String email) {
+		this.service.deleteUsuario(email);
 	}
 	
 	@GetMapping

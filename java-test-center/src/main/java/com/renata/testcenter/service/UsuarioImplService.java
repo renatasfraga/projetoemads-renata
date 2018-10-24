@@ -1,12 +1,10 @@
 package com.renata.testcenter.service;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.renata.testcenter.enuns.Cargo;
 import com.renata.testcenter.model.Usuario;
 import com.renata.testcenter.repository.UsuarioRepository;
 
@@ -41,19 +39,4 @@ public class UsuarioImplService implements UsuarioService {
 		return repository.findAll();
 	}
 
-	@Override
-	public List<Usuario> getUsuariosByCargo() {
-		List<Usuario> usuarios = new ArrayList<Usuario>();
-		
-		for(Usuario usuario: getAllUsuarios()) {
-			if(usuario.getFuncaoExercida().equals(Cargo.ANLTEST) 
-				||	usuario.getFuncaoExercida().equals(Cargo.ANLQUAL)
-				|| 	usuario.getFuncaoExercida().equals(Cargo.TEST)) {
-					usuarios.add(usuario);
-			}
-		}
-		
-		return usuarios;
-	}
-	
 }

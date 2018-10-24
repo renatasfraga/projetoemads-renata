@@ -10,7 +10,6 @@ interface Dominio {
 }
 
 
-
 @Component({
   selector: 'app-us-edit',
   templateUrl: './us-edit.component.html',
@@ -27,19 +26,13 @@ export class UsEditComponent implements OnInit {
   selectedAutor: Dominio; 
   usuarios: Usuario[] = [];
   error: string;
-  constructor(private usuarioService: UsuarioService) {  
-   }
+
+
+  constructor(private usuarioService: UsuarioService) { }
   
 
   ngOnInit() {
-    this.usuarioService.getUsers()
-      .subscribe( data => {
-        this.usuarios = data;
-      })
-
-
-
-     
+       
        
    
     this.listaParecer = [
