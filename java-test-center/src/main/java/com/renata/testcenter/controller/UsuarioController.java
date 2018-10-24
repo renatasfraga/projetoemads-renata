@@ -30,27 +30,22 @@ public class UsuarioController {
 	}
 	
 	@PostMapping
-	public void saveUsuario(@RequestBody Usuario usuario) {
-		 service.saveUsuario(usuario);
+	public Usuario saveUsuario(@RequestBody Usuario usuario) {
+		 return this.service.saveUsuario(usuario);
 	}
 	
 	@PutMapping
-	public void updateUsuario(@RequestBody Usuario usuario) {
-		service.updateUsuario(usuario);
+	public Usuario updateUsuario(@RequestBody Usuario usuario) {
+		return this.service.updateUsuario(usuario);
 	}
 			
 	@DeleteMapping
-	public void deleteUsuario(@PathVariable("email") String email) {
-		service.deleteUsuario(email);
+	public Usuario deleteUsuario(@PathVariable("email") String email) {
+		return this.service.deleteUsuario(email);
 	}
 	
 	@GetMapping
 	public List<Usuario> getAllUsuarios() {
 		return service.getAllUsuarios();
-	}
-	
-	@GetMapping("/usuariosByCargo")
-	public List<Usuario> getUsuariosByCargo() {
-		return service.getUsuariosByCargo();
 	}
 }

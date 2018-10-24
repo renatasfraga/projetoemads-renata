@@ -2,7 +2,7 @@
     <div class="ui-g-12 ui-md-6 ui-lg-8">
        
             <span class="ui-float-label">
-                <input id="float-input" type="text" pInputText> 
+                <input id="float-input" type="text" style="width: 100%;" pInputText> 
                 <label for="float-input">Título</label>
             </span>
             <br>
@@ -28,7 +28,8 @@
           </span>
           <br>
             <span class="ui-float-label">
-                <textarea id="float-text" rows="5" cols="30" pInputTextarea></textarea> 
+                <textarea id="float-text" rows="5" cols="30" 
+                          style="width: 100%;" pInputTextarea></textarea> 
                 <label for="float-text">Descricao</label>
             </span>
            <br>
@@ -84,7 +85,7 @@
     <div class="ui-g-12 ui-md-6 ui-lg-4">
       <p-panel header="Parecer da Qualidade" [toggleable]="true" [style]="{'margin-bottom':'20px'}">
           <span class="ui-float-label">
-            <p-dropdown [options]="cities" [(ngModel)]="selectedCity" placeholder="" 
+            <p-dropdown [options]="listaParecer" [(ngModel)]="selectedParecer" placeholder="" 
                         optionLabel="name" [showClear]="true"
                         id="float-drop"></p-dropdown>  
             <label for="float-text">Parecer</label>            

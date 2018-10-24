@@ -3,8 +3,9 @@ package com.renata.testcenter.model;
 import java.time.LocalDate;
 
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.Id;
-import javax.validation.constraints.NotNull;
 
 import org.hibernate.validator.constraints.NotEmpty;
 
@@ -22,7 +23,7 @@ public class Usuario {
 	
 	private LocalDate dataIngressoSistema = LocalDate.now();
 	
-	@NotNull
+    @Enumerated(EnumType.STRING)
 	private Cargo funcaoExercida;
 
 	public String getEmail() {

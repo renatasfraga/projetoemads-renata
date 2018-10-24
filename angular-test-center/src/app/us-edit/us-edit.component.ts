@@ -1,9 +1,15 @@
 import { Component, OnInit } from '@angular/core';
+import { Usuario } from '../Usuario';
+import { UsuarioService } from '../usuario.service';
+import { Observable } from 'rxjs';
 
-interface City {
+
+interface Dominio {
   name: string,
   code: string
 }
+
+
 
 @Component({
   selector: 'app-us-edit',
@@ -15,22 +21,40 @@ interface City {
 
 export class UsEditComponent implements OnInit {
 
-  cities: City[];
-  selectedCity: City;
-
-
-  constructor() {
-    
+  listaParecer: Dominio[];
+  selectedParecer: Dominio;
+  listaAutor: Dominio[];
+  selectedAutor: Dominio; 
+  usuarios: Usuario[] = [];
+  error: string;
+  constructor(private usuarioService: UsuarioService) {  
    }
+  
 
   ngOnInit() {
-    this.cities = [
-      {name: 'New York', code: 'NY'},
-      {name: 'Rome', code: 'RM'},
-      {name: 'London', code: 'LDN'},
-      {name: 'Istanbul', code: 'IST'},
-      {name: 'Paris', code: 'PRS'}
-  ];
+    this.usuarioService.getUsers()
+      .subscribe( data => {
+        this.usuarios = data;
+      })
+
+
+
+     
+       
+   
+    this.listaParecer = [
+      {code: 'I',name:'Insatisfeito'},
+      {code: 'P',name:'Parcialmente Satisfeito'},
+      {code: 'S',name:'Satisfeito'},
+    ];
+    
+
+  
+  
   }
+  
+  
+  
+   
 
 }

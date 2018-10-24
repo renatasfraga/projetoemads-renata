@@ -1,9 +1,11 @@
 package com.renata.testcenter.model;
 
 import java.time.LocalDate;
-import java.time.LocalTime;
+import java.time.LocalDateTime;
 
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -26,14 +28,16 @@ public class HistoriaDeUsuario {
 	private String descricao;
 	@NotNull
 	private LocalDate dataCriacao;
-	private LocalTime tempoEstimado;
-	private LocalTime tempoDecorrido;
+	private LocalDateTime tempoEstimado;
+	private LocalDateTime tempoDecorrido;
 	@NotNull
 	@OneToOne
 	private Usuario usuarioCriador;
 	@NotNull
 	@OneToOne
 	private Usuario usuarioAtualizador;
+	
+	@Enumerated(EnumType.STRING)
 	private Parecer parecerQualidade;
 	private String descricaoParecer;
 		
@@ -61,16 +65,16 @@ public class HistoriaDeUsuario {
 	public void setDataCriacao(LocalDate dataCriacao) {
 		this.dataCriacao = dataCriacao;
 	}
-	public LocalTime getTempoEstimado() {
+	public LocalDateTime getTempoEstimado() {
 		return tempoEstimado;
 	}
-	public void setTempoEstimado(LocalTime tempoEstimado) {
+	public void setTempoEstimado(LocalDateTime tempoEstimado) {
 		this.tempoEstimado = tempoEstimado;
 	}
-	public LocalTime getTempoDecorrido() {
+	public LocalDateTime getTempoDecorrido() {
 		return tempoDecorrido;
 	}
-	public void setTempoDecorrido(LocalTime tempoDecorrido) {
+	public void setTempoDecorrido(LocalDateTime tempoDecorrido) {
 		this.tempoDecorrido = tempoDecorrido;
 	}
 	public Usuario getUsuarioCriador() {

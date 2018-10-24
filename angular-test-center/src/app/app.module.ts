@@ -14,6 +14,7 @@ import { UsListComponent } from './us-list/us-list.component';
 import { RouterModule, Routes, Router } from '@angular/router';
 import { UsEditComponent } from './us-edit/us-edit.component';
 import { FormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
 
 const appRoutes: Routes = [ 
   { path: '',  redirectTo: '/us-list',  pathMatch: 'full'},
@@ -42,6 +43,7 @@ const appRoutes: Routes = [
     CalendarModule,
     RouterModule.forRoot(appRoutes),
     FormsModule,
+    HttpClientModule
     
   
   ],
