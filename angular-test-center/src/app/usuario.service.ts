@@ -1,23 +1,21 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { Usuario } from './Usuario';
-import { Observable } from 'rxjs';
+import { Observable, throwError } from 'rxjs';
+import { catchError, retry, map } from 'rxjs/operators';
+import { HttpHeaders, HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { Usuario } from './usuario';
 
 
- 
 @Injectable({
   providedIn: 'root'
 })
 export class UsuarioService {
 
-  usuarioUrl = 'http://localhost:8081/usuario/';
-
-  constructor(private http: HttpClient) { }
-
-  
-  getUsers(): Observable<Usuario[]> {
-    return this.http.get<Usuario[]>(this.usuarioUrl);
-  }
+   constructor(private http: HttpClient) { }
 
 
+
+
+
+ 
 }
+

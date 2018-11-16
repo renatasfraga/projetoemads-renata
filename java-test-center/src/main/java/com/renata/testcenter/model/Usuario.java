@@ -6,6 +6,7 @@ import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.Id;
+import javax.validation.constraints.NotNull;
 
 import org.hibernate.validator.constraints.NotEmpty;
 
@@ -21,7 +22,8 @@ public class Usuario {
 	@NotEmpty
 	private String senha;
 	
-	private LocalDate dataIngressoSistema = LocalDate.now();
+	@NotNull
+	private LocalDate dataIngressoSistema;
 	
     @Enumerated(EnumType.STRING)
 	private Cargo funcaoExercida;
