@@ -48,4 +48,10 @@ public class UsuarioController {
 	public List<Usuario> getAllUsuarios() {
 		return service.getAllUsuarios();
 	}
+	
+	@GetMapping(path = {"/login/{email}/{senha}"})
+	public Usuario getLogin(@PathVariable("email") String email,
+							@PathVariable("senha") String senha) {
+		return service.getLogin(email, senha);
+	}
 }

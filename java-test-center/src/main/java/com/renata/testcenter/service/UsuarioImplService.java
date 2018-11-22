@@ -38,5 +38,9 @@ public class UsuarioImplService implements UsuarioService {
 	public List<Usuario> getAllUsuarios() {
 		return repository.findAll();
 	}
-
+	
+	@Override
+	public Usuario getLogin(String email, String senha) {
+		return repository.getLogin(email, senha);
+	}
 }
