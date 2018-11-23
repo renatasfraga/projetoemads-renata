@@ -9,7 +9,8 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToOne;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.validation.constraints.NotNull;
 
 import org.hibernate.validator.constraints.NotEmpty;
@@ -31,10 +32,12 @@ public class HistoriaDeUsuario {
 	private LocalDateTime tempoEstimado;
 	private LocalDateTime tempoDecorrido;
 	@NotNull
-	@OneToOne
+	@ManyToOne
+	@JoinColumn(name = "usuario_criador")
 	private Usuario usuarioCriador;
 	@NotNull
-	@OneToOne
+	@ManyToOne
+	@JoinColumn(name = "usuario_atualizador")
 	private Usuario usuarioAtualizador;
 	
 	@Enumerated(EnumType.STRING)

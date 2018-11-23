@@ -1,4 +1,9 @@
 export class Usuario {
-    email:string;
-    senha:string;
+   private email:string;
+   private nome:string;
+   private senha:string;
+   private dataIngressoSistema:Date;
+   private funcaoExercida:string;
+
+   constructor() {}
 }
