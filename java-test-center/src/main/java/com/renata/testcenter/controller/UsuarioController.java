@@ -54,4 +54,9 @@ public class UsuarioController {
 							@PathVariable("senha") String senha) {
 		return service.getLogin(email, senha);
 	}
+	
+	@GetMapping(path = {"/bynome/{nome}"})
+	public List<Usuario> getUsuarioByNome(@PathVariable("nome") String nome) {
+		return service.getUsuarioByNome(nome);
+	}
 }

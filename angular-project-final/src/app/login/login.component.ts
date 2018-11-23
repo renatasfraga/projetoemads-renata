@@ -10,9 +10,9 @@ import { Router } from '@angular/router';
 })
 export class LoginComponent implements OnInit {
 
-  private usuario: Usuario = new Usuario();
-  private mostraMsgErro = false;
-  private mensagemErro = "Usuário ou senha incorretos! ";
+  usuario: Usuario = new Usuario();
+  mostraMsgErro = false;
+  mensagemErro = "Usuário ou senha incorretos! ";
 
   constructor(private usuarioService : UsuarioService, private router: Router) { }
 

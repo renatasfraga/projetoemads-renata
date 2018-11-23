@@ -4,8 +4,6 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -15,7 +13,6 @@ import javax.validation.constraints.NotNull;
 
 import org.hibernate.validator.constraints.NotEmpty;
 
-import com.renata.testcenter.enuns.Parecer;
 
 @Entity
 public class HistoriaDeUsuario {
@@ -40,8 +37,7 @@ public class HistoriaDeUsuario {
 	@JoinColumn(name = "usuario_atualizador")
 	private Usuario usuarioAtualizador;
 	
-	@Enumerated(EnumType.STRING)
-	private Parecer parecerQualidade;
+	private String parecerQualidade;
 	private String descricaoParecer;
 		
 	public Long getId() {
@@ -92,10 +88,10 @@ public class HistoriaDeUsuario {
 	public void setUsuarioAtualizador(Usuario usuarioAtualizador) {
 		this.usuarioAtualizador = usuarioAtualizador;
 	}
-	public Parecer getParecerQualidade() {
+	public String getParecerQualidade() {
 		return parecerQualidade;
 	}
-	public void setParecerQualidade(Parecer parecerQualidade) {
+	public void setParecerQualidade(String parecerQualidade) {
 		this.parecerQualidade = parecerQualidade;
 	}
 	public String getDescricaoParecer() {

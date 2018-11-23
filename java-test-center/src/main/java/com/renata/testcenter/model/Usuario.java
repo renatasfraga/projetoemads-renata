@@ -3,14 +3,10 @@ package com.renata.testcenter.model;
 import java.time.LocalDate;
 
 import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
 import javax.persistence.Id;
 import javax.validation.constraints.NotNull;
 
 import org.hibernate.validator.constraints.NotEmpty;
-
-import com.renata.testcenter.enuns.Cargo;
 
 @Entity
 public class Usuario {
@@ -25,8 +21,7 @@ public class Usuario {
 	@NotNull
 	private LocalDate dataIngressoSistema;
 	
-    @Enumerated(EnumType.STRING)
-	private Cargo funcaoExercida;
+	private String funcaoExercida;
 
 	public String getEmail() {
 		return email;
@@ -60,11 +55,11 @@ public class Usuario {
 		this.dataIngressoSistema = dataIngressoSistema; 
 	}
 
-	public Cargo getFuncaoExercida() {
+	public String getFuncaoExercida() {
 		return funcaoExercida;
 	}
 
-	public void setFuncaoExercida(Cargo funcaoExercida) {
+	public void setFuncaoExercida(String funcaoExercida) {
 		this.funcaoExercida = funcaoExercida;
 	}
 
@@ -92,6 +87,5 @@ public class Usuario {
 			return false;
 		return true;
 	}
-	
 	
 }

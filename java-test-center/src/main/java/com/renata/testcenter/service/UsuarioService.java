@@ -11,4 +11,5 @@ public interface UsuarioService {
 	 public abstract void deleteUsuario(String email);
 	 public abstract List<Usuario> getAllUsuarios();
 	 public abstract Usuario getLogin(String email, String senha);
+     public abstract List<Usuario> getUsuarioByNome(String nome);
 }

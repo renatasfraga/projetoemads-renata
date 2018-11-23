@@ -52,11 +52,11 @@
           <label for="usuario-criador">Usuário Criador</label>
       </div>
       <div>
-          <mat-form-field class="input-field col s4"> 
-              <mat-select placeholder="Parecer da Qualidade">
-                <mat-option *ngFor="let food of foods" 
-                            [value]="userStory.parecerQualidade">
-                            
+          <mat-form-field class="input-field col s4">
+              <mat-select [(ngModel)]="userStory.parecerQualidade" placeholder="Parecer da Qualidade">
+                <mat-option>Selecionar</mat-option>
+                <mat-option *ngFor="let parecer of pareceres" [value]="parecer.value">
+                  {{parecer.viewValue}}
                 </mat-option>
               </mat-select>
             </mat-form-field>
