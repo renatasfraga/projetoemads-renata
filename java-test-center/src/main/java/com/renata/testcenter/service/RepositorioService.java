@@ -29,4 +29,8 @@ public class RepositorioService {
 	public List<Repositorio> getAllRepositorios() {
 		return this.repository.findAll();
 	}
+	
+	public List<Repositorio> getRepositorioByProjeto(Long id) {
+		return this.repository.repositorioByProjeto(id);
+	}
 }

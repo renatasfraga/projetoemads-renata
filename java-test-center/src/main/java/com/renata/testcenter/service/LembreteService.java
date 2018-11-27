@@ -29,4 +29,8 @@ public class LembreteService {
 	public List<Lembrete> getAllLembrete() {
 		return this.repository.findAll();
 	}
+	
+	public List<Lembrete> getLembreteByProjeto(Long id) {
+		return this.repository.lembreteByProjeto(id);
+	}
 }

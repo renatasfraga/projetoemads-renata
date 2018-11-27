@@ -14,7 +14,7 @@ public class PlanoDeTesteService {
 	@Autowired
 	private PlanoDeTesteRepository repository;
 	
-	public PlanoDeTeste getProjetoById(Long id) {
+	public PlanoDeTeste getPlanoDeTesteById(Long id) {
 		return this.repository.getOne(id);
 	}
 
@@ -28,5 +28,9 @@ public class PlanoDeTesteService {
 
 	public List<PlanoDeTeste> getAllPlanoDeTestes() {
 		return this.repository.findAll();
+	}
+	
+	public List<PlanoDeTeste> getPlanoDeTesteByProjeto(Long id) {
+		return this.repository.planoDeTesteByProjeto(id);
 	}
 }

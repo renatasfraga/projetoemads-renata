@@ -33,4 +33,5 @@ public class UsuarioService {
 	public Usuario getLogin(String email, String senha) {
 		return this.repository.getLogin(email, senha);
 	}
+	
 }

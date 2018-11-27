@@ -33,5 +33,9 @@ public class HistoriaDeUsuarioService  {
 	public List<HistoriaDeUsuario> getAllHistoriaDeUsuarios() {
 		return repository.findAll();
 	}
+	
+	public List<HistoriaDeUsuario> getHistoriaDeUsuarioByProjeto(Long id) {
+		return repository.historiaDeUsuarioByProjeto(id);
+	}
 
 }

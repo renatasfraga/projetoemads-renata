@@ -30,4 +30,8 @@ public class GraficoService {
 		return this.repository.findAll();
 	}
 	
+	public List<Grafico> getGraficosByProjeto(Long id) {
+		return this.repository.graficoByProjeto(id);
+	}
+	
 }
