@@ -5,6 +5,8 @@ import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.Id;
 import javax.persistence.JoinTable;
 import javax.persistence.JoinColumn;
@@ -36,6 +38,7 @@ public class Usuario {
 	@CreatedDate
 	private Date dataIngressoSistema;
 	@NotNull
+	@Enumerated(EnumType.STRING)
 	private DominioCargo funcaoExercida;
 	@ManyToMany(cascade = { CascadeType.ALL })
     @JoinTable(name = "membros", 

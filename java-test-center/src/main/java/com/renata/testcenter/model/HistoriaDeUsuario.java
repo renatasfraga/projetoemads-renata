@@ -3,6 +3,8 @@ package com.renata.testcenter.model;
 import java.util.Date;
 
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -42,7 +44,7 @@ public class HistoriaDeUsuario {
 	@JoinColumn(name = "usuario_atualizador")
 	@LastModifiedBy
 	private Usuario usuarioAtualizador;
-	
+	@Enumerated(EnumType.STRING)
 	private DominioParecer parecerQualidade;
 	@Size(max = 300)
 	private String descricaoParecer;
