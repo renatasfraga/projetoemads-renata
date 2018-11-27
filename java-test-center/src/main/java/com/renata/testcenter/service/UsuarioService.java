@@ -2,14 +2,35 @@ package com.renata.testcenter.service;
 
 import java.util.List;
 
-import com.renata.testcenter.model.Usuario;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
-public interface UsuarioService {
-	 public abstract Usuario getUsuarioById(String email);
-	 public abstract void saveUsuario(Usuario usuario);
-	 public abstract void updateUsuario(Usuario usuario);
-	 public abstract void deleteUsuario(String email);
-	 public abstract List<Usuario> getAllUsuarios();
-	 public abstract Usuario getLogin(String email, String senha);
-     public abstract List<Usuario> getUsuarioByNome(String nome);
+import com.renata.testcenter.model.Usuario;
+import com.renata.testcenter.repository.UsuarioRepository;
+
+@Service
+public class UsuarioService {
+
+	@Autowired
+	private UsuarioRepository repository;
+	
+	public Usuario getUsuarioById(String email) {
+		return this.repository.getOne(email);
+	}
+
+	public Usuario saveUsuario(Usuario usuario) {
+		return this.repository.save(usuario);
+	}
+	
+	public void deleteUsuario(String email) {
+		this.repository.deleteById(email);
+	}
+
+	public List<Usuario> getAllUsuarios() {
+		return this.repository.findAll();
+	}
+	
+	public Usuario getLogin(String email, String senha) {
+		return this.repository.getLogin(email, senha);
+	}
 }

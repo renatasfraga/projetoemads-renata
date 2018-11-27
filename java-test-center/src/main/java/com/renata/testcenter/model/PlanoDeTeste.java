@@ -14,38 +14,29 @@ import javax.validation.constraints.Size;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedBy;
 
-import com.renata.testcenter.enuns.DominioParecer;
-
 @Entity
-public class HistoriaDeUsuario {
-
+public class PlanoDeTeste {
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
-	
 	@NotNull
 	@Size(max = 100)
 	private String titulo;
-	@Size(max = 300)
-	private String descricao;
+	@NotNull
+	private String conteudo;
 	@NotNull
 	@CreatedDate
 	private Date dataCriacao;
-	private Date tempoEstimado;
-	private Date tempoDecorrido;
 	@NotNull
+	private Boolean passou;
 	@ManyToOne
 	@JoinColumn(name = "usuario_criador")
 	private Usuario usuarioCriador;
-	@NotNull
 	@ManyToOne
 	@JoinColumn(name = "usuario_atualizador")
 	@LastModifiedBy
 	private Usuario usuarioAtualizador;
-	
-	private DominioParecer parecerQualidade;
-	@Size(max = 300)
-	private String descricaoParecer;
 	@ManyToOne
 	@JoinColumn(name = "id_projeto")
 	private Projeto projeto;
@@ -62,11 +53,11 @@ public class HistoriaDeUsuario {
 	public void setTitulo(String titulo) {
 		this.titulo = titulo;
 	}
-	public String getDescricao() {
-		return descricao;
+	public String getConteudo() {
+		return conteudo;
 	}
-	public void setDescricao(String descricao) {
-		this.descricao = descricao;
+	public void setConteudo(String conteudo) {
+		this.conteudo = conteudo;
 	}
 	public Date getDataCriacao() {
 		return dataCriacao;
@@ -74,17 +65,11 @@ public class HistoriaDeUsuario {
 	public void setDataCriacao(Date dataCriacao) {
 		this.dataCriacao = dataCriacao;
 	}
-	public Date getTempoEstimado() {
-		return tempoEstimado;
+	public Boolean getPassou() {
+		return passou;
 	}
-	public void setTempoEstimado(Date tempoEstimado) {
-		this.tempoEstimado = tempoEstimado;
-	}
-	public Date getTempoDecorrido() {
-		return tempoDecorrido;
-	}
-	public void setTempoDecorrido(Date tempoDecorrido) {
-		this.tempoDecorrido = tempoDecorrido;
+	public void setPassou(Boolean passou) {
+		this.passou = passou;
 	}
 	public Usuario getUsuarioCriador() {
 		return usuarioCriador;
@@ -98,18 +83,6 @@ public class HistoriaDeUsuario {
 	public void setUsuarioAtualizador(Usuario usuarioAtualizador) {
 		this.usuarioAtualizador = usuarioAtualizador;
 	}
-	public DominioParecer getParecerQualidade() {
-		return parecerQualidade;
-	}
-	public void setParecerQualidade(DominioParecer parecerQualidade) {
-		this.parecerQualidade = parecerQualidade;
-	}
-	public String getDescricaoParecer() {
-		return descricaoParecer;
-	}
-	public void setDescricaoParecer(String descricaoParecer) {
-		this.descricaoParecer = descricaoParecer;
-	}
 	public Projeto getProjeto() {
 		return projeto;
 	}
@@ -120,14 +93,11 @@ public class HistoriaDeUsuario {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
+		result = prime * result + ((conteudo == null) ? 0 : conteudo.hashCode());
 		result = prime * result + ((dataCriacao == null) ? 0 : dataCriacao.hashCode());
-		result = prime * result + ((descricao == null) ? 0 : descricao.hashCode());
-		result = prime * result + ((descricaoParecer == null) ? 0 : descricaoParecer.hashCode());
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
-		result = prime * result + ((parecerQualidade == null) ? 0 : parecerQualidade.hashCode());
+		result = prime * result + ((passou == null) ? 0 : passou.hashCode());
 		result = prime * result + ((projeto == null) ? 0 : projeto.hashCode());
-		result = prime * result + ((tempoDecorrido == null) ? 0 : tempoDecorrido.hashCode());
-		result = prime * result + ((tempoEstimado == null) ? 0 : tempoEstimado.hashCode());
 		result = prime * result + ((titulo == null) ? 0 : titulo.hashCode());
 		result = prime * result + ((usuarioAtualizador == null) ? 0 : usuarioAtualizador.hashCode());
 		result = prime * result + ((usuarioCriador == null) ? 0 : usuarioCriador.hashCode());
@@ -141,43 +111,31 @@ public class HistoriaDeUsuario {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		HistoriaDeUsuario other = (HistoriaDeUsuario) obj;
+		PlanoDeTeste other = (PlanoDeTeste) obj;
+		if (conteudo == null) {
+			if (other.conteudo != null)
+				return false;
+		} else if (!conteudo.equals(other.conteudo))
+			return false;
 		if (dataCriacao == null) {
 			if (other.dataCriacao != null)
 				return false;
 		} else if (!dataCriacao.equals(other.dataCriacao))
-			return false;
-		if (descricao == null) {
-			if (other.descricao != null)
-				return false;
-		} else if (!descricao.equals(other.descricao))
-			return false;
-		if (descricaoParecer == null) {
-			if (other.descricaoParecer != null)
-				return false;
-		} else if (!descricaoParecer.equals(other.descricaoParecer))
 			return false;
 		if (id == null) {
 			if (other.id != null)
 				return false;
 		} else if (!id.equals(other.id))
 			return false;
-		if (parecerQualidade != other.parecerQualidade)
+		if (passou == null) {
+			if (other.passou != null)
+				return false;
+		} else if (!passou.equals(other.passou))
 			return false;
 		if (projeto == null) {
 			if (other.projeto != null)
 				return false;
 		} else if (!projeto.equals(other.projeto))
-			return false;
-		if (tempoDecorrido == null) {
-			if (other.tempoDecorrido != null)
-				return false;
-		} else if (!tempoDecorrido.equals(other.tempoDecorrido))
-			return false;
-		if (tempoEstimado == null) {
-			if (other.tempoEstimado != null)
-				return false;
-		} else if (!tempoEstimado.equals(other.tempoEstimado))
 			return false;
 		if (titulo == null) {
 			if (other.titulo != null)
@@ -196,4 +154,5 @@ public class HistoriaDeUsuario {
 			return false;
 		return true;
 	}
+	
 }

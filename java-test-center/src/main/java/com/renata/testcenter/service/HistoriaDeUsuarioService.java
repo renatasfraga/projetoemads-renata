@@ -2,12 +2,36 @@ package com.renata.testcenter.service;
 
 import java.util.List;
 
-import com.renata.testcenter.model.HistoriaDeUsuario;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
-public interface HistoriaDeUsuarioService {
-	 public abstract HistoriaDeUsuario getHistoriaDeUsuarioById(Long id);
-	 public abstract void saveHistoriaDeUsuario(HistoriaDeUsuario historiaDeUsuario);
-	 public abstract void updateHistoriaDeUsuario(HistoriaDeUsuario historiaDeUsuario);
-	 public abstract void deleteHistoriaDeUsuario(Long id);
-	 public abstract List<HistoriaDeUsuario> getAllHistoriaDeUsuarios();
+import com.renata.testcenter.model.HistoriaDeUsuario;
+import com.renata.testcenter.repository.HistoriaDeUsuarioRepository;
+
+@Service
+public class HistoriaDeUsuarioService  {
+
+	@Autowired
+	private HistoriaDeUsuarioRepository repository;
+	
+	public HistoriaDeUsuario getHistoriaDeUsuarioById(Long id) {
+		return repository.getOne(id);
+	}
+
+	public HistoriaDeUsuario saveHistoriaDeUsuario(HistoriaDeUsuario historiaDeUsuario) {
+		return this.repository.save(historiaDeUsuario);
+	}
+
+	public void updateHistoriaDeUsuario(HistoriaDeUsuario historiaDeUsuario) {
+		repository.save(historiaDeUsuario);
+	}
+
+	public void deleteHistoriaDeUsuario(Long id) {
+		repository.deleteById(id);
+	}
+
+	public List<HistoriaDeUsuario> getAllHistoriaDeUsuarios() {
+		return repository.findAll();
+	}
+
 }
