@@ -5,3 +5,5 @@
      ('marisacelia@gmail.com', CURRENT_DATE, 'QA', 'Marisa Celia Jesus', '887888nns'),
      ('eduardacastro@ig.com.br', CURRENT_DATE, 'D', 'Eduarda Castro Dutra', 'maisamormens'),
      ('heliopetri@gmail.com', CURRENT_DATE, 'AN', 'Helio Petri da Cruz', 'familia1200');
+
+
