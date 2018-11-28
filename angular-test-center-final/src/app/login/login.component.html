@@ -1,42 +1,60 @@
-<div id="login-page" class="row">
-  <div class="col s12 z-depth-6 card-panel">
-    <form class="login-form">
-      <div class="row">
-      </div>
-      <div class="row">
-        <div class="input-field col s12">
-          <i class="material-icons prefix">mail_outline</i>
-          <input class="validate" id="email" type="email">
-          <label for="email" data-error="wrong" data-success="right">Email</label>
-        </div>
-      </div>
-      <div class="row">
-        <div class="input-field col s12">
-          <i class="material-icons prefix">lock_outline</i>
-          <input id="password" type="password">
-          <label for="password">Password</label>
-        </div>
-      </div>
-      <div class="row">          
-        <div class="input-field col s12 m12 l12  login-text">
-            <input type="checkbox" id="remember-me" />
-            <label for="remember-me">Remember me</label>
-        </div>
-      </div>
-      <div class="row">
-        <div class="input-field col s12">
-          <a href="#" class="btn waves-effect waves-light col s12">Login</a>
-        </div>
-      </div>
-      <div class="row">
-        <div class="input-field col s6 m6 l6">
-          <p class="margin medium-small"><a href="#">Register Now!</a></p>
-        </div>
-        <div class="input-field col s6 m6 l6">
-            <p class="margin right-align medium-small"><a href="#">Forgot password?</a></p>
-        </div>          
-      </div>
+<div class="section"></div>
+<main align="center">
 
-    </form>
-  </div>
-</div>
+    <div class="section"></div>
+    <div class="section"></div>
+
+    <div class="container">
+      <div class="z-depth-1 white lighten-4 row" style="display: inline-block; padding: 32px 48px 0px 48px; border: 1px solid #EEE;">
+
+        <form class="col s12" method="post">
+          <div class='row'>
+            <div class='col s12'>
+              <img src="assets/logotestcenter.png" style="width:80%">
+            </div>
+          </div>
+
+          <div class='row'>
+            <div class='input-field col s12'>
+              <input class='validate' 
+                     type='email' 
+                     name='email' 
+                     id='email' 
+                     [(ngModel)]="usuario.email"/>
+              <label for='email'>Email</label>
+            </div>
+          </div>
+
+          <div class='row'>
+            <div class='input-field col s12'>
+              <input class='validate' 
+                     type='password' 
+                     name='password' 
+                     id='password' 
+                     [(ngModel)]="usuario.senha"/>
+              <label for='password'>Senha</label>
+            </div>
+            <label style='float: right;'>
+              <a class='pink-text' href='#!'><b>Esqueceu a senha?</b></a>
+            </label>
+          </div>
+          <br />
+          <div class='row' align="center" *ngIf="mostraAlerta">
+            <p class='red-text' href='#!'><b>Usuário e senha incorretos.</b></p>
+          </div>
+        
+       
+            <div class='row'>
+              <button type='submit' 
+                      name='btn_login' 
+                      class='col s12 btn btn-large waves-effect indigo'
+                      (click)="logarSe()">Login</button>
+            </div>
+          
+        </form>
+      </div>
+    </div>
+    <a href="#!">Criar Conta</a>
+  <div class="section"></div>
+  <div class="section"></div>
+</main>

@@ -4,8 +4,6 @@ import java.util.Date;
 import java.util.List;
 
 import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -17,7 +15,7 @@ import javax.validation.constraints.Size;
 
 import org.springframework.data.annotation.CreatedDate;
 
-import com.renata.testcenter.enuns.DominioMetodologia;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 public class Projeto {
@@ -34,13 +32,13 @@ public class Projeto {
 	@CreatedDate
 	private Date dataCriacao;
 	@NotNull
-	@Enumerated(EnumType.STRING)
-	private DominioMetodologia metodologiaDesenvolvimento;
+	private String metodologiaDesenvolvimento;
 	@NotNull
 	@ManyToOne
 	@JoinColumn(name ="usuario_criador")
 	private Usuario usuarioCriador;
 	@ManyToMany(mappedBy = "projetos")
+	@JsonIgnore
 	private List<Usuario> usuarios;
 	
 	public Long getId() {
@@ -67,10 +65,10 @@ public class Projeto {
 	public void setDataCriacao(Date dataCriacao) {
 		this.dataCriacao = dataCriacao;
 	}
-	public DominioMetodologia getMetodologiaDesenvolvimento() {
+	public String getMetodologiaDesenvolvimento() {
 		return metodologiaDesenvolvimento;
 	}
-	public void setMetodologiaDesenvolvimento(DominioMetodologia metodologiaDesenvolvimento) {
+	public void setMetodologiaDesenvolvimento(String metodologiaDesenvolvimento) {
 		this.metodologiaDesenvolvimento = metodologiaDesenvolvimento;
 	}
 	public Usuario getUsuarioCriador() {

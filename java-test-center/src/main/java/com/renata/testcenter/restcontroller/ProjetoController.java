@@ -43,4 +43,9 @@ public class ProjetoController {
 		return this.service.getAllProjetos();
 	}
 
+	@GetMapping(path = {"/projetobyuser/{email}"})
+	public List<Projeto> getProjetosByUsuario(@PathVariable("email") String email) {
+		return this.service.getProjetosByUsuario(email);
+	
+	}
 }

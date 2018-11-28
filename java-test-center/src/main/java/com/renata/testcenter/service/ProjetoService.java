@@ -29,4 +29,8 @@ public class ProjetoService {
 	public List<Projeto> getAllProjetos() {
 		return this.repository.findAll();
 	}
+	
+	public List<Projeto> getProjetosByUsuario(String email) {
+		return this.repository.getProjetosByUsuario(email);
+	}
 }

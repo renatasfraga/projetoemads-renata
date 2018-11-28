@@ -3,8 +3,6 @@ package com.renata.testcenter.model;
 import java.util.Date;
 
 import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -13,10 +11,8 @@ import javax.persistence.ManyToOne;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
-import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedBy;
 
-import com.renata.testcenter.enuns.DominioParecer;
 
 @Entity
 public class HistoriaDeUsuario {
@@ -31,7 +27,6 @@ public class HistoriaDeUsuario {
 	@Size(max = 300)
 	private String descricao;
 	@NotNull
-	@CreatedDate
 	private Date dataCriacao;
 	private Date tempoEstimado;
 	private Date tempoDecorrido;
@@ -44,8 +39,7 @@ public class HistoriaDeUsuario {
 	@JoinColumn(name = "usuario_atualizador")
 	@LastModifiedBy
 	private Usuario usuarioAtualizador;
-	@Enumerated(EnumType.STRING)
-	private DominioParecer parecerQualidade;
+	private String parecerQualidade;
 	@Size(max = 300)
 	private String descricaoParecer;
 	@ManyToOne
@@ -100,10 +94,10 @@ public class HistoriaDeUsuario {
 	public void setUsuarioAtualizador(Usuario usuarioAtualizador) {
 		this.usuarioAtualizador = usuarioAtualizador;
 	}
-	public DominioParecer getParecerQualidade() {
+	public String getParecerQualidade() {
 		return parecerQualidade;
 	}
-	public void setParecerQualidade(DominioParecer parecerQualidade) {
+	public void setParecerQualidade(String parecerQualidade) {
 		this.parecerQualidade = parecerQualidade;
 	}
 	public String getDescricaoParecer() {

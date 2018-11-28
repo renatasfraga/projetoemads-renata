@@ -1,8 +1,6 @@
 package com.renata.testcenter.model;
 
 import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -10,7 +8,6 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.validation.constraints.NotNull;
 
-import com.renata.testcenter.enuns.DominioGrafico;
 
 @Entity
 public class Grafico {
@@ -22,8 +19,7 @@ public class Grafico {
 	@NotNull
 	private String conteudo;
 	@NotNull
-	@Enumerated(EnumType.STRING)
-	private DominioGrafico tipoGrafico;
+	private String tipoGrafico;
 	@NotNull
 	@ManyToOne
 	@JoinColumn(name = "id_projeto")
@@ -45,10 +41,10 @@ public class Grafico {
 	public void setConteudo(String conteudo) {
 		this.conteudo = conteudo;
 	}
-	public DominioGrafico getTipoGrafico() {
+	public String getTipoGrafico() {
 		return tipoGrafico;
 	}
-	public void setTipoGrafico(DominioGrafico tipoGrafico) {
+	public void setTipoGrafico(String tipoGrafico) {
 		this.tipoGrafico = tipoGrafico;
 	}
 	public Projeto getProjeto() {

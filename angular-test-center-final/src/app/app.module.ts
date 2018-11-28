@@ -1,5 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { FormsModule } from '@angular/forms';
+import {HttpClientModule} from "@angular/common/http";
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -22,6 +24,11 @@ import { UsuarioEditarComponent } from './usuario-editar/usuario-editar.componen
 import { UsuarioListarComponent } from './usuario-listar/usuario-listar.component';
 import { ProjetoListarComponent } from './projeto-listar/projeto-listar.component';
 import { ProjetoEditarComponent } from './projeto-editar/projeto-editar.component';
+import { ProjetoSelecionarComponent } from './projeto-selecionar/projeto-selecionar.component';
+import { ProjetoService } from './services/projeto.service';
+import { UsuarioService } from './services/usuario.service';
+import { MenuLateralComponent } from './menu-lateral/menu-lateral.component';
+import { MenuSuperiorComponent } from './menu-superior/menu-superior.component';
 
 @NgModule({
   declarations: [
@@ -44,13 +51,19 @@ import { ProjetoEditarComponent } from './projeto-editar/projeto-editar.componen
     UsuarioEditarComponent,
     UsuarioListarComponent,
     ProjetoListarComponent,
-    ProjetoEditarComponent
+    ProjetoEditarComponent,
+    ProjetoSelecionarComponent,
+    MenuLateralComponent,
+    MenuSuperiorComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule,
+    HttpClientModule,
+    
   ],
-  providers: [],
+  providers: [ProjetoService, UsuarioService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -5,8 +5,6 @@ import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
 import javax.persistence.Id;
 import javax.persistence.JoinTable;
 import javax.persistence.JoinColumn;
@@ -16,8 +14,6 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 import org.springframework.data.annotation.CreatedDate;
-
-import com.renata.testcenter.enuns.DominioCargo;
 
 @Entity
 public class Usuario {
@@ -38,8 +34,7 @@ public class Usuario {
 	@CreatedDate
 	private Date dataIngressoSistema;
 	@NotNull
-	@Enumerated(EnumType.STRING)
-	private DominioCargo funcaoExercida;
+	private String funcaoExercida;
 	@ManyToMany(cascade = { CascadeType.ALL })
     @JoinTable(name = "membros", 
         	   joinColumns = { @JoinColumn(name = "usuario_email") }, 
@@ -77,10 +72,10 @@ public class Usuario {
 	public void setDataIngressoSistema(Date dataIngressoSistema) {
 		this.dataIngressoSistema = dataIngressoSistema;
 	}
-	public DominioCargo getFuncaoExercida() {
+	public String getFuncaoExercida() {
 		return funcaoExercida;
 	}
-	public void setFuncaoExercida(DominioCargo funcaoExercida) {
+	public void setFuncaoExercida(String funcaoExercida) {
 		this.funcaoExercida = funcaoExercida;
 	}
 	public List<Projeto> getProjetos() {

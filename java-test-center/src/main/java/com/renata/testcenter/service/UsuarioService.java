@@ -34,4 +34,8 @@ public class UsuarioService {
 		return this.repository.getLogin(email, senha);
 	}
 	
+	public List<Usuario> getUsuariosByProjeto(Long id){ 
+		return this.repository.getUsuariosByProjeto(id);
+	}
+	
 }

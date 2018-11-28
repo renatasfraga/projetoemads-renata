@@ -43,9 +43,14 @@ public class UsuarioController {
 		return this.service.getAllUsuarios();
 	}
 	
-	@GetMapping(path ={"/{email}/{senha}"})
+	@GetMapping(path ={"/login/{email}/{senha}"})
 	public Usuario getLogin(@PathVariable("email") String email,
 			                @PathVariable("senha") String senha) {
 		return this.service.getLogin(email, senha);
+	}
+	
+	@GetMapping(path ={"/usuariosbyprojeto/{id}"})
+	public List<Usuario> getUsuariosByProjeto(@PathVariable("id") Long id) {
+		return this.service.getUsuariosByProjeto(id);
 	}
 }

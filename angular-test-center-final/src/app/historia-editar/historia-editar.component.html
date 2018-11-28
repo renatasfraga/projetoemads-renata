@@ -1,3 +1,84 @@
-<p>
-  historia-editar works!
-</p>
+<div class="row">
+    <div class="col s12">
+        <app-menu-superior></app-menu-superior>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col s3">
+        <app-menu-lateral></app-menu-lateral>
+    </div>
+    <div class="col s9">
+        <div class="row">
+            <div class="input-field col s12">
+                <input id="titulo"
+                       type="text" 
+                       [(ngModel)]="historia.titulo">
+                <label for="titulo">Título</label>
+            </div>
+        </div>
+        <div class="row">
+            <div class="input-field col s12">
+                <textarea id="descricao" 
+                          class="materialize-textarea"
+                          [(ngModel)]="historia.descricao"></textarea>
+                <label for="descricao">Descrição</label>
+            </div>
+        </div>
+        <div class="row">
+            <div class="input-field col s4">
+                <input type="text" 
+                       class="datepicker"
+                       id="datacriacao">
+                <label for="datacriacao">Data Criação</label>
+            </div>
+            <div class="input-field col s4">
+                <input type="text" 
+                       class="timepicker"
+                       id="tempoestimado">
+                <label for="tempoestimado">Tempo Estimado</label>
+            </div>
+            <div class="input-field col s4">
+                <input type="text" 
+                       class="timepicker"
+                       id="tempodecorrido">
+                <label for="tempodecorrido">Tempo Decorrido</label>
+            </div>
+        </div>
+        <div class="row">
+            <div class="input-field col s8">
+                   <select class="browser-default" [(ngModel)]="historia.usuarioCriador" [ngModelOptions]="{standalone: true}">
+                    <option value="Selecione o usuário" disabled selected> </option>
+                    <option *ngFor='let usuario of usuariosByProjeto' [value]="usuario.email">
+                        {{usuario.nome}}
+                    </option>
+                  </select> 
+                      <label>Parecer da Qualidade</label>
+                </div>
+            <div class="input-field col s4">
+                <select [(ngModel)]="historia.parecer" [ngModelOptions]="{standalone: true}">
+                    <option value="" disabled selected>Selecione o parecer</option>
+                    <option value="I">Insatisfeito</option>
+                    <option value="P">Parcialmente Satisfeito</option>
+                    <option value="S">Satisfeito</option>
+                  </select>
+                  <label>Parecer da Qualidade</label>
+            </div>
+        </div>
+        <div class="row">
+            <div class="input-field col s12">
+                <textarea id="descricaoparecer" 
+                          class="materialize-textarea"
+                          [(ngModel)]="historia.descricaoParecer"></textarea>
+                <label for="descricaoparecer">Descrição do Parecer</label>
+            </div>
+        </div>
+        <div class="row">
+          <div class="col s12" align="right">
+              <a class="waves-effect waves-light btn-large"
+                 (click)="salvar()">Salvar</a>
+
+          </div>
+
+        </div>
+    </div>
+  </div>
