@@ -1,84 +1,94 @@
-<div class="row">
-    <div class="col s12">
+<mat-grid-list cols="12">
         <app-menu-superior></app-menu-superior>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col s3">
-        <app-menu-lateral></app-menu-lateral>
-    </div>
-    <div class="col s9">
-        <div class="row">
-            <div class="input-field col s12">
-                <input id="titulo"
-                       type="text" 
-                       [(ngModel)]="historia.titulo">
-                <label for="titulo">Título</label>
-            </div>
-        </div>
-        <div class="row">
-            <div class="input-field col s12">
-                <textarea id="descricao" 
-                          class="materialize-textarea"
-                          [(ngModel)]="historia.descricao"></textarea>
-                <label for="descricao">Descrição</label>
-            </div>
-        </div>
-        <div class="row">
-            <div class="input-field col s4">
-                <input type="text" 
-                       class="datepicker"
-                       id="datacriacao">
-                <label for="datacriacao">Data Criação</label>
-            </div>
-            <div class="input-field col s4">
-                <input type="text" 
-                       class="timepicker"
-                       id="tempoestimado">
-                <label for="tempoestimado">Tempo Estimado</label>
-            </div>
-            <div class="input-field col s4">
-                <input type="text" 
-                       class="timepicker"
-                       id="tempodecorrido">
-                <label for="tempodecorrido">Tempo Decorrido</label>
-            </div>
-        </div>
-        <div class="row">
-            <div class="input-field col s8">
-                   <select class="browser-default" [(ngModel)]="historia.usuarioCriador" [ngModelOptions]="{standalone: true}">
-                    <option value="Selecione o usuário" disabled selected> </option>
-                    <option *ngFor='let usuario of usuariosByProjeto' [value]="usuario.email">
-                        {{usuario.nome}}
-                    </option>
-                  </select> 
-                      <label>Parecer da Qualidade</label>
-                </div>
-            <div class="input-field col s4">
-                <select [(ngModel)]="historia.parecer" [ngModelOptions]="{standalone: true}">
-                    <option value="" disabled selected>Selecione o parecer</option>
-                    <option value="I">Insatisfeito</option>
-                    <option value="P">Parcialmente Satisfeito</option>
-                    <option value="S">Satisfeito</option>
-                  </select>
-                  <label>Parecer da Qualidade</label>
-            </div>
-        </div>
-        <div class="row">
-            <div class="input-field col s12">
-                <textarea id="descricaoparecer" 
-                          class="materialize-textarea"
-                          [(ngModel)]="historia.descricaoParecer"></textarea>
-                <label for="descricaoparecer">Descrição do Parecer</label>
-            </div>
-        </div>
-        <div class="row">
-          <div class="col s12" align="right">
-              <a class="waves-effect waves-light btn-large"
-                 (click)="salvar()">Salvar</a>
+</mat-grid-list>
+<form class="form-historia">
 
-          </div>
+    <mat-grid-list cols="12">
+        <mat-grid-tile [colspan]="2" [rowspan]="6" style="padding-top:0%">
+                <app-menu-lateral></app-menu-lateral>
+        </mat-grid-tile>
+        <mat-grid-tile [colspan]="8">
+                <mat-form-field style="width: 90%">
+                        <input matInput 
+                               name="titulo"
+                               placeholder="Título" 
+                               [(ngModel)]="historia.titulo">
+                </mat-form-field>
+        </mat-grid-tile>
+        <mat-grid-tile [colspan]="8">
+                <mat-form-field style="width: 90%">
+                    <textarea matInput 
+                              name="descricao"
+                              placeholder="Descrição"
+                              [(ngModel)]="historia.descricao"></textarea>
+                </mat-form-field>
+        </mat-grid-tile>
+        <mat-grid-tile [colspan]="8">
+                <mat-form-field style="width: 28%;padding-right: 2%">
+                    <input matInput 
+                           name="dataCriacao"
+                           [matDatepicker]="picker1" 
+                           placeholder="Data de Criação"
+                           [(ngModel)]="historia.dataCriacao">
+                    <mat-datepicker-toggle matSuffix 
+                                           [for]="picker1">
+                    </mat-datepicker-toggle>
+                    <mat-datepicker #picker1></mat-datepicker>
+                </mat-form-field>
+                
+                <mat-form-field style="width: 28%;padding-right: 2%">
+                        <input type="time" 
+                               matInput
+                               name="tempoEstimado"
+                               placeholder="Tempo Estimado" 
+                               [(ngModel)]="historia.tempoEstimado">
+                </mat-form-field>
+                <mat-form-field style="width: 30%;">
+                        <input type="time" 
+                               matInput
+                               name="tempoDecorrido"
+                               placeholder="Tempo Decorrido" 
+                               [(ngModel)]="historia.tempoDecorrido">
+                </mat-form-field>
+        </mat-grid-tile>
+        <mat-grid-tile [colspan]="8">
+            <mat-form-field style="width: 48%;padding-right: 2%">
+                    <mat-select placeholder="Usuario Criador" 
+                                name="usuarioCriador"
+                                [(ngModel)]="historia.usuarioCriador">
+                        <mat-option>Selecione um usuário</mat-option>
+                        <mat-option *ngFor="let usuario of usuarioService.usuariosByProjeto" 
+                                    [value]="usuario">
+                                    {{usuario.nome}}
+                        </mat-option>
+                    </mat-select>
+            </mat-form-field>
 
-        </div>
-    </div>
-  </div>
+            <mat-form-field style="width: 40%">
+                <mat-select placeholder="Parecer da Qualidade" 
+                            name="parecerQualidade"
+                            [(ngModel)]="historia.parecerQualidade">
+                    <mat-option>Selecione um parecer</mat-option>
+                    <mat-option *ngFor="let parecer of selectParecer" 
+                                [value]="parecer.value">
+                                {{parecer.description}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+        </mat-grid-tile>
+        <mat-grid-tile [colspan]="8">
+                <mat-form-field style="width: 90%">
+                        <textarea matInput 
+                                  name="descricaoParecer"
+                                  placeholder="Descrição"
+                                  [(ngModel)]="historia.descricaoParecer"></textarea>
+                </mat-form-field>
+        </mat-grid-tile>
+        <mat-grid-tile [colspan]="8" align="right">
+                <button mat-raised-button 
+                        color="primary"
+                        (click)="salvar()">Salvar</button>
+        </mat-grid-tile>
+    </mat-grid-list>
+</form>
+

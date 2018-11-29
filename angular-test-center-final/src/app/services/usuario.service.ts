@@ -16,7 +16,8 @@ export class UsuarioService {
 
   USUARIO_URL = 'http://localhost:8081/usuario/';
   usuarioLogado: Usuario;
-  
+  usuariosByProjeto: Usuario[];
+
   constructor(private http: HttpClient) { }
 
 
@@ -45,7 +46,10 @@ export class UsuarioService {
   }
 
   getUsuariosByProjeto(id:number) {
-    return this.http.get<Usuario[]>(this.USUARIO_URL+"usuariosbyprojeto/"+id);
+    return this.http.get<Usuario[]>(this.USUARIO_URL+"usuariosbyprojeto/"+id)
+                    .subscribe(res => {
+                      this.usuariosByProjeto = res;
+                    });
   }
 
 

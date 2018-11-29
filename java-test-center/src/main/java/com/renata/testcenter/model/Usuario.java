@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.JoinTable;
 import javax.persistence.JoinColumn;
@@ -15,6 +16,10 @@ import javax.validation.constraints.Size;
 
 import org.springframework.data.annotation.CreatedDate;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 @Entity
 public class Usuario {
 
@@ -35,6 +40,7 @@ public class Usuario {
 	private Date dataIngressoSistema;
 	@NotNull
 	private String funcaoExercida;
+	@JsonIgnore
 	@ManyToMany(cascade = { CascadeType.ALL })
     @JoinTable(name = "membros", 
         	   joinColumns = { @JoinColumn(name = "usuario_email") }, 

@@ -3,6 +3,7 @@ import { UsuarioService } from '../services/usuario.service';
 import { ProjetoService } from '../services/projeto.service';
 import { Projeto } from '../classes/projeto';
 import { Router } from '@angular/router';
+import {FormControl, Validators} from '@angular/forms';
 
 
 @Component({
@@ -14,7 +15,8 @@ export class ProjetoSelecionarComponent implements OnInit {
   
   projetoSelect: Projeto;
   mostrarAlerta: boolean = false;
-
+  projetoControl = new FormControl('', [Validators.required]);
+  
   constructor(private usuarioService: UsuarioService, 
               private projetoService:ProjetoService,
               private router:Router) {

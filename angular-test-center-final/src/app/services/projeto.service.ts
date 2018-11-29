@@ -23,7 +23,6 @@ export class ProjetoService {
   getProjetoById(id:number) {
     return this.http.get<Projeto>(this.PROJETO_URL+id);
   }
-
   saveProjeto(projeto:Projeto) {
     return this.http.post<Projeto>(this.PROJETO_URL,projeto);
   }
@@ -41,5 +40,12 @@ export class ProjetoService {
                .subscribe( res => {
                   this.projetos = res;
                });
+  }
+
+  getProjetoByIdSelect(id:number) {
+    return this.http.get<Projeto>(this.PROJETO_URL+id)
+                    .subscribe( e => {
+                      this.projetoSelecionado = e;
+                    });
   }
 }

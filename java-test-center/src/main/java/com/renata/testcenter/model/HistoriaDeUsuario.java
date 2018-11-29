@@ -1,8 +1,8 @@
 package com.renata.testcenter.model;
 
-import java.util.Date;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -13,7 +13,9 @@ import javax.validation.constraints.Size;
 
 import org.springframework.data.annotation.LastModifiedBy;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 @Entity
 public class HistoriaDeUsuario {
 
@@ -27,15 +29,15 @@ public class HistoriaDeUsuario {
 	@Size(max = 300)
 	private String descricao;
 	@NotNull
-	private Date dataCriacao;
-	private Date tempoEstimado;
-	private Date tempoDecorrido;
+	private String dataCriacao;
+	private String tempoEstimado;
+	private String tempoDecorrido;
 	@NotNull
-	@ManyToOne
+	@ManyToOne(fetch= FetchType.EAGER)
 	@JoinColumn(name = "usuario_criador")
 	private Usuario usuarioCriador;
 	@NotNull
-	@ManyToOne
+	@ManyToOne(fetch= FetchType.EAGER)
 	@JoinColumn(name = "usuario_atualizador")
 	@LastModifiedBy
 	private Usuario usuarioAtualizador;
@@ -64,22 +66,22 @@ public class HistoriaDeUsuario {
 	public void setDescricao(String descricao) {
 		this.descricao = descricao;
 	}
-	public Date getDataCriacao() {
+	public String getDataCriacao() {
 		return dataCriacao;
 	}
-	public void setDataCriacao(Date dataCriacao) {
+	public void setDataCriacao(String dataCriacao) {
 		this.dataCriacao = dataCriacao;
 	}
-	public Date getTempoEstimado() {
+	public String getTempoEstimado() {
 		return tempoEstimado;
 	}
-	public void setTempoEstimado(Date tempoEstimado) {
+	public void setTempoEstimado(String tempoEstimado) {
 		this.tempoEstimado = tempoEstimado;
 	}
-	public Date getTempoDecorrido() {
+	public String getTempoDecorrido() {
 		return tempoDecorrido;
 	}
-	public void setTempoDecorrido(Date tempoDecorrido) {
+	public void setTempoDecorrido(String tempoDecorrido) {
 		this.tempoDecorrido = tempoDecorrido;
 	}
 	public Usuario getUsuarioCriador() {

@@ -1,10 +1,54 @@
-<nav>
-    <div class="nav-wrapper">
-      <a href="#" class="brand-logo">Logo</a>
-      <ul id="nav-mobile" class="right hide-on-med-and-down">
-        <li><a href="sass.html">Sass</a></li>
-        <li><a href="badges.html">Components</a></li>
-        <li><a href="collapsible.html">JavaScript</a></li>
-      </ul>
-    </div>
-  </nav>
+<table style="border:none">
+  <tr>
+    <td style="padding-left:2%">
+      <a routerLink="/login">
+        <img src="assets/logotestcenter.png" style="height:20%"/>
+      </a>
+    </td>
+    <td style="width: 100%"></td>
+    <td>
+        <button mat-button [matMenuTriggerFor]="projetos">
+            <mat-icon>next_week</mat-icon>
+             Projetos
+        </button>
+        <mat-menu #projetos="matMenu">
+          <button mat-menu-item>
+            <mat-icon>dialpad</mat-icon>
+            <span>Trocar</span>
+          </button>
+          <button mat-menu-item>
+            <mat-icon>notifications_off</mat-icon>
+            <span>Solicitar Entrada</span>
+          </button>
+          <button mat-menu-item *ngIf="usuarioService.usuarioLogado.funcaoExercida=='PO' ||
+                                       usuarioService.usuarioLogado.funcaoExercida == 'SM' || 
+                                       usuarioService.usuarioLogado.funcaoExercida == 'L' ||
+                                       usuarioService.usuarioLogado.funcaoExercida == 'GP'">
+              <mat-icon>notifications_off</mat-icon>
+              <span>Adicionar Membros</span>
+            </button>
+        </mat-menu>
+    </td>
+    <td>
+        <button mat-button [matMenuTriggerFor]="perfil">
+            <i class="fas fa-user-circle"></i> 
+             Perfil
+        </button>
+        <mat-menu #perfil="matMenu">
+          <button mat-menu-item>
+            <mat-icon>dialpad</mat-icon>
+            <span>Editar</span>
+          </button>
+          <button mat-menu-item>
+            <mat-icon>notifications_off</mat-icon>
+            <span>Sair</span>
+          </button>
+        </mat-menu>
+    </td>
+
+
+  </tr>
+
+
+</table>
+<mat-divider></mat-divider>

@@ -4,6 +4,5 @@
      ('paulodetarso@hotmail.com', CURRENT_DATE, 'SM', 'Paulo de Tarso Souza', 'paulo@top100'),
      ('marisacelia@gmail.com', CURRENT_DATE, 'QA', 'Marisa Celia Jesus', '887888nns'),
      ('eduardacastro@ig.com.br', CURRENT_DATE, 'D', 'Eduarda Castro Dutra', 'maisamormens'),
-     ('heliopetri@gmail.com', CURRENT_DATE, 'AN', 'Helio Petri da Cruz', 'familia1200');
-
-
+     ('heliopetri@gmail.com', CURRENT_DATE, 'AN', 'Helio Petri da Cruz', 'familia1200'),
+     ('renatasfraga@gmail.com', CURRENT_DATE, 'PO', 'Renata dos Santos Fraga', '34856015');

@@ -1,6 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {HttpClientModule} from "@angular/common/http";
 
 import { AppRoutingModule } from './app-routing.module';
@@ -29,6 +30,22 @@ import { ProjetoService } from './services/projeto.service';
 import { UsuarioService } from './services/usuario.service';
 import { MenuLateralComponent } from './menu-lateral/menu-lateral.component';
 import { MenuSuperiorComponent } from './menu-superior/menu-superior.component';
+
+import {MatSelectModule} from '@angular/material/select';
+import {MatGridListModule} from '@angular/material/grid-list';
+import {MatInputModule} from '@angular/material/input';
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import {MatButtonModule} from '@angular/material/button';
+import { MatNativeDateModule } from '@angular/material/core';
+import {MatSidenavModule} from '@angular/material/sidenav';
+import {MatTreeModule} from '@angular/material/tree';
+import {MatIconModule} from '@angular/material/icon';
+import {MatDividerModule} from '@angular/material/divider';
+import {MatListModule} from '@angular/material/list';
+import {MatMenuModule} from '@angular/material/menu';
+import {MatTabsModule} from '@angular/material/tabs';
+import {MatCardModule} from '@angular/material/card';
+
 
 @NgModule({
   declarations: [
@@ -61,7 +78,22 @@ import { MenuSuperiorComponent } from './menu-superior/menu-superior.component';
     AppRoutingModule,
     FormsModule,
     HttpClientModule,
-    
+    BrowserAnimationsModule,
+    MatSelectModule,
+    MatGridListModule,
+    MatInputModule,
+    MatDatepickerModule,
+    MatButtonModule,
+    MatNativeDateModule,
+    MatSidenavModule,
+    MatTreeModule,
+    MatIconModule,
+    MatDividerModule,
+    MatListModule,
+    MatMenuModule,
+    MatTabsModule,
+    MatCardModule,
+    ReactiveFormsModule,
   ],
   providers: [ProjetoService, UsuarioService],
   bootstrap: [AppComponent]

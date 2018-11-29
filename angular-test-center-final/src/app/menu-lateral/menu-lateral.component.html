@@ -1,7 +1,39 @@
-<ul class="collection with-header">
-  <li class="collection-header"><h4>First Names</h4></li>
-  <li class="collection-item"><div>Alvin<a href="#!" class="secondary-content"><i class="material-icons">send</i></a></div></li>
-  <li class="collection-item"><div>História de Usuário<a href="#!" routerLink="/historia-listar" class="secondary-content"><i class="material-icons">send</i></a></div></li>
-  <li class="collection-item"><div>Alvin<a href="#!" class="secondary-content"><i class="material-icons">send</i></a></div></li>
-  <li class="collection-item"><div>Alvin<a href="#!" class="secondary-content"><i class="material-icons">send</i></a></div></li>
-</ul>
+
+        <mat-list role="list">
+            <mat-list-item role="listitem">
+                <button mat-button
+                        style="width: 100%; text-align:left;"
+                        routerLink="/lembretes-listar"><mat-icon>event</mat-icon> 
+                  Lembretes
+                </button> 
+            </mat-list-item>
+           
+            <mat-list-item role="listitem">
+                <button mat-button
+                        style="width: 100%; text-align:left;"
+                        routerLink="/historia-listar"><mat-icon>subject</mat-icon> 
+                  Histórias de Usuário
+                </button>
+            </mat-list-item>
+           
+            <mat-list-item role="listitem">
+                <button mat-button
+                        style="width: 100%; text-align:left;"><mat-icon>assignment</mat-icon> 
+                  Planos de Testes
+                </button>
+            </mat-list-item>
+            
+            <mat-list-item role="listitem">
+                <button mat-button
+                        style="width: 100%; text-align:left;"><mat-icon>note</mat-icon>
+                  Repositório
+                </button>
+            </mat-list-item>
+          
+            <mat-list-item role="listitem">
+                <button mat-button
+                        style="width: 100%; text-align:left;"><mat-icon>show_chart</mat-icon> 
+                  Gráficos
+                </button>
+            </mat-list-item>
+          </mat-list>

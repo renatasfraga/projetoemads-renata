@@ -4,6 +4,7 @@ import java.util.Date;
 import java.util.List;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -16,7 +17,9 @@ import javax.validation.constraints.Size;
 import org.springframework.data.annotation.CreatedDate;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 @Entity
 public class Projeto {
 
@@ -34,11 +37,11 @@ public class Projeto {
 	@NotNull
 	private String metodologiaDesenvolvimento;
 	@NotNull
-	@ManyToOne
+	@ManyToOne(fetch= FetchType.EAGER)
 	@JoinColumn(name ="usuario_criador")
 	private Usuario usuarioCriador;
-	@ManyToMany(mappedBy = "projetos")
 	@JsonIgnore
+	@ManyToMany(mappedBy = "projetos")
 	private List<Usuario> usuarios;
 	
 	public Long getId() {
