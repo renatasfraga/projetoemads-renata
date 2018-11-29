@@ -47,4 +47,10 @@ public class HistoriaDeUsuarioController {
 	public List<HistoriaDeUsuario> getHistoriaByProjeto(@PathVariable("id") Long id) {
 		return this.service.getHistoriaDeUsuarioByProjeto(id);
 	}
+	
+	@GetMapping(path ={"/{id}/{nome}"})
+	public List<HistoriaDeUsuario> historiaDeUsuarioPorNome(@PathVariable("id") Long id,
+			                                                @PathVariable("nome") String nome) {
+		return this.service.historiaDeUsuarioPorNome(id, nome);
+	}
 }

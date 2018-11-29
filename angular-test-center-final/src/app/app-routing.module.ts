@@ -13,6 +13,7 @@ const routes: Routes = [
   { path:'lembretes', component: LembretesListarComponent},
   { path:'historia-listar', component: HistoriaListarComponent},
   { path:'historia-editar', component: HistoriaEditarComponent},
+  {path: 'historia-editar/:id', component: HistoriaEditarComponent },
 ];
 
 @NgModule({

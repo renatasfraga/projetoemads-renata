@@ -1,0 +1,22 @@
+table {
+    width: 100%;
+}
+
+.column-menu1 {
+    float: left;
+    width: 20%;
+    padding: 10px;
+}
+
+.column-body {
+    float: left;
+    width: 80%;
+    padding: 10px;
+}
+
+/* Clear floats after the columns */
+.rowmenu:after {
+    content: "";
+    display: table;
+    clear: both;
+}

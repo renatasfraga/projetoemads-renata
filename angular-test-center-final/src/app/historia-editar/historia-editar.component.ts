@@ -4,7 +4,7 @@ import { UsuarioService } from '../services/usuario.service';
 import { ProjetoService } from '../services/projeto.service';
 import { HistoriaDeUsuarioService } from '../services/historia-de-usuario.service';
 import { Usuario } from '../classes/usuario';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-historia-editar',
@@ -17,26 +17,42 @@ export class HistoriaEditarComponent implements OnInit {
   usuariosByProjeto:Usuario[] = [];
   usuarioSelect:Usuario;
   selectParecer:Parecer[];
+  idHistoria:number;
+  dialogAlterar:boolean = false; 
 
   constructor(private usuarioService:UsuarioService,
               private projetoService:ProjetoService,
               private historiaService:HistoriaDeUsuarioService,
-              private router : Router) { }
+              private router : Router,
+              private rotaAtiva: ActivatedRoute) { }
 
   ngOnInit() {
-    this.usuarioService.getUsuariosByProjeto(this.projetoService.projetoSelecionado.id);
-    this.getCarregarSelectParecer();
-  
+    this.idHistoria = this.rotaAtiva.snapshot.params['id'];
+
+    if(isNaN(this.idHistoria)) {
+      this.historia = new HistoriaDeUsuario();
+      this.usuarioService.getUsuariosByProjeto(this.projetoService.projetoSelecionado.id);
+      this.getCarregarSelectParecer();
+    } else {
+      this.historiaService.getHistoriaById(this.idHistoria);
+    }
   }
 
   salvar() {
-    this.historia.projeto = this.projetoService.projetoSelecionado;
     this.historia.usuarioAtualizador = this.usuarioService.usuarioLogado;
-    this.historiaService.saveHistoria(this.historia).subscribe( res => {
-        alert("Registro incluído com sucesso");
+    if(isNaN(this.idHistoria)) {
+      this.historia.projeto = this.projetoService.projetoSelecionado;
+      this.historiaService.saveHistoria(this.historia).subscribe( res => {
+          alert("Registro incluído com sucesso.");
+          this.router.navigate(['/historia-listar']);
+      });
+    } else {
+      this.historiaService.saveHistoria(this.historia).subscribe( res => {
+        this.dialogAlterar = true;
         this.router.navigate(['/historia-listar']);
-     
     });
+    }
+   
   }
 
   getCarregarSelectParecer() {

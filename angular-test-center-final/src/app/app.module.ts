@@ -45,6 +45,9 @@ import {MatListModule} from '@angular/material/list';
 import {MatMenuModule} from '@angular/material/menu';
 import {MatTabsModule} from '@angular/material/tabs';
 import {MatCardModule} from '@angular/material/card';
+import {MatTableModule} from '@angular/material/table';
+import {MatDialogModule} from '@angular/material/dialog';
+import { HistoriaDeUsuarioService } from './services/historia-de-usuario.service';
 
 
 @NgModule({
@@ -94,8 +97,10 @@ import {MatCardModule} from '@angular/material/card';
     MatTabsModule,
     MatCardModule,
     ReactiveFormsModule,
+    MatTableModule,
+    MatDialogModule,
   ],
-  providers: [ProjetoService, UsuarioService],
+  providers: [ProjetoService, UsuarioService, HistoriaDeUsuarioService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

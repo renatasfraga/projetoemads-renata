@@ -36,4 +36,8 @@ export class HistoriaDeUsuarioService {
   getHistoriaByProjeto(id:number) {
     return this.http.get<HistoriaDeUsuario[]>(this.HISTORIA_URL+"byprojeto/"+id);
   }
+
+  getHistoriaDeUsuarioPorNome(id:number,nome:string) {
+    return this.http.get<HistoriaDeUsuario[]>(this.HISTORIA_URL+id+"/"+nome);
+  }
 }
