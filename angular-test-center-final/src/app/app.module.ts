@@ -53,6 +53,9 @@ import { CriterioEditarComponent } from './criterio-editar/criterio-editar.compo
 import { TesteListarComponent } from './teste-listar/teste-listar.component';
 import { TesteEditarComponent } from './teste-editar/teste-editar.component';
 import { HistoriaIncluirComponent } from './historia-incluir/historia-incluir.component';
+import { CriterioIncluirComponent } from './criterio-incluir/criterio-incluir.component';
+import { TesteIncluirComponent } from './teste-incluir/teste-incluir.component';
+import { PlanoIncluirComponent } from './plano-incluir/plano-incluir.component';
 
 
 @NgModule({
@@ -84,7 +87,10 @@ import { HistoriaIncluirComponent } from './historia-incluir/historia-incluir.co
     CriterioEditarComponent,
     TesteListarComponent,
     TesteEditarComponent,
-    HistoriaIncluirComponent
+    HistoriaIncluirComponent,
+    CriterioIncluirComponent,
+    TesteIncluirComponent,
+    PlanoIncluirComponent
   ],
   imports: [
     BrowserModule,

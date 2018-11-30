@@ -61,5 +61,16 @@ public class CriterioDeAceitacaoController {
 	public List<CriterioDeAceitacao> getAllCriterio() {
 		return this.service.getAllCriterioDeAceitacao();
 	}
+	
+	@GetMapping(path = {"/byhistoria/{id_historia}/{id_projeto}"})
+	public List<CriterioDeAceitacao> getCriterioByProjetoHistoria(@PathVariable("id_historia") Long idHistoria,
+			                                              		  @PathVariable("id_projeto") Long idProjeto) {
+		return this.service.getCriterioByProjetoHistoria(idHistoria, idProjeto);
+	}
+	
+	@GetMapping(path = {"/byprojeto/{id_projeto}"})
+	public List<CriterioDeAceitacao> getCriterioByProjeto(@PathVariable("id_projeto") Long idProjeto) {
+		return this.service.getCriterioByProjeto(idProjeto);
+	}
 
 }

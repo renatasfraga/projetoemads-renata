@@ -38,4 +38,11 @@ public class UsuarioService {
 		return this.repository.getUsuariosByProjeto(id);
 	}
 	
+	public Usuario updateUsuario(String email, Usuario usuario) {
+	   if(this.repository.getOne(email) != null) {
+		   this.repository.saveAndFlush(usuario);
+	   }
+	   return null;
+	}
+	
 }

@@ -2,6 +2,8 @@ package com.renata.testcenter.restcontroller;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -55,9 +57,8 @@ public class HistoriaDeUsuarioController {
 		return this.service.historiaDeUsuarioPorNome(id, nome);
 	}
 	
-	@PutMapping(path = {"/{id}"})
-	public HistoriaDeUsuario updateHistoria(@PathVariable("id")Long id, 
-			                                @RequestBody HistoriaDeUsuario historia) {
-		return this.service.atualizarHistoriaDeUsuario(id, historia);
+	@PutMapping
+	public HistoriaDeUsuario updateHistoria(@Valid @RequestBody HistoriaDeUsuario historia) {
+		return this.service.updateHistoria(historia);
 	}
 }

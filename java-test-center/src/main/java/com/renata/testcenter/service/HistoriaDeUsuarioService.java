@@ -1,7 +1,6 @@
 package com.renata.testcenter.service;
 
 import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -42,11 +41,10 @@ public class HistoriaDeUsuarioService  {
 		return this.repository.historiaDeUsuarioPorNome(id, nome);
 	}
 	
-	public HistoriaDeUsuario atualizarHistoriaDeUsuario(Long id, HistoriaDeUsuario historia) {
-		if(this.repository.existsById(id)) {
-			return this.repository.save(historia);
-		}
+	public HistoriaDeUsuario updateHistoria(HistoriaDeUsuario historia) {
+		if(historia.getId() != null) {
+			this.repository.saveAndFlush(historia);
+		} 
 		return null;
 	}
-
 }

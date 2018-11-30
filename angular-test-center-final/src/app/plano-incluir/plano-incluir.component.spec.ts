@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { RepositorioDeletarComponent } from './repositorio-deletar.component';
+import { PlanoIncluirComponent } from './plano-incluir.component';
 
-describe('RepositorioDeletarComponent', () => {
-  let component: RepositorioDeletarComponent;
-  let fixture: ComponentFixture<RepositorioDeletarComponent>;
+describe('PlanoIncluirComponent', () => {
+  let component: PlanoIncluirComponent;
+  let fixture: ComponentFixture<PlanoIncluirComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ RepositorioDeletarComponent ]
+      declarations: [ PlanoIncluirComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(RepositorioDeletarComponent);
+    fixture = TestBed.createComponent(PlanoIncluirComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

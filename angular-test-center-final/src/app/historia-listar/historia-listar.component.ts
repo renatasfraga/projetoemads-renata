@@ -4,7 +4,6 @@ import { UsuarioService } from '../services/usuario.service';
 import { HistoriaDeUsuarioService } from '../services/historia-de-usuario.service';
 import { HistoriaDeUsuario } from '../classes/historia-de-usuario';
 import { MatDialog } from '@angular/material/dialog';
-import { HistoriaDeletarComponent } from '../historia-deletar/historia-deletar.component';
 
 @Component({
   selector: 'app-historia-listar',
@@ -19,8 +18,7 @@ export class HistoriaListarComponent implements OnInit {
 
   constructor(private projetoService:ProjetoService,
               private usuarioService:UsuarioService,
-              private historiaDeUsuarioService:HistoriaDeUsuarioService,
-              public dialog: MatDialog) { }
+              private historiaDeUsuarioService:HistoriaDeUsuarioService) { }
 
   ngOnInit() {
     this.carregarGridOnInit();

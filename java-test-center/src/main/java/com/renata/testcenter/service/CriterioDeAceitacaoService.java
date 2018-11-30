@@ -28,7 +28,16 @@ public class CriterioDeAceitacaoService {
 	}
 
 	public List<CriterioDeAceitacao> getAllCriterioDeAceitacao() {
-		return repository.findAll();
+		return this.repository.findAll();
 	}
-
+	
+	public List<CriterioDeAceitacao> getCriterioByProjetoHistoria(Long idHistoria,
+			                                                      Long idProjeto) {
+		return this.repository.getCriterioByProjetoHistoria(idHistoria, idProjeto);
+	}
+	
+	public List<CriterioDeAceitacao> getCriterioByProjeto(Long idProjeto) {
+		return this.repository.getCriterioByProjeto(idProjeto);
+	}
+	
 }

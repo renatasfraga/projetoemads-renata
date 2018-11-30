@@ -23,8 +23,8 @@ export class HistoriaDeUsuarioService {
     return this.http.post<HistoriaDeUsuario>(this.HISTORIA_URL,historia,httpOptions);
   }
 
-  updateHistoria(id:number,historia): Observable<any> {
-    return this.http.put<HistoriaDeUsuario>(this.HISTORIA_URL+id,historia,httpOptions)
+  updateHistoria(historia): Observable<any> {
+    return this.http.put<HistoriaDeUsuario>(this.HISTORIA_URL,historia,httpOptions)
   }
 
   deleteHistoria(id:number) {

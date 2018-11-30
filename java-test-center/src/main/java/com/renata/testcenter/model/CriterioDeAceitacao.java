@@ -4,6 +4,7 @@ import java.io.Serializable;
 import javax.persistence.Embeddable;
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.JoinColumn;
@@ -11,7 +12,11 @@ import javax.persistence.ManyToOne;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
+import org.springframework.data.annotation.LastModifiedBy;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 @Entity
 public class CriterioDeAceitacao {
 
@@ -23,6 +28,15 @@ public class CriterioDeAceitacao {
 	@NotNull
 	@Size(max = 200)
 	private String descricaoLinha;
+	@NotNull
+	@ManyToOne(fetch= FetchType.EAGER)
+	@JoinColumn(name = "usuario_criador")
+	private Usuario usuarioCriador;
+	@NotNull
+	@ManyToOne(fetch= FetchType.EAGER)
+	@JoinColumn(name = "usuario_atualizador")
+	@LastModifiedBy
+	private Usuario usuarioAtualizador;
 
 	@Embeddable
 	public static class CriterioDeAceitacaoPK implements Serializable {
@@ -52,6 +66,7 @@ public class CriterioDeAceitacao {
 		public void setIdLinhaCriterio(Long idLinhaCriterio) {
 			this.idLinhaCriterio = idLinhaCriterio;
 		}
+		
 
 		@Override
 		public int hashCode() {
@@ -108,13 +123,32 @@ public class CriterioDeAceitacao {
 	public void setDescricaoLinha(String descricaoLinha) {
 		this.descricaoLinha = descricaoLinha;
 	}
+	
+	public Usuario getUsuarioCriador() {
+		return usuarioCriador;
+	}
 
+	public void setUsuarioCriador(Usuario usuarioCriador) {
+		this.usuarioCriador = usuarioCriador;
+	}
+
+	public Usuario getUsuarioAtualizador() {
+		return usuarioAtualizador;
+	}
+
+	public void setUsuarioAtualizador(Usuario usuarioAtualizador) {
+		this.usuarioAtualizador = usuarioAtualizador;
+	}
 
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
+		result = prime * result + ((descricaoLinha == null) ? 0 : descricaoLinha.hashCode());
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
+		result = prime * result + ((idOrdenacao == null) ? 0 : idOrdenacao.hashCode());
+		result = prime * result + ((usuarioAtualizador == null) ? 0 : usuarioAtualizador.hashCode());
+		result = prime * result + ((usuarioCriador == null) ? 0 : usuarioCriador.hashCode());
 		return result;
 	}
 
@@ -127,12 +161,31 @@ public class CriterioDeAceitacao {
 		if (getClass() != obj.getClass())
 			return false;
 		CriterioDeAceitacao other = (CriterioDeAceitacao) obj;
+		if (descricaoLinha == null) {
+			if (other.descricaoLinha != null)
+				return false;
+		} else if (!descricaoLinha.equals(other.descricaoLinha))
+			return false;
 		if (id == null) {
 			if (other.id != null)
 				return false;
 		} else if (!id.equals(other.id))
 			return false;
+		if (idOrdenacao == null) {
+			if (other.idOrdenacao != null)
+				return false;
+		} else if (!idOrdenacao.equals(other.idOrdenacao))
+			return false;
+		if (usuarioAtualizador == null) {
+			if (other.usuarioAtualizador != null)
+				return false;
+		} else if (!usuarioAtualizador.equals(other.usuarioAtualizador))
+			return false;
+		if (usuarioCriador == null) {
+			if (other.usuarioCriador != null)
+				return false;
+		} else if (!usuarioCriador.equals(other.usuarioCriador))
+			return false;
 		return true;
 	}
-
 }
