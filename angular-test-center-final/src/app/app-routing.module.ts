@@ -5,6 +5,7 @@ import { ProjetoSelecionarComponent } from './projeto-selecionar/projeto-selecio
 import { LembretesListarComponent } from './lembretes-listar/lembretes-listar.component';
 import { HistoriaListarComponent } from './historia-listar/historia-listar.component';
 import { HistoriaEditarComponent } from './historia-editar/historia-editar.component';
+import { HistoriaIncluirComponent } from './historia-incluir/historia-incluir.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
@@ -12,7 +13,7 @@ const routes: Routes = [
   { path:'projeto-selecionar', component: ProjetoSelecionarComponent},
   { path:'lembretes', component: LembretesListarComponent},
   { path:'historia-listar', component: HistoriaListarComponent},
-  { path:'historia-editar', component: HistoriaEditarComponent},
+  { path:'historia-incluir', component: HistoriaIncluirComponent},
   {path: 'historia-editar/:id', component: HistoriaEditarComponent },
 ];
 

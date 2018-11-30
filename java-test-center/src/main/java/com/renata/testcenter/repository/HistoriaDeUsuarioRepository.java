@@ -13,7 +13,7 @@ public interface HistoriaDeUsuarioRepository extends JpaRepository<HistoriaDeUsu
 	@Query("SELECT h FROM HistoriaDeUsuario h WHERE id_projeto = :id")
 	public List<HistoriaDeUsuario> historiaDeUsuarioByProjeto(@Param("id") Long id); 
 	
-	@Query("SELECT h FROM HistoriaDeUsuario h where id_projeto = :id and nome LIKE %:nome%")
+	@Query("SELECT h FROM HistoriaDeUsuario h where id_projeto = :id and titulo LIKE %:titulo%")
 	public List<HistoriaDeUsuario> historiaDeUsuarioPorNome(@Param("id") Long id,
-															@Param("nome") String nome); 
+															@Param("titulo") String nome); 
 }

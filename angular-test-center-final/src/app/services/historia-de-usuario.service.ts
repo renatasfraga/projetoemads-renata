@@ -1,12 +1,10 @@
 import { Injectable } from '@angular/core';
 import { HttpHeaders, HttpClient } from '@angular/common/http';
 import { HistoriaDeUsuario } from '../classes/historia-de-usuario';
+import { Observable } from 'rxjs';
 
 const httpOptions = {
-  headers: new HttpHeaders({
-    'Content-Type':  'application/json',
-    'Authorization': 'Basic my-auth-token'
-  })
+  headers: new HttpHeaders({'Content-Type': 'application/json'})
 };
 
 @Injectable({
@@ -21,8 +19,12 @@ export class HistoriaDeUsuarioService {
     return this.http.get<HistoriaDeUsuario>(this.HISTORIA_URL+id);
   }
 
-  saveHistoria(historia:HistoriaDeUsuario) {
-    return this.http.post<HistoriaDeUsuario>(this.HISTORIA_URL,historia);
+  saveHistoria(historia) : Observable<HistoriaDeUsuario> {
+    return this.http.post<HistoriaDeUsuario>(this.HISTORIA_URL,historia,httpOptions);
+  }
+
+  updateHistoria(id:number,historia): Observable<any> {
+    return this.http.put<HistoriaDeUsuario>(this.HISTORIA_URL+id,historia,httpOptions)
   }
 
   deleteHistoria(id:number) {

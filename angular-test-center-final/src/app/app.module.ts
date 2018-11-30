@@ -48,6 +48,11 @@ import {MatCardModule} from '@angular/material/card';
 import {MatTableModule} from '@angular/material/table';
 import {MatDialogModule} from '@angular/material/dialog';
 import { HistoriaDeUsuarioService } from './services/historia-de-usuario.service';
+import { CriterioListarComponent } from './criterio-listar/criterio-listar.component';
+import { CriterioEditarComponent } from './criterio-editar/criterio-editar.component';
+import { TesteListarComponent } from './teste-listar/teste-listar.component';
+import { TesteEditarComponent } from './teste-editar/teste-editar.component';
+import { HistoriaIncluirComponent } from './historia-incluir/historia-incluir.component';
 
 
 @NgModule({
@@ -74,7 +79,12 @@ import { HistoriaDeUsuarioService } from './services/historia-de-usuario.service
     ProjetoEditarComponent,
     ProjetoSelecionarComponent,
     MenuLateralComponent,
-    MenuSuperiorComponent
+    MenuSuperiorComponent,
+    CriterioListarComponent,
+    CriterioEditarComponent,
+    TesteListarComponent,
+    TesteEditarComponent,
+    HistoriaIncluirComponent
   ],
   imports: [
     BrowserModule,

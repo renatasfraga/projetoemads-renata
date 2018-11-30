@@ -1,29 +1,22 @@
 import { Component, OnInit } from '@angular/core';
-import { HistoriaDeUsuario } from '../classes/historia-de-usuario';
+import { FormGroup, FormBuilder, Validators, NgForm } from '@angular/forms';
+import { Usuario } from '../classes/usuario';
 import { UsuarioService } from '../services/usuario.service';
 import { ProjetoService } from '../services/projeto.service';
 import { HistoriaDeUsuarioService } from '../services/historia-de-usuario.service';
-import { Usuario } from '../classes/usuario';
 import { Router, ActivatedRoute } from '@angular/router';
-import { FormGroup, FormBuilder, Validators, NgForm } from '@angular/forms';
 import { Projeto } from '../classes/projeto';
-import { disableBindings } from '@angular/core/src/render3';
 
 @Component({
-  selector: 'app-historia-editar',
-  templateUrl: './historia-editar.component.html',
-  styleUrls: ['./historia-editar.component.css']
+  selector: 'app-historia-incluir',
+  templateUrl: './historia-incluir.component.html',
+  styleUrls: ['./historia-incluir.component.css']
 })
-export class HistoriaEditarComponent implements OnInit {
+export class HistoriaIncluirComponent implements OnInit {
 
-  historia: HistoriaDeUsuario = new HistoriaDeUsuario();
-  usuariosByProjeto:Usuario[] = [];
   selectParecer:Parecer[];
- 
 
-  //referente a form
   historiaForm: FormGroup;
-  id:number = null;
   titulo:string = '';
   descricao:string = '';
   dataCriacao:string = '';
@@ -46,21 +39,19 @@ export class HistoriaEditarComponent implements OnInit {
     this.usuarioService.getUsuariosByProjeto(this.projetoService.projetoSelecionado.id);
     this.getCarregarSelectParecer();
 
-    this.getHistoria(this.rotaAtiva.snapshot.params['id']);
     this.historiaForm = this.formBuilder.group({
-      'id':[{value: null, disabled: true}, Validators.required],
       'titulo': [null, Validators.required],
       'descricao' : [null, Validators.required],
       'dataCriacao': [null, Validators.required],
-      'usuarioAux': [null, Validators.required],
-      'usuarioCriador': [null],
+      'usuarioCriador': [null, Validators.required],
       'tempoEstimado': [null],
       'tempoDecorrido':  [null],
       'parecerQualidade':[null],
       'descricaoParecer':[null],
       'usuarioAtualizador':[this.usuarioService.usuarioLogado],
       'projeto':[this.projetoService.projetoSelecionado],
-     });   
+
+    });
   }
 
   getCarregarSelectParecer() {
@@ -71,37 +62,13 @@ export class HistoriaEditarComponent implements OnInit {
     ];
   }
 
-  getHistoria(id) {
-    this.historiaService.getHistoriaById(id)
-        .subscribe( result => {
-          this.id = result.id;
-          this.historiaForm.setValue({
-            id: result.id,
-            titulo:result.titulo,
-            descricao : result.descricao,
-            dataCriacao: result.dataCriacao,
-            tempoEstimado: result.tempoEstimado,
-            tempoDecorrido: result.tempoDecorrido,
-            usuarioAux: result.usuarioCriador.email,
-            usuarioCriador: result.usuarioCriador,
-            parecerQualidade: result.parecerQualidade,
-            descricaoParecer: result.descricaoParecer,
-            projeto: result.projeto,
-            usuarioAtualizador: result.usuarioAtualizador
-          });
-        });
+  onFormSubmit(form:NgForm) {
+    this.historiaService.saveHistoria(form).subscribe(res => {
+      alert("História de Usuário incluída com sucesso!");
+      this.router.navigate(['/historia-listar']);
+     });
   }
 
-  onFormSubmit(form:NgForm) {
-      this.historiaService.updateHistoria(this.id,form)
-          .subscribe( rest => {
-            let id = rest['id'];
-            alert("História de usuário alterada com sucesso!");
-            this.router.navigate(['/historia-editar', id]);
-          }, (err) => {
-            console.log(err);
-          });
-     }   
 }
 export interface Parecer {
   value:string;

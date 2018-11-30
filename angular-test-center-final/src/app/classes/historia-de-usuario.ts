@@ -10,6 +10,7 @@ export class HistoriaDeUsuario {
     tempoEstimado:string;
     tempoDecorrido:string;
     usuarioCriador:Usuario;
+    usuarioAux:string;
     usuarioAtualizador: Usuario;
     parecerQualidade:string;
     descricaoParecer:string;

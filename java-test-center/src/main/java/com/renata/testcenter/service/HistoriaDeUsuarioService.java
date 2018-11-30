@@ -41,5 +41,12 @@ public class HistoriaDeUsuarioService  {
 	public List<HistoriaDeUsuario> historiaDeUsuarioPorNome(Long id, String nome) {
 		return this.repository.historiaDeUsuarioPorNome(id, nome);
 	}
+	
+	public HistoriaDeUsuario atualizarHistoriaDeUsuario(Long id, HistoriaDeUsuario historia) {
+		if(this.repository.existsById(id)) {
+			return this.repository.save(historia);
+		}
+		return null;
+	}
 
 }

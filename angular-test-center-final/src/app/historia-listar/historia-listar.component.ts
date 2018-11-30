@@ -27,10 +27,15 @@ export class HistoriaListarComponent implements OnInit {
   }
 
   buscar(nome:string) {
-    this.historiaDeUsuarioService.getHistoriaDeUsuarioPorNome(this.projetoService.projetoSelecionado.id,nome)
-                                 .subscribe( e => {
-                                   this.historiaList = e;
-                                 });
+    if(nome) {
+      this.historiaDeUsuarioService.getHistoriaDeUsuarioPorNome(this.projetoService.projetoSelecionado.id,nome)
+      .subscribe( e => {
+        this.historiaList = e;
+      });
+    } else {
+      this.carregarGridOnInit();
+    }
+    
   }
 
   carregarGridOnInit() {
@@ -40,12 +45,17 @@ export class HistoriaListarComponent implements OnInit {
     });
   }
 
-  
-
   remover(id:number) {
-    this.historiaDeUsuarioService.deleteHistoria(id).subscribe(e =>
-      {
-        alert("Exclusão efetuada com sucesso!");
-      });
+    if(confirm("Tem certeza que deseja remover?")) {
+      this.historiaDeUsuarioService.deleteHistoria(id)
+          .subscribe(e => {
+            this.carregarGridOnInit();
+            alert("Exclusão efetuada com sucesso!");
+        } , (err) => {
+          console.log(err);
+        });
+    } else {
+      alert("Exclusão cancelada.");
+    } 
   }
 }

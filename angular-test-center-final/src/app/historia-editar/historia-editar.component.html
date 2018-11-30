@@ -1,94 +1,115 @@
-<mat-grid-list cols="12">
+<div class="row">
+    <div class="w3-col m12">
         <app-menu-superior></app-menu-superior>
-</mat-grid-list>
-<form>
-
-    <mat-grid-list cols="12">
-        <mat-grid-tile [colspan]="2" [rowspan]="6" style="padding-top:0%">
-                <app-menu-lateral></app-menu-lateral>
-        </mat-grid-tile>
-        <mat-grid-tile [colspan]="8">
-                <mat-form-field style="width: 90%">
-                        <input matInput 
-                               name="titulo"
-                               placeholder="Título" 
-                               [(ngModel)]="historia.titulo">
-                </mat-form-field>
-        </mat-grid-tile>
-        <mat-grid-tile [colspan]="8">
-                <mat-form-field style="width: 90%">
-                    <textarea matInput 
-                              name="descricao"
-                              placeholder="Descrição"
-                              [(ngModel)]="historia.descricao"></textarea>
-                </mat-form-field>
-        </mat-grid-tile>
-        <mat-grid-tile [colspan]="8">
-                <mat-form-field style="width: 28%;padding-right: 2%">
-                    <input matInput 
-                           name="dataCriacao"
-                           [matDatepicker]="picker1" 
-                           placeholder="Data de Criação"
-                           [(ngModel)]="historia.dataCriacao">
-                    <mat-datepicker-toggle matSuffix 
-                                           [for]="picker1">
-                    </mat-datepicker-toggle>
-                    <mat-datepicker #picker1></mat-datepicker>
-                </mat-form-field>
-                
-                <mat-form-field style="width: 28%;padding-right: 2%">
-                        <input type="time" 
-                               matInput
-                               name="tempoEstimado"
-                               placeholder="Tempo Estimado" 
-                               [(ngModel)]="historia.tempoEstimado">
-                </mat-form-field>
-                <mat-form-field style="width: 30%;">
-                        <input type="time" 
-                               matInput
-                               name="tempoDecorrido"
-                               placeholder="Tempo Decorrido" 
-                               [(ngModel)]="historia.tempoDecorrido">
-                </mat-form-field>
-        </mat-grid-tile>
-        <mat-grid-tile [colspan]="8">
-            <mat-form-field style="width: 48%;padding-right: 2%">
-                    <mat-select placeholder="Usuario Criador" 
-                                name="usuarioCriador"
-                                [(ngModel)]="historia.usuarioCriador">
-                        <mat-option>Selecione um usuário</mat-option>
-                        <mat-option *ngFor="let usuario of usuarioService.usuariosByProjeto" 
-                                    [value]="usuario">
-                                    {{usuario.nome}}
-                        </mat-option>
-                    </mat-select>
-            </mat-form-field>
-
-            <mat-form-field style="width: 40%">
-                <mat-select placeholder="Parecer da Qualidade" 
-                            name="parecerQualidade"
-                            [(ngModel)]="historia.parecerQualidade">
-                    <mat-option>Selecione um parecer</mat-option>
-                    <mat-option *ngFor="let parecer of selectParecer" 
-                                [value]="parecer.value">
-                                {{parecer.description}}
-                    </mat-option>
-                </mat-select>
-            </mat-form-field>
-        </mat-grid-tile>
-        <mat-grid-tile [colspan]="8">
-                <mat-form-field style="width: 90%">
-                        <textarea matInput 
-                                  name="descricaoParecer"
-                                  placeholder="Descrição"
-                                  [(ngModel)]="historia.descricaoParecer"></textarea>
-                </mat-form-field>
-        </mat-grid-tile>
-        <mat-grid-tile [colspan]="8" align="right">
-                <button mat-raised-button 
-                        color="primary"
-                        (click)="salvar()">Salvar</button>
-        </mat-grid-tile>
-    </mat-grid-list>
-</form>
-
+    </div>
+</div>
+<div class="row">
+     <div class="w3-col m3">
+        <app-menu-lateral></app-menu-lateral>
+     </div>
+     <div class="w3-col m9">
+        <form [formGroup]="historiaForm" (ngSubmit)="onFormSubmit(historiaForm.value)">
+                <div class="row" style="padding-top:2%">
+                     <div class="w3-col m12">
+                        <mat-form-field style="width: 20%">
+                                <input matInput 
+                                       disabled
+                                       formControlName="id"
+                                       type="number"
+                                       placeholder="Id">
+                        </mat-form-field>  
+                     </div>
+                </div>
+                <div class="row">
+                        <div class="w3-col m12">
+                             <mat-form-field style="width: 90%">
+                                <input matInput 
+                                       formControlName="titulo"
+                                       placeholder="Título">
+                             </mat-form-field>   
+                        </div>
+                </div>
+                <div class="row">
+                        <div class="w3-col m12">
+                             <mat-form-field style="width: 90%">
+                                <textarea matInput 
+                                          formControlName="descricao"
+                                          placeholder="Descrição"></textarea>
+                                </mat-form-field>
+                        </div>
+                </div>
+                <div class="row">
+                     <div class="w3-col m4">
+                        <mat-form-field style="width: 90%">
+                                <input matInput 
+                                       formControlName="dataCriacao"
+                                       [matDatepicker]="picker1" 
+                                       placeholder="Data de Criação">
+                                        <mat-datepicker-toggle matSuffix 
+                                                              [for]="picker1">
+                                        </mat-datepicker-toggle>
+                                        <mat-datepicker #picker1></mat-datepicker>
+                        </mat-form-field>
+                     </div>
+                     <div class="w3-col m4">
+                        <mat-form-field style="width: 90%">
+                                <input type="time" 
+                                       matInput
+                                       formControlName="tempoEstimado"
+                                       placeholder="Tempo Estimado">
+                        </mat-form-field>
+                     </div>
+                     <div class="w3-col m4">
+                        <mat-form-field style="width: 90%">
+                                <input type="time" 
+                                       matInput
+                                       formControlName="tempoDecorrido"
+                                       placeholder="Tempo Decorrido">
+                        </mat-form-field>
+                     </div>
+                </div>
+                <div class="row">
+                        <div class="w3-col m8">
+                             <mat-form-field style="width: 90%">
+                                <mat-select placeholder="Usuario Criador" 
+                                            formControlName="usuarioAux">
+                                       <mat-option>Selecione um usuário</mat-option>
+                                       <mat-option *ngFor="let usuario of usuarioService.usuariosByProjeto" 
+                                                   [value]="usuario.email">
+                                                    {{usuario.nome}}
+                                       </mat-option>
+                                </mat-select>
+                             </mat-form-field>
+                        </div>
+                        <div class="w3-col m4">
+                             <mat-form-field style="width: 90%">
+                                <mat-select placeholder="Parecer da Qualidade" 
+                                            formControlName="parecerQualidade">
+                                        <mat-option>Selecione um parecer</mat-option>
+                                        <mat-option *ngFor="let parecer of selectParecer" 
+                                                    [value]="parecer.value">
+                                                    {{parecer.description}}
+                                        </mat-option>
+                                </mat-select>
+                              </mat-form-field>
+                       </div>
+                </div>
+                <div class="row">
+                        <div class="w3-col m12">
+                            <mat-form-field style="width: 90%">
+                                <textarea matInput 
+                                          formControlName="descricaoParecer"
+                                          placeholder="Descrição"></textarea>
+                            </mat-form-field>
+                        </div>
+                </div>
+                <div class="row">
+                        <div class="w3-col m12">
+                             <button mat-raised-button 
+                                     color="primary"
+                                     type="submit">Salvar</button>
+                        </div>
+                </div>
+        </form>
+     </div>    
+</div>    
