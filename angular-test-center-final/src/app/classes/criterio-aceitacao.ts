@@ -9,6 +9,7 @@ export class CriterioAceitacao {
     descricaoLinha:string;
     usuarioCriador:Usuario;
     usuarioAux:string;
+    historiaAux:number;
     usuarioAtualizador: Usuario;
 
 }

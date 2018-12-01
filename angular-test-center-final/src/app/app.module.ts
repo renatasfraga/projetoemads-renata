@@ -9,13 +9,10 @@ import { AppComponent } from './app.component';
 import { LembretesListarComponent } from './lembretes-listar/lembretes-listar.component';
 import { HistoriaEditarComponent } from './historia-editar/historia-editar.component';
 import { HistoriaListarComponent } from './historia-listar/historia-listar.component';
-import { HistoriaDeletarComponent } from './historia-deletar/historia-deletar.component';
 import { PlanoEditarComponent } from './plano-editar/plano-editar.component';
 import { PlanoListarComponent } from './plano-listar/plano-listar.component';
 import { RepositorioListarComponent } from './repositorio-listar/repositorio-listar.component';
 import { RepositorioEditarComponent } from './repositorio-editar/repositorio-editar.component';
-import { RepositorioDeletarComponent } from './repositorio-deletar/repositorio-deletar.component';
-import { PlanoDeletarComponent } from './plano-deletar/plano-deletar.component';
 import { GraficoListarComponent } from './grafico-listar/grafico-listar.component';
 import { GraficoGerarComponent } from './grafico-gerar/grafico-gerar.component';
 import { GraficoEditarComponent } from './grafico-editar/grafico-editar.component';
@@ -56,6 +53,7 @@ import { HistoriaIncluirComponent } from './historia-incluir/historia-incluir.co
 import { CriterioIncluirComponent } from './criterio-incluir/criterio-incluir.component';
 import { TesteIncluirComponent } from './teste-incluir/teste-incluir.component';
 import { PlanoIncluirComponent } from './plano-incluir/plano-incluir.component';
+import { CriterioDeAceitacaoService } from './services/criterio-de-aceitacao.service';
 
 
 @NgModule({
@@ -64,13 +62,10 @@ import { PlanoIncluirComponent } from './plano-incluir/plano-incluir.component';
     LembretesListarComponent,
     HistoriaEditarComponent,
     HistoriaListarComponent,
-    HistoriaDeletarComponent,
     PlanoEditarComponent,
     PlanoListarComponent,
     RepositorioListarComponent,
     RepositorioEditarComponent,
-    RepositorioDeletarComponent,
-    PlanoDeletarComponent,
     GraficoListarComponent,
     GraficoGerarComponent,
     GraficoEditarComponent,
@@ -116,7 +111,7 @@ import { PlanoIncluirComponent } from './plano-incluir/plano-incluir.component';
     MatTableModule,
     MatDialogModule,
   ],
-  providers: [ProjetoService, UsuarioService, HistoriaDeUsuarioService],
+  providers: [ProjetoService, UsuarioService, HistoriaDeUsuarioService, CriterioDeAceitacaoService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

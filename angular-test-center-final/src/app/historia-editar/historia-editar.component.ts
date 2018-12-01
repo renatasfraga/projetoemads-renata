@@ -53,7 +53,7 @@ export class HistoriaEditarComponent implements OnInit {
       'descricao' : [null, Validators.required],
       'dataCriacao': [null, Validators.required],
       'usuarioAux': [null, Validators.required],
-      'usuarioCriador': [null],
+      'usuarioCriador': [null, Validators.required],
       'tempoEstimado': [null],
       'tempoDecorrido':  [null],
       'parecerQualidade':[null],
