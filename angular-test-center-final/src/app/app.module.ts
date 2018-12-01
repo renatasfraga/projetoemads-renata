@@ -54,6 +54,7 @@ import { CriterioIncluirComponent } from './criterio-incluir/criterio-incluir.co
 import { TesteIncluirComponent } from './teste-incluir/teste-incluir.component';
 import { PlanoIncluirComponent } from './plano-incluir/plano-incluir.component';
 import { CriterioDeAceitacaoService } from './services/criterio-de-aceitacao.service';
+import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 
 
 @NgModule({
@@ -110,6 +111,7 @@ import { CriterioDeAceitacaoService } from './services/criterio-de-aceitacao.ser
     ReactiveFormsModule,
     MatTableModule,
     MatDialogModule,
+    MatSlideToggleModule,
   ],
   providers: [ProjetoService, UsuarioService, HistoriaDeUsuarioService, CriterioDeAceitacaoService],
   bootstrap: [AppComponent]

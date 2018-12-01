@@ -61,7 +61,9 @@ export class HistoriaEditarComponent implements OnInit {
       'usuarioAtualizador':[this.usuarioService.usuarioLogado],
       'projeto':[this.projetoService.projetoSelecionado],
      });   
-     this.historiaForm.controls['idCopy'].disable();
+     
+     this.historiaForm.get("idCopy").disable();
+     this.historiaForm.get("usuarioAux").disable();
   }
 
   getCarregarSelectParecer() {

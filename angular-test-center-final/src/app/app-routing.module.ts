@@ -29,7 +29,7 @@ const routes: Routes = [
   { path:'criterio-editar/:id/:id2', component: CriterioEditarComponent },
   { path:'teste-listar', component: TesteListarComponent},
   { path:'teste-incluir', component: TesteIncluirComponent},
-  { path:'teste-editar/:id', component: TesteEditarComponent },
+  { path:'teste-editar/:id/:id2/:id3', component: TesteEditarComponent },
   { path:'plano-listar', component: PlanoListarComponent},
   { path:'plano-incluir', component: PlanoIncluirComponent},
   { path:'plano-editar/:id', component: PlanoEditarComponent },

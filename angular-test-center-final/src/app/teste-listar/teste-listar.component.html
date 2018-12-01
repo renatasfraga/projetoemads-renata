@@ -1,3 +1,105 @@
-<p>
-  teste-listar works!
-</p>
+<div class="row">
+  <div class="w3-col m12">
+      <app-menu-superior></app-menu-superior>
+  </div>
+</div>
+<div class="row">
+
+  <div class="w3-col m3">
+      <app-menu-lateral></app-menu-lateral>
+  </div>
+  <div class="w3-col m9">
+    <form [formGroup]="testeBuscaForm" (ngSubmit)="buscar(testeBuscaForm.value)">
+
+    <div class="row" style="padding-top:2%">
+      <div class="w3-col m2">
+        <button style="width: 90%;"
+                mat-raised-button 
+                color="accent"
+                routerLink="/teste-incluir">Novo</button>
+     </div>
+     <div class="w3-col m8">            
+             <mat-form-field style="width: 90%">
+                     <mat-select placeholder="História de Usuário" 
+                                 formControlName="historia"
+                                 (selectionChange)="carregarSelectCriterioByHistoria()">
+                            <mat-option>Selecione uma história de usuário</mat-option>
+                            <mat-option *ngFor="let historia of historias" 
+                                        [value]="historia">
+                                         {{historia.titulo}}
+                            </mat-option>
+                     </mat-select>
+             </mat-form-field>
+
+             <mat-form-field style="width: 90%">
+              <mat-select placeholder="Critério de Aceitação" 
+                          formControlName="criterio">
+                     <mat-option>Selecione um critério de aceitação</mat-option>
+                     <mat-option *ngFor="let criterio of criterios" 
+                                 [value]="criterio">
+                                  {{criterio.id.idLinhaCriterio}}
+                     </mat-option>
+              </mat-select>
+      </mat-form-field>
+
+
+    </div>
+    <div class="w3-col m2">
+        <button style="width: 90%;"
+                mat-raised-button 
+                color="primary"
+                type="submit">Buscar</button>
+   </div>
+ 
+  </div>
+</form>
+    <div class="row">
+          <div class="w3-col m12" style="width: 95%">
+            <table mat-table [dataSource]="testeList">
+            <ng-container matColumnDef="id">
+            <th mat-header-cell *matHeaderCellDef> Ordem </th>
+            <td mat-cell *matCellDef="let teste"> {{teste.idOrdenacao}} </td>
+            </ng-container>
+            
+            <!-- Name Column -->
+            <ng-container matColumnDef="descricao">
+            <th mat-header-cell *matHeaderCellDef> Descrição </th>
+            <td mat-cell *matCellDef="let teste"> {{teste.descricaoLinha}} </td>
+            </ng-container>
+            
+            <!-- Weight Column -->
+            <ng-container matColumnDef="criador">
+            <th mat-header-cell *matHeaderCellDef> Autor </th>
+            <td mat-cell *matCellDef="let teste"> {{teste.usuarioCriador.nome}} </td>
+            </ng-container>
+
+              <!-- Weight Column -->
+            <ng-container matColumnDef="passou">
+            <th mat-header-cell *matHeaderCellDef> Passou </th>
+            <td mat-cell *matCellDef="let teste"> {{teste.passou == true ? 'Passou' : 'Falhou'}} </td>
+            </ng-container>   
+            
+            <ng-container matColumnDef="editarexcluir">
+                    <th mat-header-cell *matHeaderCellDef>  </th>
+                    <td mat-cell *matCellDef="let teste">
+                            <button mat-button
+                                    [routerLink] = "['/teste-editar', teste.id.criterioDeAceitacao.historiaDeUsuario.id,
+                                                      teste.id.criterioDeAceitacao.idLinhaCriterio,
+                                                      teste.id.idLinhaTeste]">
+                            <i class="fa fa-edit"></i>  
+                            </button>
+                            <button mat-button
+                                    (click)="remover(teste.id.criterioDeAceitacao.historiaDeUsuario.id,
+                                                     teste.id.criterioDeAceitacao.idLinhaCriterio,
+                                                     teste.id.idLinhaTeste)">
+                                    <i class="fa fa-trash-alt"></i>  
+                            </button>
+                    </td>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+            </table>
+        </div>
+    </div>
+</div>

@@ -5,8 +5,6 @@ import javax.persistence.Embeddable;
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.validation.constraints.NotNull;
@@ -48,8 +46,7 @@ public class CriterioDeAceitacao {
 					referencedColumnName = "id")
 		private HistoriaDeUsuario historiaDeUsuario;
 
-		@GeneratedValue(strategy = GenerationType.AUTO)
-		private Long idLinhaCriterio;
+      	private Long idLinhaCriterio;
 
 		public HistoriaDeUsuario getHistoriaDeUsuario() {
 			return historiaDeUsuario;

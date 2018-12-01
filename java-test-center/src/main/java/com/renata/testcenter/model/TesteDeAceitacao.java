@@ -5,16 +5,19 @@ import java.io.Serializable;
 import javax.persistence.Embeddable;
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
+import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinColumns;
+import javax.persistence.ManyToOne;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
+import org.springframework.data.annotation.LastModifiedBy;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.renata.testcenter.model.CriterioDeAceitacao.CriterioDeAceitacaoPK;
 
-
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 @Entity
 public class TesteDeAceitacao {
 	
@@ -27,13 +30,24 @@ public class TesteDeAceitacao {
 	@Size(max = 200)
 	private String descricaoLinha;
 	
-	@NotNull
 	private Boolean passou;
+	
+	@NotNull
+	@ManyToOne(fetch= FetchType.EAGER)
+	@JoinColumn(name = "usuario_criador")
+	private Usuario usuarioCriador;
+	@NotNull
+	@ManyToOne(fetch= FetchType.EAGER)
+	@JoinColumn(name = "usuario_atualizador")
+	@LastModifiedBy
+	private Usuario usuarioAtualizador;
+	
+	
 	@Embeddable
 	public static class TesteDeAceitacaoPK implements Serializable {
 	
 		private static final long serialVersionUID = 2313052358175756603L;
-
+		
 		@JoinColumns({
 						@JoinColumn(name = "id_linha_criterio",
 									referencedColumnName = "id_linha_criterio",
@@ -46,7 +60,6 @@ public class TesteDeAceitacao {
 		})
 		private CriterioDeAceitacaoPK criterioDeAceitacao;
 		
-		@GeneratedValue(strategy = GenerationType.AUTO)
 		private Long idLinhaTeste;
 
 		public CriterioDeAceitacaoPK getCriterioDeAceitacao() {
@@ -121,6 +134,18 @@ public class TesteDeAceitacao {
 	public void setPassou(Boolean passou) {
 		this.passou = passou;
 	}
+	public Usuario getUsuarioCriador() {
+		return usuarioCriador;
+	}
+	public void setUsuarioCriador(Usuario usuarioCriador) {
+		this.usuarioCriador = usuarioCriador;
+	}
+	public Usuario getUsuarioAtualizador() {
+		return usuarioAtualizador;
+	}
+	public void setUsuarioAtualizador(Usuario usuarioAtualizador) {
+		this.usuarioAtualizador = usuarioAtualizador;
+	}
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -129,6 +154,8 @@ public class TesteDeAceitacao {
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
 		result = prime * result + ((idOrdenacao == null) ? 0 : idOrdenacao.hashCode());
 		result = prime * result + ((passou == null) ? 0 : passou.hashCode());
+		result = prime * result + ((usuarioAtualizador == null) ? 0 : usuarioAtualizador.hashCode());
+		result = prime * result + ((usuarioCriador == null) ? 0 : usuarioCriador.hashCode());
 		return result;
 	}
 	@Override
@@ -159,6 +186,16 @@ public class TesteDeAceitacao {
 			if (other.passou != null)
 				return false;
 		} else if (!passou.equals(other.passou))
+			return false;
+		if (usuarioAtualizador == null) {
+			if (other.usuarioAtualizador != null)
+				return false;
+		} else if (!usuarioAtualizador.equals(other.usuarioAtualizador))
+			return false;
+		if (usuarioCriador == null) {
+			if (other.usuarioCriador != null)
+				return false;
+		} else if (!usuarioCriador.equals(other.usuarioCriador))
 			return false;
 		return true;
 	}

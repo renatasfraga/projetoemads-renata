@@ -20,6 +20,7 @@ public class TesteDeAceitacaoService {
 	}
 
 	public TesteDeAceitacao saveTesteDeAceitacao(TesteDeAceitacao testeDeAceitacao) {
+		testeDeAceitacao.getId().setIdLinhaTeste(this.gerarIdLinhaTeste());
 		return this.repository.save(testeDeAceitacao);
 	}
 
@@ -31,4 +32,36 @@ public class TesteDeAceitacaoService {
 		return this.repository.findAll();
 	}
 
-}
+	public Long gerarIdLinhaTeste() {
+		return this.repository.gerarIdLinhaTeste();
+	}
+	
+	public List<TesteDeAceitacao> getTesteDeAceitacaoByProjeto(Long idProjeto) {
+		return this.repository.getTesteDeAceitacaoByProjeto(idProjeto);
+	}
+	
+	public List<TesteDeAceitacao> getTesteByProjetoCriterioHistoria(Long idHistoria, 
+			                                                        Long idLinhaCriterio,
+			                                                        Long idProjeto) {
+		return this.repository.getTesteByProjetoCriterioHistoria(idHistoria, idLinhaCriterio, idProjeto);
+	}
+	
+	public List<TesteDeAceitacao> getTesteByHistoria(Long idHistoria) {
+		return this.repository.getTesteByHistoria(idHistoria);
+	}
+	
+	public List<TesteDeAceitacao> getTesteByCriterio(Long idLinhaCriterio) {
+		return this.repository.getTesteByCriterio(idLinhaCriterio);
+	}
+	
+	public TesteDeAceitacao updateTesteDeAceitacao(TesteDeAceitacao testeDeAceitacao) {
+		if(testeDeAceitacao.getId().getCriterioDeAceitacao() != null &&
+		   testeDeAceitacao.getId().getCriterioDeAceitacao().getHistoriaDeUsuario() != null &&
+		   testeDeAceitacao.getId().getCriterioDeAceitacao().getIdLinhaCriterio() != null) {
+			return this.repository.saveAndFlush(testeDeAceitacao);
+		}
+		return null;
+	}
+	
+} 
+

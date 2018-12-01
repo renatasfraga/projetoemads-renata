@@ -1,3 +1,111 @@
-<p>
-  teste-editar works!
-</p>
+
+<div class="row">
+    <div class="w3-col m12">
+        <app-menu-superior></app-menu-superior>
+    </div>
+  </div>
+  <div class="row">
+    <div class="w3-col m3">
+        <app-menu-lateral></app-menu-lateral>
+    </div>
+    <div class="w3-col m9">
+      <form [formGroup]="testeForm" (ngSubmit)="onFormSubmit(testeForm.value)">
+          <div class="row" style="padding-top:2%" >
+              <div class="w3-col m12">
+
+                    <input formGroupName="id" 
+                          formControlName="idLinhaTeste"
+                          type="hidden" 
+                          placeholder="Id">
+
+                  <mat-form-field style="width: 20%"> 
+                      <input matInput 
+                              formControlName="idCopy"
+                              type="number" 
+                              placeholder="Id">
+                  </mat-form-field>
+              </div>
+        </div>
+        <div class="row">
+              <div class="w3-col m12">
+                <mat-form-field style="width: 95%" >
+                  <mat-select placeholder="História de Usuário" 
+                              formControlName="historiaAux"
+                              (selectionChange)="carregarSelectCriterioByHistoria()">
+                        <mat-option>Selecione uma história de usuário</mat-option>
+                        <mat-option *ngFor="let historia of historias" 
+                                    [value]="historia.id">
+                                    {{historia.titulo}}
+                        </mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </div>
+        </div>
+          <div class="row">
+            <div class="w3-col m12">
+              <mat-form-field style="width: 95%">
+                <mat-select placeholder="Critério de Aceitação" 
+                            formControlName="criterioAux">
+                       <mat-option>Selecione um critério de aceitação</mat-option>
+                       <mat-option *ngFor="let criterio of criterios" 
+                                   [value]="criterio.id.idLinhaCriterio">
+                                    {{criterio.id.idLinhaCriterio}}
+                       </mat-option>
+                </mat-select>
+              </mat-form-field>
+          </div>
+      </div>
+        <div class="row">
+          <div class="w3-col m2">
+              <mat-form-field style="width: 90%">
+                  <input matInput 
+                         formControlName="idOrdenacao"
+                         type="number" 
+                         placeholder="Ordenação">
+              </mat-form-field>
+          </div>
+          <div class="w3-col m10">
+              <mat-form-field style="width: 94%">
+                  <mat-select placeholder="Usuario Criador" 
+                              formControlName="usuarioAux">
+                         <mat-option>Selecione um usuário</mat-option>
+                         <mat-option *ngFor="let usuario of usuarioService.usuariosByProjeto" 
+                                     [value]="usuario.email">
+                                      {{usuario.nome}}
+                         </mat-option>
+                  </mat-select>
+               </mat-form-field>
+          </div>
+        </div>
+        <div class="row">
+            <div class="w3-col m12">
+                <mat-form-field style="width: 95%">
+                    <textarea matInput 
+                              formControlName="descricaoLinha"
+                              placeholder="Descrição"></textarea>
+                </mat-form-field>
+            </div>
+        </div>
+        <div class="row">
+            <div class="w3-col m4" style="padding-bottom: 2%">
+                  <mat-slide-toggle
+                    class="example-margin"
+                    [color]="color"
+                    [checked]="checked"
+                    (change)="trocaValor()"
+                    formControlName="passou">
+                    Passou? 
+              </mat-slide-toggle>
+            </div>
+        </div>
+        <div class="row">
+          <div class="w3-col m12" align="right" style="padding-right:5%"> 
+              <button mat-raised-button 
+                      style="width: 20%"
+                      color="primary"
+                      type="submit">Salvar</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>

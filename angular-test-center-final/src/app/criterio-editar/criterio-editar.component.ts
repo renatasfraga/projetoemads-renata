@@ -47,6 +47,7 @@ export class CriterioEditarComponent implements OnInit {
       'usuarioCriador': [null, Validators.required],
       'usuarioAux': [null, Validators.required],
       'historiaAux':[null, Validators.required],
+      'idCopy': [null, Validators.required],
       'usuarioAtualizador':[this.usuarioService.usuarioLogado],
       'id': this.formBuilder.group({
         'historiaDeUsuario': [null, Validators.required], 
@@ -54,6 +55,10 @@ export class CriterioEditarComponent implements OnInit {
       })
 
     });
+
+    this.criterioForm.get("idCopy").disable();
+    this.criterioForm.get("usuarioAux").disable();
+    this.criterioForm.get("historiaAux").disable();
    
   }
 
@@ -70,6 +75,7 @@ export class CriterioEditarComponent implements OnInit {
           }
           this.criterioForm.setValue({
             id: resultado.id,
+            idCopy: resultado.id.idLinhaCriterio,
             idOrdenacao: resultado.idOrdenacao,
             usuarioCriador: resultado.usuarioCriador,
             usuarioAux: resultado.usuarioCriador.email,

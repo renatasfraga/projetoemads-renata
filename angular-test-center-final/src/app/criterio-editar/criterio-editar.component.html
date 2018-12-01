@@ -11,18 +11,23 @@
       <form [formGroup]="criterioForm" (ngSubmit)="onFormSubmit(criterioForm.value)">
         <div class="row" style="padding-top:2%">
            <div class="w3-col m9">
-              <mat-form-field style="width: 20%" formGroupName="id"> 
+                <input  formGroupName="id"
+                        formControlName="idLinhaCriterio"
+                        type="hidden" 
+                        placeholder="Id">
+
+              <mat-form-field style="width: 20%" > 
                       <input matInput 
-                              formControlName="idLinhaCriterio"
-                              type="number" 
-                              placeholder="Id">
+                             formControlName="idCopy"
+                             type="number" 
+                             placeholder="Id">
             </mat-form-field> 
            </div>
         </div>
         <div class="row">
               <div class="w3-col m12">
                 
-                <mat-form-field style="width: 90%">
+                <mat-form-field style="width: 95%">
                   <mat-select placeholder="História de Usuário" 
                               formControlName="historiaAux">
                         <mat-option>Selecione uma história de usuário</mat-option>
@@ -35,16 +40,16 @@
               </div>
         </div>
         <div class="row">
-          <div class="w3-col m4">
-              <mat-form-field style="width: 20%">
+          <div class="w3-col m2">
+              <mat-form-field style="width: 90%">
                   <input matInput 
                          formControlName="idOrdenacao"
                          type="number" 
                          placeholder="Ordenação">
               </mat-form-field>
           </div>
-          <div class="w3-col m8">
-              <mat-form-field style="width: 90%">
+          <div class="w3-col m10">
+              <mat-form-field style="width: 94%">
                   <mat-select placeholder="Usuario Criador" 
                               formControlName="usuarioAux">
                          <mat-option>Selecione um usuário</mat-option>
@@ -58,7 +63,7 @@
         </div>
         <div class="row">
             <div class="w3-col m12">
-                <mat-form-field style="width: 90%">
+                <mat-form-field style="width: 95%">
                     <textarea matInput 
                               formControlName="descricaoLinha"
                               placeholder="Descrição"></textarea>
@@ -66,12 +71,13 @@
             </div>
         </div>
         <div class="row">
-          <div class="w3-col m12">
-              <button mat-raised-button 
-                      color="primary"
-                      type="submit">Salvar</button>
-          </div>
-        </div>
+                <div class="w3-col m12" align="right" style="padding-right:5%"> 
+                    <button mat-raised-button 
+                            style="width: 20%"
+                            color="primary"
+                            type="submit">Salvar</button>
+                </div>
+              </div>
       </form>
     </div>
   </div>

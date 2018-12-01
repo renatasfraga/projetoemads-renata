@@ -44,4 +44,7 @@ export class CriterioDeAceitacaoService {
   getCriterioByProjetoHistoria(idHistoria:number,idProjeto:number) {
     return this.http.get<CriterioAceitacao[]>(this.CRITERIO_URL+"byhistoria/"+idHistoria+"/"+idProjeto);
   }
+  getCriterioByHistoria(idHistoria:number) {
+    return this.http.get<CriterioAceitacao[]>(this.CRITERIO_URL+"criteriobyhistoria/"+idHistoria);
+  }
 }

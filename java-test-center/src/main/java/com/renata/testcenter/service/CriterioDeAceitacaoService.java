@@ -40,4 +40,19 @@ public class CriterioDeAceitacaoService {
 		return this.repository.getCriterioByProjeto(idProjeto);
 	}
 	
+	public Long gerarIdLinhaCriterio() {
+		return this.repository.gerarIdLinhaCriterio();
+	}
+	
+	public CriterioDeAceitacao updateCriterio(CriterioDeAceitacao criterio) {
+		if(criterio.getId().getHistoriaDeUsuario() != null
+			&& criterio.getId().getIdLinhaCriterio() != null) {
+			this.repository.saveAndFlush(criterio);
+		}
+		return null;
+	}
+	
+	public List<CriterioDeAceitacao> getCriterioByHistoria(Long id) {
+		return this.repository.getCriterioByHistoria(id);
+	}
 }

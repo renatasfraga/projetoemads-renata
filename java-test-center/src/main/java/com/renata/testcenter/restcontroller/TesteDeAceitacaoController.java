@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -58,7 +59,7 @@ public class TesteDeAceitacaoController {
 	
 	@PostMapping
 	public TesteDeAceitacao saveTeste(@RequestBody TesteDeAceitacao teste) {
-		return this.saveTeste(teste);
+		return this.service.saveTesteDeAceitacao(teste);
 	}
 	
 	@DeleteMapping(path ={"/{id_historia}/{id_criterio}/{id_teste}"})
@@ -87,6 +88,33 @@ public class TesteDeAceitacaoController {
 	@GetMapping
 	public List<TesteDeAceitacao> getAllTestes() {
 		return this.service.getAllTesteDeAceitacao();
+	}
+	
+	@GetMapping( path = {"/byprojeto/{idProjeto}"})
+	public List<TesteDeAceitacao> getTesteDeAceitacaoByProjeto(@PathVariable("idProjeto") Long idProjeto) {
+		return this.service.getTesteDeAceitacaoByProjeto(idProjeto);
+	}
+	
+	@GetMapping( path = {"/byteste/{id_historia}/{id_linha_criterio}/{id_projeto}"})
+	public List<TesteDeAceitacao> getTesteByProjetoCriterioHistoria(@PathVariable("id_historia") Long idHistoria,
+			                                                        @PathVariable("id_linha_criterio") Long idLinhaCriterio,
+			                                                        @PathVariable("id_projeto") Long idProjeto) {
+		return this.service.getTesteByProjetoCriterioHistoria(idHistoria, idLinhaCriterio, idProjeto);
+	}
+	
+	@GetMapping( path = {"/byhistoria/{id_historia}"})
+	public List<TesteDeAceitacao> getTesteByHistoria(@PathVariable("id_historia") Long idHistoria) {
+		return this.service.getTesteByHistoria(idHistoria);
+	}
+	
+	@GetMapping( path = {"/bycriterio/{id_linha_criterio}"})
+	public List<TesteDeAceitacao> getTesteByCriterio(@PathVariable("id_linha_criterio") Long idLinhaCriterio) {
+		return this.service.getTesteByCriterio(idLinhaCriterio);
+	}
+	
+	@PutMapping
+	public TesteDeAceitacao updateTesteDeAceitacao(@RequestBody TesteDeAceitacao testeDeAceitacao) {
+		return this.service.updateTesteDeAceitacao(testeDeAceitacao);
 	}
 	
 }
