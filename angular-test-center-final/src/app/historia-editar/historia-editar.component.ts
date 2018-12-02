@@ -7,7 +7,6 @@ import { Usuario } from '../classes/usuario';
 import { Router, ActivatedRoute } from '@angular/router';
 import { FormGroup, FormBuilder, Validators, NgForm } from '@angular/forms';
 import { Projeto } from '../classes/projeto';
-import { disableBindings } from '@angular/core/src/render3';
 
 @Component({
   selector: 'app-historia-editar',
@@ -19,7 +18,6 @@ export class HistoriaEditarComponent implements OnInit {
   historia: HistoriaDeUsuario = new HistoriaDeUsuario();
   usuariosByProjeto:Usuario[] = [];
   selectParecer:Parecer[];
- 
 
   //referente a form
   historiaForm: FormGroup;

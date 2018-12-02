@@ -1,3 +1,66 @@
-<p>
-  plano-incluir works!
-</p>
+<div class="row">
+    <div class="w3-col m12">
+        <app-menu-superior></app-menu-superior>
+    </div>
+</div>
+<div class="row">
+     <div class="w3-col m3">
+        <app-menu-lateral></app-menu-lateral>
+     </div>
+     <div class="w3-col m9">
+        <form [formGroup]="planoForm" (ngSubmit)="onFormSubmit(planoForm.value)">
+                <div class="row" style="padding-top:2%">
+                        <div class="w3-col m12">
+                             <mat-form-field style="width: 94%">
+                                <input matInput 
+                                       formControlName="titulo"
+                                       placeholder="Título">
+                             </mat-form-field>   
+                        </div>
+                </div>
+                <div class="row">
+                        <div class="w3-col m4">
+                                <mat-form-field style="width: 94%">
+                                        <input matInput 
+                                               formControlName="dataCriacao"
+                                               [matDatepicker]="picker1" 
+                                               placeholder="Data de Criação">
+                                                <mat-datepicker-toggle matSuffix 
+                                                                      [for]="picker1">
+                                                </mat-datepicker-toggle>
+                                                <mat-datepicker #picker1></mat-datepicker>
+                                </mat-form-field>
+                        </div>
+                        <div class="w3-col m8">
+                                <mat-form-field style="width: 92%">
+                                        <mat-select placeholder="Usuario Criador" 
+                                                    formControlName="usuarioCriador">
+                                               <mat-option>Selecione um usuário</mat-option>
+                                               <mat-option *ngFor="let usuario of usuarioService.usuariosByProjeto" 
+                                                           [value]="usuario">
+                                                            {{usuario.nome}}
+                                               </mat-option>
+                                        </mat-select>
+                                     </mat-form-field>
+                        </div>
+
+                </div>
+                <div class="row">
+                     <div class="w3-col m12" style="height: 100%;width: 95%; padding-bottom: 2%">
+                        <ckeditor [editor]="Editor"
+                                  formControlName="conteudo"></ckeditor>
+
+                     </div>
+                     
+                </div>
+                <div class="row">
+                    <div class="w3-col m12" align="right" style="padding-right:5%"> 
+                            <button mat-raised-button 
+                                        style="width: 20%"
+                                        color="primary"
+                                        type="submit">Salvar</button>
+                    </div>
+               </div>
+        </form>
+     </div>    
+</div>    

@@ -55,6 +55,8 @@ import { TesteIncluirComponent } from './teste-incluir/teste-incluir.component';
 import { PlanoIncluirComponent } from './plano-incluir/plano-incluir.component';
 import { CriterioDeAceitacaoService } from './services/criterio-de-aceitacao.service';
 import {MatSlideToggleModule} from '@angular/material/slide-toggle';
+import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
+
 
 
 @NgModule({
@@ -112,6 +114,9 @@ import {MatSlideToggleModule} from '@angular/material/slide-toggle';
     MatTableModule,
     MatDialogModule,
     MatSlideToggleModule,
+    CKEditorModule,
+    
+
   ],
   providers: [ProjetoService, UsuarioService, HistoriaDeUsuarioService, CriterioDeAceitacaoService],
   bootstrap: [AppComponent]

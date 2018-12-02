@@ -10,10 +10,10 @@ import com.renata.testcenter.model.HistoriaDeUsuario;
 
 public interface HistoriaDeUsuarioRepository extends JpaRepository<HistoriaDeUsuario, Long> {
 
-	@Query("SELECT h FROM HistoriaDeUsuario h WHERE id_projeto = :id")
+	@Query("SELECT h FROM HistoriaDeUsuario h WHERE h.projeto.id = :id")
 	public List<HistoriaDeUsuario> historiaDeUsuarioByProjeto(@Param("id") Long id); 
 	
-	@Query("SELECT h FROM HistoriaDeUsuario h where id_projeto = :id and titulo LIKE lower(concat('%', :titulo, '%'))")
+	@Query("SELECT h FROM HistoriaDeUsuario h where h.projeto.id = :id and h.titulo LIKE lower(concat('%', :titulo, '%'))")
 	public List<HistoriaDeUsuario> historiaDeUsuarioPorNome(@Param("id") Long id,
 															@Param("titulo") String nome); 
 }

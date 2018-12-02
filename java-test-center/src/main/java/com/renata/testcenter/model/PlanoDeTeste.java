@@ -1,8 +1,8 @@
 package com.renata.testcenter.model;
 
-import java.util.Date;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -11,9 +11,11 @@ import javax.persistence.ManyToOne;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
-import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedBy;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 @Entity
 public class PlanoDeTeste {
 	
@@ -26,18 +28,17 @@ public class PlanoDeTeste {
 	@NotNull
 	private String conteudo;
 	@NotNull
-	@CreatedDate
-	private Date dataCriacao;
-	@NotNull
+	private String dataCriacao;
+
 	private Boolean passou;
-	@ManyToOne
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "usuario_criador")
 	private Usuario usuarioCriador;
-	@ManyToOne
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "usuario_atualizador")
 	@LastModifiedBy
 	private Usuario usuarioAtualizador;
-	@ManyToOne
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "id_projeto")
 	private Projeto projeto;
 	
@@ -59,10 +60,10 @@ public class PlanoDeTeste {
 	public void setConteudo(String conteudo) {
 		this.conteudo = conteudo;
 	}
-	public Date getDataCriacao() {
+	public String getDataCriacao() {
 		return dataCriacao;
 	}
-	public void setDataCriacao(Date dataCriacao) {
+	public void setDataCriacao(String dataCriacao) {
 		this.dataCriacao = dataCriacao;
 	}
 	public Boolean getPassou() {

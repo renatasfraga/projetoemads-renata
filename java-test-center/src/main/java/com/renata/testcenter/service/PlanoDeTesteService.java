@@ -33,4 +33,15 @@ public class PlanoDeTesteService {
 	public List<PlanoDeTeste> getPlanoDeTesteByProjeto(Long id) {
 		return this.repository.planoDeTesteByProjeto(id);
 	}
+	
+	public List<PlanoDeTeste> getPlanoByTitulo(Long id, String titulo) {
+		return this.repository.getPlanoByTitulo(id, titulo);
+	}
+	
+	public PlanoDeTeste updatePlanoDeTeste(PlanoDeTeste plano) {
+		if(plano.getId() != null) {
+			return this.repository.saveAndFlush(plano);
+		}
+		return null;
+	}
 }
