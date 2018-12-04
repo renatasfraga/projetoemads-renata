@@ -10,7 +10,7 @@ import com.renata.testcenter.model.PlanoDeTeste;
 
 public interface PlanoDeTesteRepository extends JpaRepository<PlanoDeTeste, Long> {
 
-	@Query("SELECT p FROM PlanoDeTeste p WHERE id_projeto = :id")
+	@Query("SELECT p FROM PlanoDeTeste p WHERE p.projeto.id = :id")
 	public List<PlanoDeTeste> planoDeTesteByProjeto(@Param("id") Long id);
 	
 	@Query("SELECT p FROM PlanoDeTeste p where p.projeto.id = :id and p.titulo LIKE lower(concat('%', :titulo, '%'))")

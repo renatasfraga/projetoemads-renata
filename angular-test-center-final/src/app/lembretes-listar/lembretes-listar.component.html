@@ -4,11 +4,58 @@
     </div>
 </div>
 <div class="row">
-    <div class="w3-col m3">
+    <div class="w3-col m2">
         <app-menu-lateral></app-menu-lateral>
     </div>
-    <div class="w3-col m9">
+    <div class="w3-col m10">
+        <div class="row" style="padding-top:2%">
+            <div class="w3-col m10">
+                <div class="divcor row"
+                     *ngFor="let lembrete of listaLembretes"
+                      style= "border-radius: 10px 10px 10px 10px;color:#4F4F4F">
+                   
+                     <p style="padding-left: 1%;padding-right: 1%;padding-top: 1%;font-size: 10px"> <b>{{lembrete.usuario.nome}}</b><i>  diz:</i> </p>
+                  
+                   <mat-divider></mat-divider>
+                  
+                     <p style="padding-left: 1%;padding-right: 1%;font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif">{{lembrete.texto}}</p>
+                      
+                            <table>
+                                <tr style="width: 100%">
+                                    <td style="width: 95%">
+                                        <p style="padding-left: 1%;padding-right: 1%;padding-bottom: 1%;font-size: 10px">Postado em: {{lembrete.dhPostagem | date:'dd/MM/yyyy hh:mm'}} </p> 
+                                    </td>
+                                    <td style="width: 5%">
+                                        <button *ngIf="lembrete.usuario.email == usuarioService.usuarioLogado.email"
+                                                 mat-button
+                                                (click)="remover(lembrete.id)">
+                                                <i class="fa fa-trash-alt"></i>  
+                                        </button>
+                                    </td>
 
+                                </tr>
+                            </table>
+                     
+                </div>
+            </div>
+        </div>
+        <div class="row" style="margin-top:2%">
+           <form [formGroup]="lembreteForm"  (ngSubmit)="onFormSubmit(lembreteForm.value)">
+                <div class="w3-col m10">
+                    <mat-form-field style="width: 100%">
+                        <textarea matInput 
+                                  formControlName="texto"
+                                  placeholder="Escreva uma mensagem"></textarea>
+                    </mat-form-field>
+                </div>
+                <div class="w3-col m2" style="padding-left: 2%">
+                        <button mat-fab 
+                                color="primary"
+                                type="submit">
+                            <mat-icon>send</mat-icon>
+                        </button>
+                </div>
+            </form>
+        </div>
     </div>
-
 </div>

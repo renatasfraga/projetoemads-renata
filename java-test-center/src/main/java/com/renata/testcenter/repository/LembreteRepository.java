@@ -10,6 +10,6 @@ import com.renata.testcenter.model.Lembrete;
 
 public interface LembreteRepository extends JpaRepository<Lembrete, Long> {
 
-	@Query("SELECT l FROM Lembrete l WHERE id_projeto = :id")
+	@Query("SELECT l FROM Lembrete l WHERE l.projeto.id = :id order by l.dhPostagem desc")
 	public List<Lembrete> lembreteByProjeto(@Param("id") Long id);
 }

@@ -6,7 +6,7 @@ import {HttpClientModule} from "@angular/common/http";
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { LembretesListarComponent } from './lembretes-listar/lembretes-listar.component';
+import { LembretesListarComponent, AvisoLembreteComponent, AvisoLembreteExcluirComponent } from './lembretes-listar/lembretes-listar.component';
 import { HistoriaEditarComponent } from './historia-editar/historia-editar.component';
 import { HistoriaListarComponent } from './historia-listar/historia-listar.component';
 import { PlanoEditarComponent } from './plano-editar/plano-editar.component';
@@ -56,6 +56,10 @@ import { PlanoIncluirComponent } from './plano-incluir/plano-incluir.component';
 import { CriterioDeAceitacaoService } from './services/criterio-de-aceitacao.service';
 import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
+import {MatSnackBarModule} from '@angular/material/snack-bar';
+import {MatPaginatorModule} from '@angular/material/paginator';
+
+
 
 
 
@@ -88,7 +92,9 @@ import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
     HistoriaIncluirComponent,
     CriterioIncluirComponent,
     TesteIncluirComponent,
-    PlanoIncluirComponent
+    PlanoIncluirComponent,
+    AvisoLembreteComponent,
+    AvisoLembreteExcluirComponent,
   ],
   imports: [
     BrowserModule,
@@ -115,9 +121,14 @@ import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
     MatDialogModule,
     MatSlideToggleModule,
     CKEditorModule,
+    MatSnackBarModule,
+    MatPaginatorModule,
+    
     
 
   ],
+  entryComponents: [AvisoLembreteComponent,AvisoLembreteExcluirComponent],
+
   providers: [ProjetoService, UsuarioService, HistoriaDeUsuarioService, CriterioDeAceitacaoService],
   bootstrap: [AppComponent]
 })

@@ -1,6 +1,9 @@
 package com.renata.testcenter.model;
 
+import java.util.Date;
+
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -8,6 +11,9 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.validation.constraints.NotNull;
 
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 @Entity
 public class Lembrete {
 
@@ -17,13 +23,15 @@ public class Lembrete {
 	@NotNull
 	private String texto;
 	@NotNull
-	@ManyToOne
+	@ManyToOne(fetch= FetchType.EAGER)
 	@JoinColumn(name = "id_projeto")
 	private Projeto projeto;
 	@NotNull
-	@ManyToOne
+	@ManyToOne(fetch= FetchType.EAGER)
 	@JoinColumn(name = "autor")
 	private Usuario usuario;
+	@NotNull
+	private Date dhPostagem;
 	
 	public Long getId() {
 		return id;
@@ -49,10 +57,17 @@ public class Lembrete {
 	public void setUsuario(Usuario usuario) {
 		this.usuario = usuario;
 	}
+	public Date getDhPostagem() {
+		return dhPostagem;
+	}
+	public void setDhPostagem(Date dhPostagem) {
+		this.dhPostagem = dhPostagem;
+	}
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
+		result = prime * result + ((dhPostagem == null) ? 0 : dhPostagem.hashCode());
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
 		result = prime * result + ((projeto == null) ? 0 : projeto.hashCode());
 		result = prime * result + ((texto == null) ? 0 : texto.hashCode());
@@ -68,6 +83,11 @@ public class Lembrete {
 		if (getClass() != obj.getClass())
 			return false;
 		Lembrete other = (Lembrete) obj;
+		if (dhPostagem == null) {
+			if (other.dhPostagem != null)
+				return false;
+		} else if (!dhPostagem.equals(other.dhPostagem))
+			return false;
 		if (id == null) {
 			if (other.id != null)
 				return false;
@@ -90,4 +110,5 @@ public class Lembrete {
 			return false;
 		return true;
 	}
+	
 }
