@@ -15,6 +15,9 @@ import { TesteListarComponent } from './teste-listar/teste-listar.component';
 import { PlanoListarComponent } from './plano-listar/plano-listar.component';
 import { PlanoIncluirComponent } from './plano-incluir/plano-incluir.component';
 import { PlanoEditarComponent } from './plano-editar/plano-editar.component';
+import { DefeitoListarComponent } from './defeito-listar/defeito-listar.component';
+import { DefeitoIncluirComponent } from './defeito-incluir/defeito-incluir.component';
+import { DefeitoEditarComponent } from './defeito-editar/defeito-editar.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
@@ -33,6 +36,9 @@ const routes: Routes = [
   { path:'plano-listar', component: PlanoListarComponent},
   { path:'plano-incluir', component: PlanoIncluirComponent},
   { path:'plano-editar/:id', component: PlanoEditarComponent },
+  { path:'defeito-listar', component: DefeitoListarComponent},
+  { path:'defeito-incluir', component: DefeitoIncluirComponent},
+  { path:'defeito-editar/:id', component: DefeitoEditarComponent },
   
 ];
 

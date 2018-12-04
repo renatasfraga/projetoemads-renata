@@ -58,6 +58,9 @@ import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 import {MatPaginatorModule} from '@angular/material/paginator';
+import { DefeitoListarComponent } from './defeito-listar/defeito-listar.component';
+import { DefeitoEditarComponent } from './defeito-editar/defeito-editar.component';
+import { DefeitoIncluirComponent } from './defeito-incluir/defeito-incluir.component';
 
 
 
@@ -95,6 +98,9 @@ import {MatPaginatorModule} from '@angular/material/paginator';
     PlanoIncluirComponent,
     AvisoLembreteComponent,
     AvisoLembreteExcluirComponent,
+    DefeitoListarComponent,
+    DefeitoEditarComponent,
+    DefeitoIncluirComponent,
   ],
   imports: [
     BrowserModule,

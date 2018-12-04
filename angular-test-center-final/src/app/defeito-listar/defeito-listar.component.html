@@ -1,0 +1,94 @@
+<div class="row">
+    <div class="w3-col m12">
+        <app-menu-superior></app-menu-superior>
+    </div>
+</div>
+<div class="row">
+    <div class="w3-col m2">
+        <app-menu-lateral></app-menu-lateral>
+    </div>
+    <div class="w3-col m10">
+        <div class="row" style="padding-top:2%">
+            <div class="w3-col m2">
+               <button style="width: 90%;"
+                       mat-raised-button 
+                       color="accent"
+                       routerLink="/historia-incluir">Novo</button>
+            </div>
+            <div class="w3-col m6">
+               <mat-form-field style="width: 100%; padding-right: 3%">
+                       <input matInput
+                               placeholder="Buscar por nome" 
+                               name="nome"
+                               [(ngModel)]="titulo">
+               </mat-form-field>
+           </div>
+           <div class="w3-col m2">
+              <mat-form-field style="width: 100%; padding-right:3%">
+                  <mat-select placeholder="Criticidade">
+                    <mat-option *ngFor="let nivel of niveis" [value]="nivel.value">
+                      {{nivel.description}}
+                    </mat-option>
+                  </mat-select>
+                </mat-form-field>
+           </div>
+           <div class="w3-col m2">
+               <button style="width: 90%;"
+                       mat-raised-button 
+                       color="primary"
+                       (click)="buscar(usuarioNome)">Buscar</button>
+          </div>
+       </div>
+      <div class="row">
+          <div class="w3-col m12" style="width: 95%">
+                  <table mat-table [dataSource]="defeitoList">
+                  <ng-container matColumnDef="id">
+                  <th mat-header-cell *matHeaderCellDef> ID </th>
+                  <td mat-cell *matCellDef="let defeito"> {{defeito.id}} </td>
+                  </ng-container>
+                  
+                  <!-- Name Column -->
+                  <ng-container matColumnDef="titulo">
+                  <th mat-header-cell *matHeaderCellDef> Título </th>
+                  <td mat-cell *matCellDef="let defeito"> {{defeito.titulo}} </td>
+                  </ng-container>
+                  
+                  <!-- Weight Column -->
+                  <ng-container matColumnDef="criador">
+                  <th mat-header-cell *matHeaderCellDef> Atribuído </th>
+                  <td mat-cell *matCellDef="let defeito"> {{defeito.usuarioAtribuido.nome}} </td>
+                  </ng-container>
+                  
+                  <!-- Symbol Column -->
+                  <ng-container matColumnDef="data">
+                  <th mat-header-cell *matHeaderCellDef> Data </th>
+                  <td mat-cell *matCellDef="let defeito"> {{defeito.dataCriacao | date:'dd/MM/yyyy'}} </td>
+                  </ng-container>
+
+                    <!-- Symbol Column -->
+                    <ng-container matColumnDef="status">
+                    <th mat-header-cell *matHeaderCellDef> Data </th>
+                    <td mat-cell *matCellDef="let defeito"> {{defeito.status}} </td>
+                    </ng-container>
+                  
+                  <ng-container matColumnDef="editarexcluir">
+                          <th mat-header-cell *matHeaderCellDef>  </th>
+                          <td mat-cell *matCellDef="let defeito">
+                                  <button mat-button
+                                          [routerLink] = "['/defeito-editar', defeito.id]">
+                                  <i class="fa fa-edit"></i>  
+                                  </button>
+                                  <button mat-button
+                                          (click)="remover(defeito.id)">
+                                          <i class="fa fa-trash-alt"></i>  
+                                  </button>
+                          </td>
+                  </ng-container>
+          
+                  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                  </table>
+          </div>
+        </div>
+      </div>
+</div>
