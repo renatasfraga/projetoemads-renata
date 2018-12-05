@@ -53,4 +53,23 @@ public class DefeitoController {
 	public Defeito updateDefeito(@RequestBody Defeito defeito) {
 		return this.updateDefeito(defeito);
 	}
+	
+	@GetMapping(path = {"/byniveltitulo/{id}/{nivel}/{titulo}"})
+	public List<Defeito> defeitoByNivelTitulo(@PathVariable("id") Long id,
+											  @PathVariable("nivel") String nivelCriticidade,
+											  @PathVariable("titulo") String titulo) {
+		return this.service.defeitoPorNivelTitulo(id, nivelCriticidade, titulo);
+	}
+	
+	@GetMapping(path = {"/bytitulo/{id}/{titulo}"})
+	public List<Defeito> defeitoByTitulo(@PathVariable("id") Long id,
+										 @PathVariable("titulo") String titulo) {
+		return this.service.defeitoByTitulo(id, titulo);
+	}
+	
+	@GetMapping(path = {"/bynivel/{id}/{nivel}"})
+	public List<Defeito> defeitoByNivel(@PathVariable("id") Long id,
+										@PathVariable("nivel") String nivelCriticidade) {
+		return this.service.defeitoByNivel(id, nivelCriticidade);
+	}
 }

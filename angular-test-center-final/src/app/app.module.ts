@@ -61,10 +61,7 @@ import {MatPaginatorModule} from '@angular/material/paginator';
 import { DefeitoListarComponent } from './defeito-listar/defeito-listar.component';
 import { DefeitoEditarComponent } from './defeito-editar/defeito-editar.component';
 import { DefeitoIncluirComponent } from './defeito-incluir/defeito-incluir.component';
-
-
-
-
+import { ChartsModule } from 'ng2-charts';
 
 @NgModule({
   declarations: [
@@ -129,9 +126,7 @@ import { DefeitoIncluirComponent } from './defeito-incluir/defeito-incluir.compo
     CKEditorModule,
     MatSnackBarModule,
     MatPaginatorModule,
-    
-    
-
+    ChartsModule,
   ],
   entryComponents: [AvisoLembreteComponent,AvisoLembreteExcluirComponent],
 

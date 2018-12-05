@@ -40,4 +40,16 @@ public class DefeitoService {
 		}
 		return null;
 	}
+	
+	public List<Defeito> defeitoPorNivelTitulo(Long id, String nivelCriticidade, String titulo) {
+		return this.repository.defeitoPorNivelTitulo(id, nivelCriticidade, titulo);
+	}
+	
+	public List<Defeito> defeitoByNivel(Long id, String nivelCriticidade) {
+		return this.repository.defeitoByNivel(id, nivelCriticidade);
+	}
+	
+	public List<Defeito> defeitoByTitulo(Long id, String titulo) {
+		return this.repository.defeitoByTitulo(id, titulo);
+	}
 }
