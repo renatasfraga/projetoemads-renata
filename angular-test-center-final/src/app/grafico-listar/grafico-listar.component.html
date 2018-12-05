@@ -1,3 +1,44 @@
-<p>
-  grafico-listar works!
-</p>
+<div class="w3-row">
+  <div class="w3-col m12">
+      <app-menu-superior></app-menu-superior>
+  </div>
+</div>
+<div class="w3-row">
+  <div class="w3-col m3">
+     <app-menu-lateral></app-menu-lateral>
+  </div>
+  <div class="w3-col m9">
+     <div class="row" style="padding-top:2%">
+          <div class="w3-col m2">
+             <button style="width: 90%;"
+                     mat-raised-button 
+                     color="accent"
+                     routerLink="/plano-incluir">Novo</button>
+          </div>
+          <div class="w3-col m8">
+             <mat-form-field style="width: 100%">
+                     <input matInput
+                             placeholder="Buscar por título" 
+                             name="nome"
+                             [(ngModel)]="titulo">
+             </mat-form-field>
+         </div>
+         <div class="w3-col m2">
+             <button style="width: 90%;"
+                     mat-raised-button 
+                     color="primary"
+                     (click)="buscar(titulo)">Buscar</button>
+        </div>
+     </div>
+     <div class="row">
+      <div style="display: block">
+        <canvas baseChart
+                [data]="pieChartData"
+                [labels]="pieChartLabels"
+                [chartType]="pieChartType"
+                (chartHover)="chartHovered($event)"
+                [colors]="chartColors"
+                (chartClick)="chartClicked($event)"></canvas>
+      </div>
+</div>
+

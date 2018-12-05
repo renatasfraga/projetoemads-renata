@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.renata.testcenter.model.Grafico;
+import com.renata.testcenter.model.GraficoAux;
 import com.renata.testcenter.repository.GraficoRepository;
 
 @Service
@@ -34,4 +35,7 @@ public class GraficoService {
 		return this.repository.graficoByProjeto(id);
 	}
 	
+	public List<GraficoAux> gerarGraficoCriticidade(Long id) {
+		return this.repository.gerarGraficoCriticidade(id);
+	}
 }

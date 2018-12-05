@@ -20,6 +20,9 @@ public class Grafico {
 	private String conteudo;
 	@NotNull
 	private String tipoGrafico;
+	
+	private String label;
+	
 	@NotNull
 	@ManyToOne
 	@JoinColumn(name = "id_projeto")
@@ -59,12 +62,19 @@ public class Grafico {
 	public void setUsuarioCriador(Usuario usuarioCriador) {
 		this.usuarioCriador = usuarioCriador;
 	}
+	public String getLabel() {
+		return label;
+	}
+	public void setLabel(String label) {
+		this.label = label;
+	}
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + ((conteudo == null) ? 0 : conteudo.hashCode());
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
+		result = prime * result + ((label == null) ? 0 : label.hashCode());
 		result = prime * result + ((projeto == null) ? 0 : projeto.hashCode());
 		result = prime * result + ((tipoGrafico == null) ? 0 : tipoGrafico.hashCode());
 		result = prime * result + ((usuarioCriador == null) ? 0 : usuarioCriador.hashCode());
@@ -89,12 +99,20 @@ public class Grafico {
 				return false;
 		} else if (!id.equals(other.id))
 			return false;
+		if (label == null) {
+			if (other.label != null)
+				return false;
+		} else if (!label.equals(other.label))
+			return false;
 		if (projeto == null) {
 			if (other.projeto != null)
 				return false;
 		} else if (!projeto.equals(other.projeto))
 			return false;
-		if (tipoGrafico != other.tipoGrafico)
+		if (tipoGrafico == null) {
+			if (other.tipoGrafico != null)
+				return false;
+		} else if (!tipoGrafico.equals(other.tipoGrafico))
 			return false;
 		if (usuarioCriador == null) {
 			if (other.usuarioCriador != null)

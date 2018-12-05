@@ -47,4 +47,5 @@ public class LembreteController {
 	public List<Lembrete> getLembreteByProjeto(@PathVariable("id") Long id) {
 		return this.service.getLembreteByProjeto(id);
 	}
+	
 }

@@ -18,6 +18,10 @@ import { PlanoEditarComponent } from './plano-editar/plano-editar.component';
 import { DefeitoListarComponent } from './defeito-listar/defeito-listar.component';
 import { DefeitoIncluirComponent } from './defeito-incluir/defeito-incluir.component';
 import { DefeitoEditarComponent } from './defeito-editar/defeito-editar.component';
+import { GraficoListarComponent } from './grafico-listar/grafico-listar.component';
+import { GraficoEditarComponent } from './grafico-editar/grafico-editar.component';
+import { GraficoGerarComponent } from './grafico-gerar/grafico-gerar.component';
+import { GraficoIncluirComponent } from './grafico-incluir/grafico-incluir.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
@@ -39,6 +43,10 @@ const routes: Routes = [
   { path:'defeito-listar', component: DefeitoListarComponent},
   { path:'defeito-incluir', component: DefeitoIncluirComponent},
   { path:'defeito-editar/:id', component: DefeitoEditarComponent },
+  { path:'grafico-listar', component: GraficoListarComponent},
+  { path:'grafico-incluir', component: GraficoIncluirComponent},
+  { path:'grafico-editar/:id', component: GraficoEditarComponent },
+  { path:'grafico-gerar/:id', component: GraficoGerarComponent },
   
 ];
 

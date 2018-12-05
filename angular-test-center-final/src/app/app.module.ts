@@ -62,6 +62,7 @@ import { DefeitoListarComponent } from './defeito-listar/defeito-listar.componen
 import { DefeitoEditarComponent } from './defeito-editar/defeito-editar.component';
 import { DefeitoIncluirComponent } from './defeito-incluir/defeito-incluir.component';
 import { ChartsModule } from 'ng2-charts';
+import { GraficoIncluirComponent } from './grafico-incluir/grafico-incluir.component';
 
 @NgModule({
   declarations: [
@@ -98,6 +99,7 @@ import { ChartsModule } from 'ng2-charts';
     DefeitoListarComponent,
     DefeitoEditarComponent,
     DefeitoIncluirComponent,
+    GraficoIncluirComponent,
   ],
   imports: [
     BrowserModule,

@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.renata.testcenter.model.Grafico;
+import com.renata.testcenter.model.GraficoAux;
 import com.renata.testcenter.service.GraficoService;
 
 @CrossOrigin(origins = "http://localhost:4200", maxAge = 3600)
@@ -46,6 +47,11 @@ public class GraficoController {
 	@GetMapping(path ={"/byprojeto/{id}"})
 	public List<Grafico> getGraficoByProjeto(@PathVariable("id") Long id) {
 		return this.service.getGraficosByProjeto(id);
+	}
+	
+	@GetMapping(path = {"/criticidade/{id}"})
+	public List<GraficoAux> gerarGraficoCriticidade(@PathVariable("id") Long id) {
+		return this.service.gerarGraficoCriticidade(id);
 	}
 	
 }
