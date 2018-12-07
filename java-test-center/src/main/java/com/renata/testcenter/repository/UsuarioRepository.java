@@ -11,10 +11,10 @@ import com.renata.testcenter.model.Usuario;
 
 public interface UsuarioRepository extends JpaRepository<Usuario, String> {
 
-	@Query("SELECT u FROM Usuario u WHERE u.email = :email and u.senha = :senha")
+	@Query("SELECT u FROM Usuario u WHERE u.email = :email and u.senha = :senha order by u.nome asc")
 	public Usuario getLogin(@Param("email") String email,
 			                @Param("senha") String senha);
 	
-	@Query("SELECT u FROM Usuario u inner join u.projetos p WHERE p.id = :id ")
+	@Query("SELECT u FROM Usuario u inner join u.projetos p WHERE p.id = :id order by u.nome asc")
 	public List<Usuario> getUsuariosByProjeto(@Param("id") Long id);
 }

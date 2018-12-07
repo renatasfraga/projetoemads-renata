@@ -13,7 +13,7 @@ public interface CriterioDeAceitacaoRepository extends JpaRepository<CriterioDeA
 
 	@Query("Select c from CriterioDeAceitacao c inner join HistoriaDeUsuario h on c.id.historiaDeUsuario = h and "
 			+ " c.id.historiaDeUsuario.id = :idHistoria and "
-			+ " h.projeto.id = :idProjeto ")
+			+ " h.projeto.id = :idProjeto order by c.idOrdenacao asc")
 	public List<CriterioDeAceitacao> getCriterioByProjetoHistoria(@Param("idHistoria") Long idHistoria,
 			                                                      @Param("idProjeto") Long idProjeto);
 
@@ -24,6 +24,6 @@ public interface CriterioDeAceitacaoRepository extends JpaRepository<CriterioDeA
 	@Query("Select (MAX(c.id.idLinhaCriterio) + 1) FROM CriterioDeAceitacao c")
 	public Long gerarIdLinhaCriterio();
 	
-	@Query("Select c from CriterioDeAceitacao c where c.id.historiaDeUsuario.id = :id")
+	@Query("Select c from CriterioDeAceitacao c where c.id.historiaDeUsuario.id = :id order by c.idOrdenacao asc")
 	public List<CriterioDeAceitacao> getCriterioByHistoria(@Param("id") Long id);
 }

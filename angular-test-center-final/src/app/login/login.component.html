@@ -1,65 +1,55 @@
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
+<div class="row">
 
-
-<div class="section"></div>
-<main align="center">
-
-    <div class="section"></div>
-    <div class="section"></div>
-
-    <div class="container">
-      <div class="z-depth-1 white lighten-4 row" style="display: inline-block; padding: 32px 48px 0px 48px; border: 1px solid #EEE;">
-
-        <form class="col s12" method="post">
-          <div class='row'>
-            <div class='col s12'>
-              <img src="assets/logotestcenter.png" style="width:80%">
-            </div>
+<div class="w3-col m5 w3-display-middle	">
+  <mat-card>
+    <div class="w3-row" style="display: inline-block; padding: 32px 48px 0px 48px;"> 
+      <div class="w3-col m12">
+        <div class="w3-row" align="center">
+          <div class="w3-col m12">
+            <img src="assets/logotestcenter.png" style="width:80%">
           </div>
+        </div>
 
-          <div class='row'>
-            <div class='input-field col s12'>
-              <input class='validate' 
-                     type='email' 
-                     name='email' 
-                     id='email' 
-                     [(ngModel)]="usuario.email"/>
-              <label for='email'>Email</label>
-            </div>
+        <div class="w3-row" style="margin-top:10%"> 
+          <div class="w3-col m12">
+            <mat-form-field style="width: 100%">
+              <input matInput 
+                    placeholder="Email"
+                    type="email"
+                    [(ngModel)]="usuario.email">
+            </mat-form-field>
           </div>
+        </div>
 
-          <div class='row'>
-            <div class='input-field col s12'>
-              <input class='validate' 
-                     type='password' 
-                     name='password' 
-                     id='password' 
-                     [(ngModel)]="usuario.senha"/>
-              <label for='password'>Senha</label>
-            </div>
-            <label style='float: right;'>
-              <a class='pink-text' href='#!'><b>Esqueceu a senha?</b></a>
-            </label>
+        <div class="w3-row">
+          <div class="w3-col m12">
+            <mat-form-field style="width: 100%"> 
+              <input matInput 
+                    placeholder="Senha"
+                    type="password"
+                    [(ngModel)]="usuario.senha">
+            </mat-form-field>
           </div>
-          <br />
-          <div class='row' align="center" *ngIf="mostraAlerta">
-            <p class='red-text' href='#!'><b>Usuário e senha incorretos.</b></p>
+        </div>
+        <div class="w3-row">
+          <label style='float: right;'>
+            <a style="color:#1b9de8;text-decoration: none" href='#!'><b>Esqueceu a senha?</b></a>
+          </label>
+       </div> 
+        <div class="w3-row" style="margin-top:10%">
+          <div class="w3-col m12">
+            <button mat-raised-button 
+                    color="primary"
+                    style="width: 100%"
+                    (click)="logarSe()">ACESSAR</button>
           </div>
-        
-       
-            <div class='row'>
-              <button type='submit' 
-                      name='btn_login' 
-                      class='col s12 btn btn-large waves-effect indigo'
-                      (click)="logarSe()">Login</button>
-            </div>
-          
-        </form>
+        </div>
+        <div class="w3-row" align="center" style="margin-top:10%"> 
+          <a href="/usuario-incluir" style="color:#292f33; text-decoration: none">Não possui conta? Crie.</a>
+        </div>
       </div>
     </div>
-    <a href="#!">Criar Conta</a>
-  <div class="section"></div>
-  <div class="section"></div>
-</main>
-<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
+  </mat-card>
+</div>
+
+</div>

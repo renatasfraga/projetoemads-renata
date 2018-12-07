@@ -12,7 +12,7 @@ export class LoginComponent implements OnInit {
 
   usuario:Usuario = new Usuario();
   mostraAlerta:boolean = false;
-
+ 
   constructor(private usuarioService:UsuarioService, private router:Router) { }
 
   ngOnInit() { }

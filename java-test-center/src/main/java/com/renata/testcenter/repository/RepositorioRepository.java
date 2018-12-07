@@ -10,7 +10,7 @@ import com.renata.testcenter.model.Repositorio;
 
 public interface RepositorioRepository extends JpaRepository<Repositorio, Long> {
 	
-	@Query("SELECT r FROM Repositorio r WHERE id_projeto = :id")
+	@Query("SELECT r FROM Repositorio r WHERE id_projeto = :id order by r.id asc")
 	public List<Repositorio> repositorioByProjeto(@Param("id") Long id); 
 	
 }

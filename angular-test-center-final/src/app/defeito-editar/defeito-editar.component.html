@@ -45,7 +45,7 @@
                               <mat-form-field style="width: 91%">
                                       <mat-select placeholder="Usuario Criador" 
                                                   formControlName="usuarioCriadorAux"
-                                                  (optionSelectionChanges)="validaUserCriador()">
+                                                  (selectionChange)="validaUserCriador()">
                                              <mat-option>Selecione um usuário</mat-option>
                                              <mat-option *ngFor="let usuario of usuarioService.usuariosByProjeto" 
                                                          [value]="usuario.email">
@@ -61,7 +61,7 @@
                   <mat-form-field style="width: 91%">
                     <mat-select placeholder="Usuario Atribuído" 
                                 formControlName="usuarioAtribuidoAux"
-                                (optionSelectionChanges)="validaUserAtribuido()">
+                                (selectionChange)="validaUserAtribuido()">
                            <mat-option>Selecione um usuário</mat-option>
                            <mat-option *ngFor="let usuario of usuarioService.usuariosByProjeto" 
                                        [value]="usuario.email">

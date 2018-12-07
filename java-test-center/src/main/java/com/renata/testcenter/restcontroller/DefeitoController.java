@@ -51,7 +51,7 @@ public class DefeitoController {
 	
 	@PutMapping
 	public Defeito updateDefeito(@RequestBody Defeito defeito) {
-		return this.updateDefeito(defeito);
+		return this.service.updateDefeito(defeito);
 	}
 	
 	@GetMapping(path = {"/byniveltitulo/{id}/{nivel}/{titulo}"})

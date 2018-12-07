@@ -64,6 +64,8 @@ import { DefeitoIncluirComponent } from './defeito-incluir/defeito-incluir.compo
 import { ChartsModule } from 'ng2-charts';
 import { GraficoIncluirComponent } from './grafico-incluir/grafico-incluir.component';
 import { StatusPipePipe } from './status-pipe.pipe';
+import { RepositorioIncluirComponent } from './repositorio-incluir/repositorio-incluir.component';
+import { UsuarioIncluirComponent } from './usuario-incluir/usuario-incluir.component';
 
 @NgModule({
   declarations: [
@@ -102,6 +104,8 @@ import { StatusPipePipe } from './status-pipe.pipe';
     DefeitoIncluirComponent,
     GraficoIncluirComponent,
     StatusPipePipe,
+    RepositorioIncluirComponent,
+    UsuarioIncluirComponent,
   ],
   imports: [
     BrowserModule,

@@ -22,6 +22,9 @@ import { GraficoListarComponent } from './grafico-listar/grafico-listar.componen
 import { GraficoEditarComponent } from './grafico-editar/grafico-editar.component';
 import { GraficoGerarComponent } from './grafico-gerar/grafico-gerar.component';
 import { GraficoIncluirComponent } from './grafico-incluir/grafico-incluir.component';
+import { RepositorioEditarComponent } from './repositorio-editar/repositorio-editar.component';
+import { RepositorioListarComponent } from './repositorio-listar/repositorio-listar.component';
+import { RepositorioIncluirComponent } from './repositorio-incluir/repositorio-incluir.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
@@ -47,6 +50,10 @@ const routes: Routes = [
   { path:'grafico-incluir', component: GraficoIncluirComponent},
   { path:'grafico-editar/:id', component: GraficoEditarComponent },
   { path:'grafico-gerar/:id', component: GraficoGerarComponent },
+  { path:'repositorio-incluir', component: RepositorioIncluirComponent},
+  { path:'repositorio-editar/:id', component: RepositorioEditarComponent },
+  { path:'repositorio-listar', component: RepositorioListarComponent },
+  
   
 ];
 

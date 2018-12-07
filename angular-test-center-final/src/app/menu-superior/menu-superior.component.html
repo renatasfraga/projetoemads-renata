@@ -8,24 +8,21 @@
     <td style="width: 100%"></td>
     <td>
         <button mat-button [matMenuTriggerFor]="projetos">
-            <mat-icon>next_week</mat-icon>
-             Projetos
+          <i class="fas fa-project-diagram"></i>     
+          Projetos
         </button>
         <mat-menu #projetos="matMenu">
-          <button mat-menu-item>
-            <mat-icon>dialpad</mat-icon>
-            <span>Trocar</span>
-          </button>
-          <button mat-menu-item>
-            <mat-icon>notifications_off</mat-icon>
-            <span>Solicitar Entrada</span>
+          <button mat-menu-item
+                  routerLink="/projeto-selecionar">
+            <i class="fas fa-exchange-alt"></i>    
+            Trocar de Projeto
           </button>
           <button mat-menu-item *ngIf="usuarioService.usuarioLogado.funcaoExercida=='PO' ||
                                        usuarioService.usuarioLogado.funcaoExercida == 'SM' || 
                                        usuarioService.usuarioLogado.funcaoExercida == 'L' ||
                                        usuarioService.usuarioLogado.funcaoExercida == 'GP'">
-              <mat-icon>notifications_off</mat-icon>
-              <span>Adicionar Membros</span>
+            <i class="fas fa-users-cog"></i>              
+            Gerenciar Membros
             </button>
         </mat-menu>
     </td>
@@ -36,12 +33,13 @@
         </button>
         <mat-menu #perfil="matMenu">
           <button mat-menu-item>
-            <mat-icon>dialpad</mat-icon>
-            <span>Editar</span>
+            <i class="fas fa-user-edit"></i>
+            Editar 
           </button>
-          <button mat-menu-item>
-            <mat-icon>notifications_off</mat-icon>
-            <span>Sair</span>
+          <button mat-menu-item
+                  routerLink="/login">
+            <i class="fas fa-power-off"></i>            
+            Sair
           </button>
         </mat-menu>
     </td>

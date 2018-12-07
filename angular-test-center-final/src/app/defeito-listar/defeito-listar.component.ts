@@ -16,8 +16,8 @@ export interface Nivel {
 })
 export class DefeitoListarComponent implements OnInit {
 
-  criticidade:string;
-  titulo:string; 
+  criticidade:string = '';
+  titulo:string = ''; 
   defeitoList:Defeito[];
   displayedColumns: string[] = ['id', 'titulo', 'criador', 'data', 'status','editarexcluir'];
 
