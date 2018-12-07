@@ -63,6 +63,7 @@ import { DefeitoEditarComponent } from './defeito-editar/defeito-editar.componen
 import { DefeitoIncluirComponent } from './defeito-incluir/defeito-incluir.component';
 import { ChartsModule } from 'ng2-charts';
 import { GraficoIncluirComponent } from './grafico-incluir/grafico-incluir.component';
+import { StatusPipePipe } from './status-pipe.pipe';
 
 @NgModule({
   declarations: [
@@ -100,6 +101,7 @@ import { GraficoIncluirComponent } from './grafico-incluir/grafico-incluir.compo
     DefeitoEditarComponent,
     DefeitoIncluirComponent,
     GraficoIncluirComponent,
+    StatusPipePipe,
   ],
   imports: [
     BrowserModule,

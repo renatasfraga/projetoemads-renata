@@ -28,6 +28,7 @@ export class DefeitoListarComponent implements OnInit {
     {value: '4', description: 'Nível 4'},
     {value: '5', description: 'Nível 5'},
   ];
+
   constructor(private projetoService:ProjetoService,
               private usuarioService:UsuarioService,
               private defeitoService:DefeitoService) { }
