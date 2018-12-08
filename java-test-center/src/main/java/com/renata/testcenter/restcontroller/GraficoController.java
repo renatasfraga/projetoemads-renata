@@ -54,4 +54,36 @@ public class GraficoController {
 		return this.service.gerarGraficoCriticidade(id);
 	}
 	
-}
+	@GetMapping(path = {"/qualidade/{id}"})
+	public List<GraficoAux> gerarGraficoPorQualidade(@PathVariable("id") Long id) {
+		return this.service.graficoPorQualidade(id);
+	}
+	
+	@GetMapping(path = {"/bugspormes/{id}"})
+	public List<GraficoAux> gerarGraficoBugsPorMes(@PathVariable("id") Long id) {
+		return this.service.graficoBugsPorMes(id);
+	}
+	
+	@GetMapping(path = {"/criador/{email}/{id}"})
+	public List<GraficoAux> gerarGraficoPorCriador(@PathVariable("email") String email, 
+												   @PathVariable("id") Long id) {
+		return this.service.graficoPorCriador(email, id);
+	}
+	
+	@GetMapping(path= {"/atribuido/{email}/{id}"})
+	public List<GraficoAux> gerarGraficoPorAtribuido(@PathVariable("email") String email,
+													 @PathVariable("id") Long id) {
+		return this.service.graficoPorAtribuido(email, id);
+	}
+	
+	@GetMapping(path= {"/status/{id}"})
+	public List<GraficoAux> gerarGraficoPorStatus(@PathVariable("id") Long id) {
+		return this.service.graficoPorStatus(id);
+	}
+	
+	@GetMapping(path = {"/pesquisar/{id}/{email}"})
+	public List<Grafico> pesquisarPorCriador(@PathVariable("id") Long id,
+											 @PathVariable("email") String email) {
+		return this.service.pesquisarPorCriador(id, email);
+	}
+} 

@@ -38,4 +38,29 @@ public class GraficoService {
 	public List<GraficoAux> gerarGraficoCriticidade(Long id) {
 		return this.repository.gerarGraficoCriticidade(id);
 	}
+	
+	public List<GraficoAux> graficoPorQualidade(Long id) {
+		return this.repository.graficoPorQualidade(id);
+	}
+	
+	public List<GraficoAux> graficoBugsPorMes(Long id) {
+		return this.repository.graficoBugsPorMes(id);
+	}
+	
+	public List<GraficoAux> graficoPorCriador(String email, Long id) {
+		return this.repository.graficoPorCriador(email, id);
+	}
+	
+	public List<GraficoAux> graficoPorAtribuido(String email, Long id) {
+		return this.repository.graficoPorAtribuido(email, id);
+	}
+	
+	public List<GraficoAux> graficoPorStatus(Long id) {
+		return this.repository.graficoPorStatus(id);
+	}
+	
+	public List<Grafico> pesquisarPorCriador(Long id, String email) {
+		return this.repository.pesquisarPorCriador(id, email);
+	}
+	
 }

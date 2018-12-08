@@ -8,37 +8,80 @@
      <app-menu-lateral></app-menu-lateral>
   </div>
   <div class="w3-col m9">
-     <div class="row" style="padding-top:2%">
+     <div class="w3-row" style="padding-top:2%">
           <div class="w3-col m2">
              <button style="width: 90%;"
                      mat-raised-button 
                      color="accent"
-                     routerLink="/plano-incluir">Novo</button>
+                     (click)="openNovo()">Novo</button>
           </div>
           <div class="w3-col m8">
-             <mat-form-field style="width: 100%">
-                     <input matInput
-                             placeholder="Buscar por título" 
-                             name="nome"
-                             [(ngModel)]="titulo">
-             </mat-form-field>
+                  <mat-form-field style="width: 90%">
+                        <mat-select placeholder="Usuário" 
+                                    [(ngModel)]="usuario">
+                               <mat-option>Selecione um usuário</mat-option>
+                               <mat-option *ngFor="let usuario of usuarioService.usuariosByProjeto" 
+                                           [value]="usuario.email">
+                                            {{usuario.nome}}
+                               </mat-option>
+                        </mat-select>
+                     </mat-form-field>
          </div>
          <div class="w3-col m2">
              <button style="width: 90%;"
                      mat-raised-button 
                      color="primary"
-                     (click)="buscar(titulo)">Buscar</button>
+                     (click)="buscar(usuario)">Buscar</button>
         </div>
      </div>
-     <div class="row">
-      <div style="display: block">
-        <canvas baseChart
-                [data]="pieChartData"
-                [labels]="pieChartLabels"
-                [chartType]="pieChartType"
-                (chartHover)="chartHovered($event)"
-                [colors]="chartColors"
-                (chartClick)="chartClicked($event)"></canvas>
+     <div class="w3-row">
+            <div class="w3-col m12" style="width: 95%">
+               <table mat-table [dataSource]="graficoList">
+               <ng-container matColumnDef="id">
+               <th mat-header-cell *matHeaderCellDef> ID </th>
+               <td mat-cell *matCellDef="let grafico"> {{grafico.id}} </td>
+               </ng-container>
+               
+               <!-- Name Column -->
+               <ng-container matColumnDef="tipoconsulta">
+               <th mat-header-cell *matHeaderCellDef> Tipo de Consulta </th>
+               <td mat-cell *matCellDef="let grafico"> {{grafico.tipoConsulta}} </td>
+               </ng-container>
+               
+               <!-- Weight Column -->
+               <ng-container matColumnDef="tipografico">
+               <th mat-header-cell *matHeaderCellDef> Tipo de Gráfico </th>
+               <td mat-cell *matCellDef="let grafico"> {{grafico.tipoGrafico}} </td>
+               </ng-container>
+               
+               <!-- Symbol Column -->
+               <ng-container matColumnDef="criador">
+               <th mat-header-cell *matHeaderCellDef> Criador </th>
+               <td mat-cell *matCellDef="let grafico"> {{grafico.usuarioCriador.nome}} </td>
+               </ng-container>
+               
+               <ng-container matColumnDef="editarexcluir">
+                     <th mat-header-cell *matHeaderCellDef>  </th>
+                     <td mat-cell *matCellDef="let grafico">
+                              <button mat-button
+                                      (click)="openGerar(grafico)">
+                              <i class="far fa-play-circle"></i>
+                              </button>
+                              <button mat-button
+                                       [routerLink] = "['/grafico-editar', grafico.id]">
+                              <i class="fa fa-edit"></i>  
+                              </button>
+                              <button mat-button
+                                       (click)="remover(grafico.id)">
+                                       <i class="fa fa-trash-alt"></i>  
+                              </button>
+                     </td>
+               </ng-container>
+      
+               <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+               <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+               </table>
       </div>
+     </div>
 </div>
 

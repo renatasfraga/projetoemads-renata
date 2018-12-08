@@ -7,6 +7,12 @@ public class GraficoAux {
 
 	public String label;
 	
+	
+	
+	public GraficoAux(Long valor) {
+		this.valor = valor;
+	}
+	
 	public GraficoAux(Long valor, String label) {
 		this.valor = valor;
 		this.label = label;

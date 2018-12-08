@@ -1,3 +1,76 @@
-<p>
-  grafico-incluir works!
-</p>
+<form [formGroup]="graficoForm" (ngSubmit)="onFormSubmit(graficoForm.value)" align="center">
+  <div class="w3-row">
+    <div class="w3-col m12">
+            <mat-form-field style="width: 95%">
+               <input matInput 
+                      formControlName="titulo"
+                      placeholder="Título">
+            </mat-form-field>   
+    </div>
+  </div>
+  <div class="w3-row">
+    <div class="w3-col m12">
+        <mat-form-field style="width: 95%">
+            <mat-select placeholder="Tipo de Consulta" 
+                        (selectionChange)="refinaTipoGrafico()"
+                        formControlName="tipoConsulta">
+                   <mat-option>Selecione uma forma de Consulta</mat-option>
+                   <mat-option *ngFor="let consulta of tiposConsulta" 
+                               [value]="consulta.value">
+                                {{consulta.description}}
+                   </mat-option>
+            </mat-select>
+        </mat-form-field>
+    </div>
+  </div>
+  <div class="w3-row">
+      <div class="w3-col m12" *ngIf="graficoRequireInput == true">
+          <mat-form-field style="width: 95%">
+              <mat-select placeholder="Usuario Busca" 
+                          formControlName="usuarioAux">
+                    <mat-option>Selecione um usuário</mat-option>
+                    <mat-option *ngFor="let usuario of usuarioService.usuariosByProjeto" 
+                                [value]="usuario">
+                                  {{usuario.nome}}
+                    </mat-option>
+              </mat-select>
+          </mat-form-field>
+    </div>
+  </div>
+  <div class="w3-row">
+      <div class="w3-col m12">
+          <mat-form-field style="width: 95%">
+              <mat-select placeholder="Tipo de Gráfico" 
+                          formControlName="tipoGrafico">
+                     <mat-option>Selecione um nível</mat-option>
+                     <mat-option *ngFor="let grafico of tipoGraficoTemp" 
+                                 [value]="grafico.value">
+                                  {{grafico.description}}
+                     </mat-option>
+              </mat-select>
+          </mat-form-field>
+      </div>
+    </div>
+    <div class="w3-row">
+        <div class="w3-col m12">
+            <mat-form-field style="width: 95%">
+                <mat-select placeholder="Usuario Criador" 
+                            formControlName="usuarioCriador">
+                      <mat-option>Selecione um usuário</mat-option>
+                      <mat-option *ngFor="let usuario of usuarioService.usuariosByProjeto" 
+                                  [value]="usuario">
+                                    {{usuario.nome}}
+                      </mat-option>
+                </mat-select>
+            </mat-form-field>
+      </div>
+    </div>
+    <div class="w3-row">
+        <div class="w3-col m12" align="right" style="padding-right:5%"> 
+            <button mat-raised-button 
+                        style="width: 20%"
+                        color="primary"
+                        type="submit">Salvar</button>
+       </div>
+    </div>
+ </form>

@@ -1,6 +1,7 @@
 package com.renata.testcenter.model;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -16,19 +17,23 @@ public class Grafico {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 	
+	private String titulo;
+	
 	@NotNull
-	private String conteudo;
+	private String tipoConsulta;
 	@NotNull
 	private String tipoGrafico;
 	
-	private String label;
+	@ManyToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name = "usuario_aux")
+	private Usuario usuarioAux;
 	
 	@NotNull
-	@ManyToOne
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "id_projeto")
 	private Projeto projeto;
 	@NotNull
-	@ManyToOne
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "usuario_criador")
 	private Usuario usuarioCriador;
 	
@@ -38,11 +43,12 @@ public class Grafico {
 	public void setId(Long id) {
 		this.id = id;
 	}
-	public String getConteudo() {
-		return conteudo;
+	
+	public String getTipoConsulta() {
+		return tipoConsulta;
 	}
-	public void setConteudo(String conteudo) {
-		this.conteudo = conteudo;
+	public void setTipoConsulta(String tipoConsulta) {
+		this.tipoConsulta = tipoConsulta;
 	}
 	public String getTipoGrafico() {
 		return tipoGrafico;
@@ -62,22 +68,30 @@ public class Grafico {
 	public void setUsuarioCriador(Usuario usuarioCriador) {
 		this.usuarioCriador = usuarioCriador;
 	}
-	public String getLabel() {
-		return label;
+	public String getTitulo() {
+		return titulo;
 	}
-	public void setLabel(String label) {
-		this.label = label;
+	public void setTitulo(String titulo) {
+		this.titulo = titulo;
+	}
+
+	public Usuario getUsuarioAux() {
+		return usuarioAux;
+	}
+	public void setUsuarioAux(Usuario usuarioAux) {
+		this.usuarioAux = usuarioAux;
 	}
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((conteudo == null) ? 0 : conteudo.hashCode());
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
-		result = prime * result + ((label == null) ? 0 : label.hashCode());
 		result = prime * result + ((projeto == null) ? 0 : projeto.hashCode());
+		result = prime * result + ((tipoConsulta == null) ? 0 : tipoConsulta.hashCode());
 		result = prime * result + ((tipoGrafico == null) ? 0 : tipoGrafico.hashCode());
+		result = prime * result + ((titulo == null) ? 0 : titulo.hashCode());
 		result = prime * result + ((usuarioCriador == null) ? 0 : usuarioCriador.hashCode());
+		result = prime * result + ((usuarioAux == null) ? 0 : usuarioAux.hashCode());
 		return result;
 	}
 	@Override
@@ -89,35 +103,40 @@ public class Grafico {
 		if (getClass() != obj.getClass())
 			return false;
 		Grafico other = (Grafico) obj;
-		if (conteudo == null) {
-			if (other.conteudo != null)
-				return false;
-		} else if (!conteudo.equals(other.conteudo))
-			return false;
 		if (id == null) {
 			if (other.id != null)
 				return false;
 		} else if (!id.equals(other.id))
-			return false;
-		if (label == null) {
-			if (other.label != null)
-				return false;
-		} else if (!label.equals(other.label))
 			return false;
 		if (projeto == null) {
 			if (other.projeto != null)
 				return false;
 		} else if (!projeto.equals(other.projeto))
 			return false;
+		if (tipoConsulta == null) {
+			if (other.tipoConsulta != null)
+				return false;
+		} else if (!tipoConsulta.equals(other.tipoConsulta))
+			return false;
 		if (tipoGrafico == null) {
 			if (other.tipoGrafico != null)
 				return false;
 		} else if (!tipoGrafico.equals(other.tipoGrafico))
 			return false;
+		if (titulo == null) {
+			if (other.titulo != null)
+				return false;
+		} else if (!titulo.equals(other.titulo))
+			return false;
 		if (usuarioCriador == null) {
 			if (other.usuarioCriador != null)
 				return false;
 		} else if (!usuarioCriador.equals(other.usuarioCriador))
+			return false;
+		if (usuarioAux == null) {
+			if (other.usuarioAux != null)
+				return false;
+		} else if (!usuarioAux.equals(other.usuarioAux))
 			return false;
 		return true;
 	}

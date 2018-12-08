@@ -1,3 +1,31 @@
-<p>
-  grafico-gerar works!
-</p>
+<div class="w3-row">
+  <div class="w3-col m12">
+      <div style="display: block" *ngIf="data.grafico.tipoGrafico =='pie'">
+          <canvas baseChart
+                [data]="pieChartData"
+                [labels]="pieChartLabels"
+                [chartType]="pieChartType"
+                (chartHover)="chartHovered($event)"
+                [colors]="chartColors"
+                (chartClick)="chartClicked($event)"></canvas>
+  </div>
+  <div style="display: block" *ngIf="data.grafico.tipoGrafico =='doughnut'">
+      <canvas baseChart
+                  [data]="doughnutChartData"
+                  [labels]="doughnutChartLabels"
+                  [chartType]="doughnutChartType"
+                  [colors]="chartColors"
+                  (chartHover)="chartHovered($event)"
+                  (chartClick)="chartClicked($event)"></canvas>
+    </div>
+
+    <div style="display: block" *ngIf="data.grafico.tipoGrafico =='bar'">
+        <canvas baseChart
+                [datasets]="barChartData"
+                [labels]="barChartLabels"
+                [options]="barChartOptions"
+                [legend]="barChartLegend"
+                [chartType]="barChartType"></canvas>
+      </div>
+
+</div>
