@@ -64,10 +64,6 @@
                      <th mat-header-cell *matHeaderCellDef>  </th>
                      <td mat-cell *matCellDef="let grafico">
                               <button mat-button
-                                      (click)="openGerar(grafico)">
-                              <i class="far fa-play-circle"></i>
-                              </button>
-                              <button mat-button
                                        [routerLink] = "['/grafico-editar', grafico.id]">
                               <i class="fa fa-edit"></i>  
                               </button>

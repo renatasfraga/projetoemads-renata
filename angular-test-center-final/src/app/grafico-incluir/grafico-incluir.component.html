@@ -24,13 +24,13 @@
     </div>
   </div>
   <div class="w3-row">
-      <div class="w3-col m12" *ngIf="graficoRequireInput == true">
+      <div class="w3-col m12">
           <mat-form-field style="width: 95%">
               <mat-select placeholder="Usuario Busca" 
                           formControlName="usuarioAux">
                     <mat-option>Selecione um usuário</mat-option>
                     <mat-option *ngFor="let usuario of usuarioService.usuariosByProjeto" 
-                                [value]="usuario">
+                                [value]="usuario.email">
                                   {{usuario.nome}}
                     </mat-option>
               </mat-select>
@@ -58,7 +58,7 @@
                             formControlName="usuarioCriador">
                       <mat-option>Selecione um usuário</mat-option>
                       <mat-option *ngFor="let usuario of usuarioService.usuariosByProjeto" 
-                                  [value]="usuario">
+                                  [value]="usuario.email">
                                     {{usuario.nome}}
                       </mat-option>
                 </mat-select>
