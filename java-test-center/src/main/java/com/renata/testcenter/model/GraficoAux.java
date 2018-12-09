@@ -7,6 +7,7 @@ public class GraficoAux {
 
 	public String label;
 	
+	public String data;
 	
 	
 	public GraficoAux(Long valor) {
@@ -17,6 +18,14 @@ public class GraficoAux {
 		this.valor = valor;
 		this.label = label;
 	}
+	
+	
+	public GraficoAux(Long valor, String label, String data) {
+		this.valor = valor;
+		this.label = label;
+		this.data = data;
+	}
+
 	public Long getValor() {
 		return valor;
 	}
@@ -29,4 +38,12 @@ public class GraficoAux {
 	public void setLabel(String label) {
 		this.label = label;
 	}
+
+	public String getData() {
+		return data;
+	}
+	public void setData(String data) {
+		this.data = data;
+	}
+	
 }

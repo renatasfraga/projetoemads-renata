@@ -63,4 +63,10 @@ public class GraficoService {
 		return this.repository.pesquisarPorCriador(id, email);
 	}
 	
+	public Grafico updateGrafico(Grafico grafico) {
+		if(grafico.getId() != null) {
+			return this.repository.saveAndFlush(grafico);
+		}
+		return null;
+	}
 }

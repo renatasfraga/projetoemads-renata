@@ -1,6 +1,6 @@
 package com.renata.testcenter.model;
 
-import java.util.Date;
+import java.io.File;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -11,11 +11,11 @@ import javax.persistence.ManyToOne;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
-import org.springframework.data.annotation.CreatedDate;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 @Entity
 public class Repositorio {
-
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -24,10 +24,9 @@ public class Repositorio {
 	@Size(max = 100)
 	private String titulo;
 	@NotNull
-	private String arquivo;
+	private File conteudo;
 	@NotNull
-	@CreatedDate
-	private Date dataInclusao;
+	private String dataCriacao;
 	@NotNull
 	@ManyToOne
 	@JoinColumn(name = "usuario_criador")
@@ -49,17 +48,18 @@ public class Repositorio {
 	public void setTitulo(String titulo) {
 		this.titulo = titulo;
 	}
-	public String getArquivo() {
-		return arquivo;
+	
+	public File getConteudo() {
+		return conteudo;
 	}
-	public void setArquivo(String arquivo) {
-		this.arquivo = arquivo;
+	public void setConteudo(File conteudo) {
+		this.conteudo = conteudo;
 	}
-	public Date getDataInclusao() {
-		return dataInclusao;
+	public String getDataCriacao() {
+		return dataCriacao;
 	}
-	public void setDataInclusao(Date dataInclusao) {
-		this.dataInclusao = dataInclusao;
+	public void setDataCriacao(String dataCriacao) {
+		this.dataCriacao = dataCriacao;
 	}
 	public Usuario getUsuarioCriador() {
 		return usuarioCriador;
@@ -77,8 +77,8 @@ public class Repositorio {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((arquivo == null) ? 0 : arquivo.hashCode());
-		result = prime * result + ((dataInclusao == null) ? 0 : dataInclusao.hashCode());
+		result = prime * result + ((conteudo == null) ? 0 : conteudo.hashCode());
+		result = prime * result + ((dataCriacao == null) ? 0 : dataCriacao.hashCode());
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
 		result = prime * result + ((projeto == null) ? 0 : projeto.hashCode());
 		result = prime * result + ((titulo == null) ? 0 : titulo.hashCode());
@@ -94,15 +94,15 @@ public class Repositorio {
 		if (getClass() != obj.getClass())
 			return false;
 		Repositorio other = (Repositorio) obj;
-		if (arquivo == null) {
-			if (other.arquivo != null)
+		if (conteudo == null) {
+			if (other.conteudo != null)
 				return false;
-		} else if (!arquivo.equals(other.arquivo))
+		} else if (!conteudo.equals(other.conteudo))
 			return false;
-		if (dataInclusao == null) {
-			if (other.dataInclusao != null)
+		if (dataCriacao == null) {
+			if (other.dataCriacao != null)
 				return false;
-		} else if (!dataInclusao.equals(other.dataInclusao))
+		} else if (!dataCriacao.equals(other.dataCriacao))
 			return false;
 		if (id == null) {
 			if (other.id != null)

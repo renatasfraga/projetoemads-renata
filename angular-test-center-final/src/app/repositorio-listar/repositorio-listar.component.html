@@ -1,3 +1,82 @@
-<p>
-  repositorio-listar works!
-</p>
+<div class="w3-row">
+    <div class="w3-col m12">
+        <app-menu-superior></app-menu-superior>
+    </div>
+  </div>
+  <div class="w3-row">
+    <div class="w3-col m3">
+       <app-menu-lateral></app-menu-lateral>
+    </div>
+    <div class="w3-col m9">
+       <div class="w3-row" style="padding-top:2%">
+            <div class="w3-col m2">
+               <button style="width: 90%;"
+                       mat-raised-button 
+                       color="accent"
+                       routerLink="/repositorio-incluir">Novo</button>
+            </div>
+            <div class="w3-col m8">
+                <mat-form-field style="width: 100%">
+                    <input matInput
+                            placeholder="Buscar por título" 
+                            name="nome"
+                            [(ngModel)]="titulo">
+                </mat-form-field>
+           </div>
+           <div class="w3-col m2">
+               <button style="width: 90%;"
+                       mat-raised-button 
+                       color="primary"
+                       (click)="buscar(usuario)">Buscar</button>
+          </div>
+       </div>
+       <div class="w3-row">
+          <div class="w3-col m12" style="width: 95%">
+              <table mat-table [dataSource]="repositorioList">
+              <ng-container matColumnDef="id">
+              <th mat-header-cell *matHeaderCellDef> ID </th>
+              <td mat-cell *matCellDef="let repositorio"> {{repositorio.id}} </td>
+              </ng-container>
+              
+              <!-- Name Column -->
+              <ng-container matColumnDef="titulo">
+              <th mat-header-cell *matHeaderCellDef> Título </th>
+              <td mat-cell *matCellDef="let repositorio"> {{repositorio.titulo}} </td>
+              </ng-container>
+              
+              <!-- Weight Column -->
+              <ng-container matColumnDef="criador">
+              <th mat-header-cell *matHeaderCellDef> Autor </th>
+              <td mat-cell *matCellDef="let repositorio"> {{repositorio.usuarioCriador.nome}} </td>
+              </ng-container>
+              
+              <!-- Symbol Column -->
+              <ng-container matColumnDef="data">
+              <th mat-header-cell *matHeaderCellDef> Data Criação </th>
+              <td mat-cell *matCellDef="let repositorio"> {{repositorio.dataCriacao | date:'dd/MM/yyyy'}} </td>
+              </ng-container>
+
+                          
+              <ng-container matColumnDef="editarexcluir">
+                      <th mat-header-cell *matHeaderCellDef>  </th>
+                      <td mat-cell *matCellDef="let repositorio">
+                              <button mat-button
+                                      [routerLink] = "['/repositorio-editar', repositorio.id]">
+                              <i class="fa fa-edit"></i>  
+                              </button>
+                              <button mat-button
+                                      (click)="remover(repositorio.id)">
+                                      <i class="fa fa-trash-alt"></i>  
+                              </button>
+                      </td>
+              </ng-container>
+      
+              <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+              <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+              </table>
+      </div>
+     
+       </div>
+  </div>
+  
+  

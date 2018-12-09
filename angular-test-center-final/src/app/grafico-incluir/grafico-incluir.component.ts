@@ -36,7 +36,7 @@ export class GraficoIncluirComponent implements OnInit {
   ];
 
   tiposGrafico:TipoGrafico[] = [
-    {value: 'bar' , description: 'Barra Vertical'},
+    {value: 'bar' , description: 'Linha Vertical'},
     {value: 'pie', description: 'Pizza'},
     {value: 'doughnut', description: 'Roda'}
   ];
@@ -57,6 +57,8 @@ export class GraficoIncluirComponent implements OnInit {
       'projeto': [this.projetoService.projetoSelecionado, Validators.required],
     });
     this.graficoForm.get('tipoGrafico').disable();
+    this.graficoForm.get('usuarioAux').disable();
+
   }
 
   onFormSubmit(form:NgForm) {
@@ -70,11 +72,17 @@ export class GraficoIncluirComponent implements OnInit {
     this.tipoGraficoTemp = this.tiposGrafico;
     if(this.graficoForm.get('tipoConsulta').value == 'GBM') {
       this.tipoGraficoTemp = this.tiposGrafico.filter(objeto => objeto.value != 'pie' && objeto.value != 'doughnut');
+      this.graficoForm.get('usuarioAux').setValue(null);
+      this.graficoForm.get('usuarioAux').disable();
+
     } else {
       this.tipoGraficoTemp = this.tiposGrafico.filter(objeto => objeto.value !== 'bar');
-      if(this.graficoForm.get('tipoConsulta').value == 'GPC' && this.graficoForm.get('tipoConsulta').value == 'GPA') {
-        this.graficoRequireInput = true;
-      } 
+      if(this.graficoForm.get('tipoConsulta').value == 'GPC' || this.graficoForm.get('tipoConsulta').value == 'GPA') {
+        this.graficoForm.get('usuarioAux').enable();
+      } else {
+        this.graficoForm.get('usuarioAux').setValue(null);
+        this.graficoForm.get('usuarioAux').disable();
+      }
     }
     this.graficoForm.get('tipoGrafico').enable();
   }

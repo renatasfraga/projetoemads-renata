@@ -51,7 +51,6 @@ export class GraficoGerarComponent implements OnInit {
   public doughnutChartData:number[] = [];
   public doughnutChartType:string = 'doughnut';
  
-  //bar
   public barChartOptions:any = {
     scaleShowVerticalLines: false,
     responsive: true
@@ -60,12 +59,9 @@ export class GraficoGerarComponent implements OnInit {
   public barChartType:string = 'bar';
   public barChartLegend:boolean = true;
  
-  public barChartData:any[] = [
-    {data: [], label: 'Series A'},
-    {data: [], label: 'Series B'}
-  ];
+  public barChartData:any[] = [];
  
-
+  
   constructor(private projetoService:ProjetoService,
               private usuarioService:UsuarioService,
               private graficoService:GraficoService,
@@ -76,6 +72,7 @@ export class GraficoGerarComponent implements OnInit {
 
 
   ngOnInit() {
+    this.tipoGraficoTemp = this.tiposGrafico;
     this.usuarioService.getUsuariosByProjeto(this.projetoService.projetoSelecionado.id);
     this.getGrafico(this.rotaAtiva.snapshot.params['id']);
     this.graficoForm = this.formBuilder.group({
@@ -86,10 +83,15 @@ export class GraficoGerarComponent implements OnInit {
       'tipoGrafico':  [null, Validators.required],
       'usuarioCriador': [null, Validators.required],
       'usuarioCriadorCopy':[null, Validators.required],
+      'usuarioAux':[null],
+      'usuarioAuxCopy':[null],
       'projeto':[null, Validators.required]
     });  
     this.graficoForm.get('idCopy').disable();  
-
+    this.graficoForm.get('tipoGrafico').disable();
+    if(this.graficoForm.get('usuarioAuxCopy').value == null) {
+      this.graficoForm.get('usuarioAuxCopy').disable();
+    }
     this.graficoService.getGraficoById(this.rotaAtiva.snapshot.params['id'])
     .subscribe( e => {
       this.grafico = e;
@@ -127,12 +129,17 @@ export class GraficoGerarComponent implements OnInit {
             });
       } else if(this.grafico.tipoConsulta == 'GBM') {
           this.graficoService.gerarGraficoBugsPorMes(this.projetoService.projetoSelecionado.id)
-              .subscribe(res => {
-                this.graficoAux = res;
-                this.graficoAux.forEach(res => {
-                  this.barChartLabels.push()
-                });
+          .subscribe(res => {
+              this.graficoAux = res;  
+              let data:number[] = [];
+              let labels:string[] = [];
+              this.graficoAux.forEach(e => {
+                data.push(e.valor);
+                labels.push(e.label.substring(8,10)+"/"+e.label.substring(5,7)+"/"+e.label.substring(0,4));
               });
+              this.barChartData.push({data:data,label:'Bugs'});
+              this.barChartLabels = labels;
+          });
       } else if(this.grafico.tipoConsulta == 'GPC') {
         this.graficoService.gerarGraficoPorCriador(this.graficoForm.get('usuarioCriadorCopy').value,this.projetoService.projetoSelecionado.id)
             .subscribe(res => {
@@ -183,8 +190,10 @@ export class GraficoGerarComponent implements OnInit {
           });
         }
     });
+   
+  
   }
-
+  
   getGrafico(id) {
     this.graficoService.getGraficoById(id)
         .subscribe(e => {
@@ -197,6 +206,8 @@ export class GraficoGerarComponent implements OnInit {
               tipoGrafico: e.tipoGrafico,       
               usuarioCriador: e.usuarioCriador,
               usuarioCriadorCopy: e.usuarioCriador.email,
+              usuarioAux:e.usuarioAux,
+              usuarioAuxCopy: e.usuarioAux != null ? e.usuarioAux.email : "",
               projeto: e.projeto
           });
         });
@@ -207,7 +218,7 @@ export class GraficoGerarComponent implements OnInit {
     this.graficoService.updateGrafico(form)
         .subscribe( rest => {
           alert("Grafico alterado com sucesso!");
-          this.router.navigate(['/grafico-editar', this.id]);
+          this.router.navigate(['/grafico-listar']);
         }, (err) => {
           console.log(err);
         });
@@ -218,17 +229,32 @@ export class GraficoGerarComponent implements OnInit {
     this.tipoGraficoTemp = this.tiposGrafico;
     if(this.graficoForm.get('tipoConsulta').value == 'GBM') {
       this.tipoGraficoTemp = this.tiposGrafico.filter(objeto => objeto.value != 'pie' && objeto.value != 'doughnut');
+      this.graficoForm.get('usuarioAuxCopy').setValue(null);
+      this.graficoForm.get('usuarioAuxCopy').disable();
+
     } else {
       this.tipoGraficoTemp = this.tiposGrafico.filter(objeto => objeto.value !== 'bar');
-      
+      if(this.graficoForm.get('tipoConsulta').value == 'GPC' || this.graficoForm.get('tipoConsulta').value == 'GPA') {
+        this.graficoForm.get('usuarioAuxCopy').enable();
+      } else {
+        this.graficoForm.get('usuarioAuxCopy').setValue(null);
+        this.graficoForm.get('usuarioAuxCopy').disable();
+      }
     }
     this.graficoForm.get('tipoGrafico').enable();
   }
 
   validaUserCriador() {
-    this.usuarioService.getUsuarioById(this.graficoForm.get('usuarioCriadorAux').value)
+    this.usuarioService.getUsuarioById(this.graficoForm.get('usuarioCriadorCopy').value)
         .subscribe(e => {
           this.graficoForm.get('usuarioCriador').setValue(e);
+    });
+  }
+
+  validaUserAuxiliar() {
+    this.usuarioService.getUsuarioById(this.graficoForm.get('usuarioAuxCopy').value)
+        .subscribe(e => {
+          this.graficoForm.get('usuarioAux').setValue(e);
     });
   }
  

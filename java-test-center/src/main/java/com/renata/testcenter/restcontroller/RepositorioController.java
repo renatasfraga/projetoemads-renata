@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -46,5 +47,16 @@ public class RepositorioController {
 	@GetMapping(path ={"/byprojeto/{id}"})
 	public List<Repositorio> getRepositorioByProjeto(@PathVariable("id") Long id) {
 		return this.service.getRepositorioByProjeto(id);
+	}
+	
+	@GetMapping(path ={"/bytitulo/{id}/{titulo}"})
+	public List<Repositorio> repositorioByTitulo(@PathVariable("id") Long id, 
+			                                     @PathVariable("titulo") String titulo) {
+		return this.service.repositorioByTitulo(id, titulo);
+	}
+	
+	@PutMapping
+	public Repositorio updateRepositorio(@RequestBody Repositorio repositorio) {
+		return this.service.updateRepositorio(repositorio);
 	}
 }

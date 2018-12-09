@@ -47,7 +47,22 @@
                             </mat-form-field>
                         </div>
                     </div>
-                    
+                    <div class="w3-row">
+                            <div class="w3-col m12">
+                                <mat-form-field style="width: 95%">
+                                    <mat-select placeholder="Usuario Filtro" 
+                                                formControlName="usuarioAuxCopy"
+                                                (selectionChange)="validaUserAuxiliar()">
+                                            <mat-option>Selecione um usuário</mat-option>
+                                            <mat-option *ngFor="let usuario of usuarioService.usuariosByProjeto" 
+                                                        [value]="usuario.email">
+                                                        {{usuario.nome}}
+                                            </mat-option>
+                                    </mat-select>
+                                </mat-form-field>
+                            </div>
+                        </div>
+
                     <div class="w3-row">
                         <div class="w3-col m12">
                             <mat-form-field style="width: 95%">
@@ -103,15 +118,15 @@
                           [colors]="chartColors"></canvas>
                 </div>
         
-                <div style="display: block" *ngIf="grafico.tipoGrafico == 'bar'">
+                           
+                 <div style="display: block" *ngIf="grafico.tipoGrafico == 'bar'">
                     <canvas baseChart
-                        [datasets]="barChartData"
-                        [labels]="barChartLabels"
-                        [options]="barChartOptions"
-                        [legend]="barChartLegend"
-                        [chartType]="barChartType"></canvas>
+                            [datasets]="barChartData"
+                            [labels]="barChartLabels"
+                            [options]="barChartOptions"
+                            [legend]="barChartLegend"
+                            [chartType]="barChartType"></canvas>
                  </div>
-             
             </mat-tab>  
 </mat-tab-group>
 </form>

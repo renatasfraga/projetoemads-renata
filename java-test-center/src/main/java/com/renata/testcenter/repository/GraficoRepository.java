@@ -28,7 +28,7 @@ public interface GraficoRepository extends JpaRepository<Grafico, Long> {
 
 	
 	@Query("Select new com.renata.testcenter.model.GraficoAux(count(d), d.dataCriacao) from Defeito d"
-			+ " where d.projeto.id = :idProjeto group by (d.dataCriacao) order by d.dataCriacao asc")
+			+ " where d.projeto.id = :idProjeto group by d.dataCriacao order by d.dataCriacao asc")
 	public List<GraficoAux> graficoBugsPorMes(@Param("idProjeto") Long id);
 	
 	@Query("Select new com.renata.testcenter.model.GraficoAux(count(d), d.nivelDeCriticidade) from Defeito d where "

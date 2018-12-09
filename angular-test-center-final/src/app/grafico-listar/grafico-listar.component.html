@@ -13,7 +13,7 @@
              <button style="width: 90%;"
                      mat-raised-button 
                      color="accent"
-                     (click)="openNovo()">Novo</button>
+                     routerLink="/grafico-incluir">Novo</button>
           </div>
           <div class="w3-col m8">
                   <mat-form-field style="width: 90%">
@@ -41,24 +41,24 @@
                <th mat-header-cell *matHeaderCellDef> ID </th>
                <td mat-cell *matCellDef="let grafico"> {{grafico.id}} </td>
                </ng-container>
-               
+               <!-- Name Column -->
+               <ng-container matColumnDef="titulo">
+               <th mat-header-cell *matHeaderCellDef> Título </th>
+               <td mat-cell *matCellDef="let grafico"> {{grafico.titulo}} </td>
+               </ng-container>
+
                <!-- Name Column -->
                <ng-container matColumnDef="tipoconsulta">
                <th mat-header-cell *matHeaderCellDef> Tipo de Consulta </th>
-               <td mat-cell *matCellDef="let grafico"> {{grafico.tipoConsulta}} </td>
+               <td mat-cell *matCellDef="let grafico"> {{grafico.tipoConsulta | tipoConsulta}} </td>
                </ng-container>
                
                <!-- Weight Column -->
                <ng-container matColumnDef="tipografico">
                <th mat-header-cell *matHeaderCellDef> Tipo de Gráfico </th>
-               <td mat-cell *matCellDef="let grafico"> {{grafico.tipoGrafico}} </td>
+               <td mat-cell *matCellDef="let grafico"> {{grafico.tipoGrafico | tipoGrafico}} </td>
                </ng-container>
-               
-               <!-- Symbol Column -->
-               <ng-container matColumnDef="criador">
-               <th mat-header-cell *matHeaderCellDef> Criador </th>
-               <td mat-cell *matCellDef="let grafico"> {{grafico.usuarioCriador.nome}} </td>
-               </ng-container>
+                             
                
                <ng-container matColumnDef="editarexcluir">
                      <th mat-header-cell *matHeaderCellDef>  </th>

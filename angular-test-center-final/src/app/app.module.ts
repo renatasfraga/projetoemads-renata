@@ -66,6 +66,8 @@ import { GraficoIncluirComponent } from './grafico-incluir/grafico-incluir.compo
 import { StatusPipePipe } from './status-pipe.pipe';
 import { RepositorioIncluirComponent } from './repositorio-incluir/repositorio-incluir.component';
 import { UsuarioIncluirComponent } from './usuario-incluir/usuario-incluir.component';
+import { TipoGraficoPipe } from './tipo-grafico.pipe';
+import { TipoConsultaPipe } from './tipo-consulta.pipe';
 
 @NgModule({
   declarations: [
@@ -106,6 +108,8 @@ import { UsuarioIncluirComponent } from './usuario-incluir/usuario-incluir.compo
     StatusPipePipe,
     RepositorioIncluirComponent,
     UsuarioIncluirComponent,
+    TipoGraficoPipe,
+    TipoConsultaPipe,
   ],
   imports: [
     BrowserModule,

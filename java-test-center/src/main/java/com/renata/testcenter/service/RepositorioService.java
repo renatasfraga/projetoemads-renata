@@ -22,6 +22,14 @@ public class RepositorioService {
 		return this.repository.save(repositorio);
 	}
 	
+	
+	public Repositorio updateRepositorio(Repositorio repositorio) {
+		if(repositorio.getId() != null) {
+			return this.repository.saveAndFlush(repositorio);
+		}
+		return null;
+	}
+	
 	public void deleteRepositorio(Long id) {
 		this.repository.deleteById(id);
 	}
@@ -32,5 +40,9 @@ public class RepositorioService {
 	
 	public List<Repositorio> getRepositorioByProjeto(Long id) {
 		return this.repository.repositorioByProjeto(id);
+	}
+	
+	public List<Repositorio> repositorioByTitulo(Long id, String titulo) {
+		return this.repository.repositorioByTitulo(id, titulo);
 	}
 }

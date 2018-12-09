@@ -2,12 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { ProjetoService } from '../services/projeto.service';
 import { UsuarioService } from '../services/usuario.service';
 import { GraficoService } from '../services/grafico.service';
-import { GraficoAux } from '../classes/grafico-aux';
 import { Grafico } from '../classes/grafico';
-import { MatDialog } from '@angular/material/dialog';
-import { GraficoIncluirComponent } from '../grafico-incluir/grafico-incluir.component';
-import { GraficoEditarComponent } from '../grafico-editar/grafico-editar.component';
-import { GraficoGerarComponent } from '../grafico-gerar/grafico-gerar.component';
+;
+
 
 @Component({
   selector: 'app-grafico-listar',
@@ -17,21 +14,19 @@ import { GraficoGerarComponent } from '../grafico-gerar/grafico-gerar.component'
 export class GraficoListarComponent implements OnInit {
 
   graficoList:Grafico[];
-  displayedColumns: string[] = ['id', 'tipoconsulta', 'tipografico', 'criador', 'editarexcluir'];
+  displayedColumns: string[] = ['id', 'titulo','tipoconsulta', 'tipografico','editarexcluir'];
   usuario:string;
 
   constructor(private projetoService:ProjetoService,
               private usuarioService:UsuarioService,
-              private graficoService:GraficoService,
-              public dialog: MatDialog) { }
+              private graficoService:GraficoService) { }
 
   ngOnInit() {
     this.usuarioService.getUsuariosByProjeto(this.projetoService.projetoSelecionado.id);
     this.carregarGridOnInit();
     
   }
-  
-  carregarGridOnInit() {
+    carregarGridOnInit() {
     this.graficoService.getGraficoByProjeto(this.projetoService.projetoSelecionado.id) 
         .subscribe(e => {
           this.graficoList = e;
@@ -48,25 +43,6 @@ export class GraficoListarComponent implements OnInit {
       this.carregarGridOnInit();
     }
   }
-
-  openNovo() {
-    const dialogRef = this.dialog.open(GraficoIncluirComponent, {
-      width:'650px'
-    });
-    dialogRef.afterClosed().subscribe(result => {
-      this.carregarGridOnInit();
-    });
-  }
-
-    openGerar(grafico:Grafico) {
-     
-      const dialogRef = this.dialog.open(GraficoGerarComponent, {
-        width:'900px',
-        data: {
-          grafico: grafico,
-        }
-      });
-    }
 
   remover(id:number) {
     if(confirm("Tem certeza que deseja remover?")) {
