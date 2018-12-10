@@ -1,9 +1,9 @@
-<div class="row">
+<div class="w3-row">
     <div class="w3-col m12">
         <app-menu-superior></app-menu-superior>
     </div>
 </div>
-<div class="row">
+<div class="w3-row">
     <div class="w3-col m3">
         <app-menu-lateral></app-menu-lateral>
     </div>
@@ -16,7 +16,7 @@
                                routerLink="/criterio-incluir">Novo</button>
                     </div>
                     <div class="w3-col m8">            
-                            <mat-form-field style="width: 90%">
+                            <mat-form-field style="width: 98%">
                                     <mat-select placeholder="História de Usuário" 
                                                 [(ngModel)]="historiaId">
                                            <mat-option>Selecione uma história de usuário</mat-option>
@@ -34,7 +34,7 @@
                                (click)="buscar(historiaId)">Buscar</button>
                   </div>
                </div>
-               <div class="row">
+               <div class="w3-row">
                        <div class="w3-col m12" style="width: 95%">
                                <table mat-table [dataSource]="criterioList">
                                <ng-container matColumnDef="id">
@@ -44,8 +44,8 @@
                                
                                <!-- Name Column -->
                                <ng-container matColumnDef="descricao">
-                               <th mat-header-cell *matHeaderCellDef> Descrição </th>
-                               <td mat-cell *matCellDef="let criterio"> {{criterio.descricaoLinha}} </td>
+                               <th mat-header-cell *matHeaderCellDef> Título </th>
+                               <td mat-cell *matCellDef="let criterio"> {{criterio.titulo}} </td>
                                </ng-container>
                                
                                <!-- Weight Column -->

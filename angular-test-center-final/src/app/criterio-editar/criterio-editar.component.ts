@@ -8,6 +8,7 @@ import { FormBuilder, FormGroup, NgForm, Validators } from '@angular/forms';
 import { CriterioPk } from '../classes/criterio-pk';
 import { HistoriaDeUsuario } from '../classes/historia-de-usuario';
 import { Usuario } from '../classes/usuario';
+import * as ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 
 @Component({
   selector: 'app-criterio-editar',
@@ -21,12 +22,8 @@ export class CriterioEditarComponent implements OnInit {
 
   //reference a form
   criterioForm: FormGroup;
-  id:CriterioPk = null;
-  idOrdenacao:number = null;
-  descricaoLinha:string = '';
-  usuarioCriador:Usuario = null;
-  usuarioAtualizador: Usuario = null;
-  historiaDeUsuario:HistoriaDeUsuario = null;;
+  id:number = this.rotaAtiva.snapshot.params['id'];
+  public Editor = ClassicEditor;
 
   constructor(private usuarioService:UsuarioService,
               private projetoService:ProjetoService,
@@ -43,6 +40,7 @@ export class CriterioEditarComponent implements OnInit {
 
     this.criterioForm = this.formBuilder.group({
       'idOrdenacao': [null, Validators.required],
+      'titulo':[null, Validators.required],
       'descricaoLinha' : [null, Validators.required],
       'usuarioCriador': [null, Validators.required],
       'usuarioAux': [null, Validators.required],
@@ -55,9 +53,7 @@ export class CriterioEditarComponent implements OnInit {
       })
 
     });
-
     this.criterioForm.get("idCopy").disable();
-    this.criterioForm.get("usuarioAux").disable();
     this.criterioForm.get("historiaAux").disable();
    
   }
@@ -69,14 +65,11 @@ export class CriterioEditarComponent implements OnInit {
 
     this.criterioService.getCriterioById(id,id2)
         .subscribe( resultado => {
-          this.id = {
-            historiaDeUsuario: historiaVar,
-            idLinhaCriterio: id2
-          }
           this.criterioForm.setValue({
             id: resultado.id,
             idCopy: resultado.id.idLinhaCriterio,
             idOrdenacao: resultado.idOrdenacao,
+            titulo: resultado.titulo,
             usuarioCriador: resultado.usuarioCriador,
             usuarioAux: resultado.usuarioCriador.email,
             usuarioAtualizador:resultado.usuarioAtualizador,
@@ -91,7 +84,7 @@ export class CriterioEditarComponent implements OnInit {
     this.criterioService.updateCriterio(form)
         .subscribe( rest => {
           alert("Critério de aceitação alterado com sucesso!");
-          this.router.navigate(['/criterio-editar', this.id.historiaDeUsuario.id, this.id.idLinhaCriterio]);
+          this.router.navigate(['/criterio-listar']);
         }, (err) => {
           console.log(err);
         });
@@ -102,5 +95,12 @@ export class CriterioEditarComponent implements OnInit {
                         .subscribe( e => {
                            this.historias = e;
                         });
+  }
+
+  validaUserCriador() {
+    this.usuarioService.getUsuarioById(this.criterioForm.get('usuarioAux').value)
+        .subscribe(e => {
+          this.criterioForm.get('usuarioCriador').setValue(e);
+    });
   }
 }

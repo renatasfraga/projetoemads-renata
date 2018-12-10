@@ -20,6 +20,11 @@ public class CriterioDeAceitacaoService {
 	}
 
 	public CriterioDeAceitacao saveCriterioDeAceitacao(CriterioDeAceitacao criterioDeAceitacao) {
+		if(this.gerarIdLinhaCriterio() == null) {
+			criterioDeAceitacao.getId().setIdLinhaCriterio(Long.valueOf(1));
+		} else {
+			criterioDeAceitacao.getId().setIdLinhaCriterio(this.repository.gerarIdLinhaCriterio());
+		}
 		return this.repository.save(criterioDeAceitacao);
 	}
 

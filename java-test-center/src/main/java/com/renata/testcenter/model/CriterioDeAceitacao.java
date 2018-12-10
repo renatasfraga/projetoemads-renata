@@ -24,6 +24,8 @@ public class CriterioDeAceitacao {
 	@NotNull
 	private Long idOrdenacao;
 	@NotNull
+	private String titulo;
+	@NotNull
 	@Size(max = 200)
 	private String descricaoLinha;
 	@NotNull
@@ -136,6 +138,13 @@ public class CriterioDeAceitacao {
 	public void setUsuarioAtualizador(Usuario usuarioAtualizador) {
 		this.usuarioAtualizador = usuarioAtualizador;
 	}
+	
+	public String getTitulo() {
+		return titulo;
+	}
+	public void setTitulo(String titulo) {
+		this.titulo = titulo;
+	}
 
 	@Override
 	public int hashCode() {
@@ -144,6 +153,7 @@ public class CriterioDeAceitacao {
 		result = prime * result + ((descricaoLinha == null) ? 0 : descricaoLinha.hashCode());
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
 		result = prime * result + ((idOrdenacao == null) ? 0 : idOrdenacao.hashCode());
+		result = prime * result + ((titulo == null) ? 0 : titulo.hashCode());
 		result = prime * result + ((usuarioAtualizador == null) ? 0 : usuarioAtualizador.hashCode());
 		result = prime * result + ((usuarioCriador == null) ? 0 : usuarioCriador.hashCode());
 		return result;
@@ -173,6 +183,11 @@ public class CriterioDeAceitacao {
 				return false;
 		} else if (!idOrdenacao.equals(other.idOrdenacao))
 			return false;
+		if (titulo == null) {
+			if (other.titulo != null)
+				return false;
+		} else if (!titulo.equals(other.titulo))
+			return false;
 		if (usuarioAtualizador == null) {
 			if (other.usuarioAtualizador != null)
 				return false;
@@ -185,4 +200,5 @@ public class CriterioDeAceitacao {
 			return false;
 		return true;
 	}
+	
 }

@@ -6,6 +6,7 @@ export class CriterioAceitacao {
 
     id:CriterioPk;
     idOrdenacao:number;
+    titulo:string;
     descricaoLinha:string;
     usuarioCriador:Usuario;
     usuarioAux:string;

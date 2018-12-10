@@ -8,6 +8,7 @@ import { ProjetoService } from '../services/projeto.service';
 import { HistoriaDeUsuarioService } from '../services/historia-de-usuario.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { HistoriaDeUsuario } from '../classes/historia-de-usuario';
+import * as ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 
 @Component({
   selector: 'app-criterio-incluir',
@@ -17,14 +18,11 @@ import { HistoriaDeUsuario } from '../classes/historia-de-usuario';
 export class CriterioIncluirComponent implements OnInit {
 
   historias: HistoriaDeUsuario[];
+  public Editor = ClassicEditor;
 
   criterioForm: FormGroup;
   id:CriterioPk = null;
-  idOrdenacao:number = null;
-  descricaoLinha:string = '';
-  usuarioCriador:Usuario = null;
-  usuarioAtualizador: Usuario = null;
-  historiaDeUsuario:HistoriaDeUsuario = null;
+ 
 
   constructor(private usuarioService:UsuarioService,
               private projetoService:ProjetoService,
@@ -40,6 +38,7 @@ export class CriterioIncluirComponent implements OnInit {
 
     this.criterioForm = this.formBuilder.group({
       'idOrdenacao': [null, Validators.required],
+      'titulo': [null, Validators.required],
       'descricaoLinha' : [null, Validators.required],
       'dataCriacao': [null, Validators.required],
       'usuarioCriador': [null, Validators.required],
