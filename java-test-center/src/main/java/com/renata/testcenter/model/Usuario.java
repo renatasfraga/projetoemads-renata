@@ -1,20 +1,12 @@
 package com.renata.testcenter.model;
 
-import java.util.Date;
-import java.util.List;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.JoinTable;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToMany;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
-import org.springframework.data.annotation.CreatedDate;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
@@ -31,16 +23,9 @@ public class Usuario {
 	@Size(max = 12)
 	private String senha;
 	@NotNull
-	@CreatedDate
-	private Date dataIngressoSistema;
+	private String dataIngressoSistema;
 	@NotNull
 	private String funcaoExercida;
-	@JsonIgnore
-	@ManyToMany(cascade = { CascadeType.ALL })
-    @JoinTable(name = "membros", 
-        	   joinColumns = { @JoinColumn(name = "usuario_email") }, 
-        	   inverseJoinColumns = { @JoinColumn(name = "projeto_id") })
-	private List<Projeto> projetos;
 
 	
 	public String getEmail() {
@@ -62,10 +47,10 @@ public class Usuario {
 		this.senha = senha;
 	}
 
-	public Date getDataIngressoSistema() {
+	public String getDataIngressoSistema() {
 		return dataIngressoSistema;
 	}
-	public void setDataIngressoSistema(Date dataIngressoSistema) {
+	public void setDataIngressoSistema(String dataIngressoSistema) {
 		this.dataIngressoSistema = dataIngressoSistema;
 	}
 	public String getFuncaoExercida() {
@@ -73,12 +58,6 @@ public class Usuario {
 	}
 	public void setFuncaoExercida(String funcaoExercida) {
 		this.funcaoExercida = funcaoExercida;
-	}
-	public List<Projeto> getProjetos() {
-		return projetos;
-	}
-	public void setProjetos(List<Projeto> projetos) {
-		this.projetos = projetos;
 	}
 	@Override
 	public int hashCode() {
@@ -88,7 +67,6 @@ public class Usuario {
 		result = prime * result + ((email == null) ? 0 : email.hashCode());
 		result = prime * result + ((funcaoExercida == null) ? 0 : funcaoExercida.hashCode());
 		result = prime * result + ((nome == null) ? 0 : nome.hashCode());
-		result = prime * result + ((projetos == null) ? 0 : projetos.hashCode());
 		result = prime * result + ((senha == null) ? 0 : senha.hashCode());
 		return result;
 	}
@@ -117,11 +95,6 @@ public class Usuario {
 			if (other.nome != null)
 				return false;
 		} else if (!nome.equals(other.nome))
-			return false;
-		if (projetos == null) {
-			if (other.projetos != null)
-				return false;
-		} else if (!projetos.equals(other.projetos))
 			return false;
 		if (senha == null) {
 			if (other.senha != null)

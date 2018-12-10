@@ -15,6 +15,8 @@ public interface UsuarioRepository extends JpaRepository<Usuario, String> {
 	public Usuario getLogin(@Param("email") String email,
 			                @Param("senha") String senha);
 	
-	@Query("SELECT u FROM Usuario u inner join u.projetos p WHERE p.id = :id order by u.nome asc")
+	@Query(value = "Select u FROM usuario u inner join membros m on u.email = m.usuario_email inner join projeto "
+			      + " p on p.id = m.projeto_id and p.id = :id",
+		   nativeQuery = true)
 	public List<Usuario> getUsuariosByProjeto(@Param("id") Long id);
 }

@@ -3,12 +3,14 @@ package com.renata.testcenter.model;
 import java.util.Date;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.validation.constraints.NotNull;
@@ -41,7 +43,10 @@ public class Projeto {
 	@JoinColumn(name ="usuario_criador")
 	private Usuario usuarioCriador;
 	@JsonIgnore
-	@ManyToMany(mappedBy = "projetos")
+	@ManyToMany(cascade = { CascadeType.ALL })
+    @JoinTable(name = "membros", 
+        	   joinColumns = { @JoinColumn(name = "usuario_email") }, 
+        	   inverseJoinColumns = { @JoinColumn(name = "projeto_id") })
 	private List<Usuario> usuarios;
 	
 	public Long getId() {
