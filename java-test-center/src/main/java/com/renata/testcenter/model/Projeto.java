@@ -1,6 +1,5 @@
 package com.renata.testcenter.model;
 
-import java.util.Date;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -16,7 +15,6 @@ import javax.persistence.ManyToOne;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
-import org.springframework.data.annotation.CreatedDate;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
@@ -34,8 +32,7 @@ public class Projeto {
 	@Size(max = 200)
 	private String descricao;
 	@NotNull
-	@CreatedDate
-	private Date dataCriacao;
+	private String dataCriacao;
 	@NotNull
 	private String metodologiaDesenvolvimento;
 	@NotNull
@@ -43,10 +40,10 @@ public class Projeto {
 	@JoinColumn(name ="usuario_criador")
 	private Usuario usuarioCriador;
 	@JsonIgnore
-	@ManyToMany(cascade = { CascadeType.ALL })
+	@ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(name = "membros", 
-        	   joinColumns = { @JoinColumn(name = "usuario_email") }, 
-        	   inverseJoinColumns = { @JoinColumn(name = "projeto_id") })
+        	   joinColumns = { @JoinColumn(name = "projeto_id") }, 
+        	   inverseJoinColumns = { @JoinColumn(name = "usuario_email") })
 	private List<Usuario> usuarios;
 	
 	public Long getId() {
@@ -67,10 +64,10 @@ public class Projeto {
 	public void setDescricao(String descricao) {
 		this.descricao = descricao;
 	}
-	public Date getDataCriacao() {
+	public String getDataCriacao() {
 		return dataCriacao;
 	}
-	public void setDataCriacao(Date dataCriacao) {
+	public void setDataCriacao(String dataCriacao) {
 		this.dataCriacao = dataCriacao;
 	}
 	public String getMetodologiaDesenvolvimento() {

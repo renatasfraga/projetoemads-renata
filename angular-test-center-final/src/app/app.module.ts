@@ -16,7 +16,6 @@ import { RepositorioEditarComponent } from './repositorio-editar/repositorio-edi
 import { GraficoListarComponent } from './grafico-listar/grafico-listar.component';
 import { GraficoGerarComponent } from './grafico-gerar/grafico-gerar.component';
 import { GraficoEditarComponent } from './grafico-editar/grafico-editar.component';
-import { GraficoDeletarComponent } from './grafico-deletar/grafico-deletar.component';
 import { LoginComponent } from './login/login.component';
 import { UsuarioEditarComponent } from './usuario-editar/usuario-editar.component';
 import { UsuarioListarComponent } from './usuario-listar/usuario-listar.component';
@@ -84,7 +83,6 @@ import { ProjetoIncluirComponent } from './projeto-incluir/projeto-incluir.compo
     GraficoListarComponent,
     GraficoGerarComponent,
     GraficoEditarComponent,
-    GraficoDeletarComponent,
     LoginComponent,
     UsuarioEditarComponent,
     UsuarioListarComponent,

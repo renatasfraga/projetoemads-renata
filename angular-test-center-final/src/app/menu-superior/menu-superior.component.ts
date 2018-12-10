@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { UsuarioService } from '../services/usuario.service';
+import { ProjetoService } from '../services/projeto.service';
 
 @Component({
   selector: 'app-menu-superior',
@@ -8,7 +9,8 @@ import { UsuarioService } from '../services/usuario.service';
 })
 export class MenuSuperiorComponent implements OnInit {
 
-  constructor(private usuarioService:UsuarioService) { }
+  constructor(private usuarioService:UsuarioService,
+              private projetoService:ProjetoService) { }
 
   ngOnInit() {
   }

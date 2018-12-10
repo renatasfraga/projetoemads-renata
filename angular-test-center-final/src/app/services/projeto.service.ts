@@ -1,12 +1,10 @@
 import { Injectable } from '@angular/core';
 import { Projeto } from '../classes/projeto';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Observable } from 'rxjs';
 
 const httpOptions = {
-  headers: new HttpHeaders({
-    'Content-Type':  'application/json',
-    'Authorization': 'Basic my-auth-token'
-  })
+  headers: new HttpHeaders({'Content-Type': 'application/json'})
 };
 
 @Injectable({
@@ -23,10 +21,13 @@ export class ProjetoService {
   getProjetoById(id:number) {
     return this.http.get<Projeto>(this.PROJETO_URL+id);
   }
-  saveProjeto(projeto:Projeto) {
-    return this.http.post<Projeto>(this.PROJETO_URL,projeto);
+  saveProjeto(projeto) : Observable<Projeto> {
+    return this.http.post<Projeto>(this.PROJETO_URL,projeto,httpOptions);
   }
 
+  updateProjeto(projeto): Observable<any> {
+    return this.http.put<Projeto>(this.PROJETO_URL,projeto,httpOptions)
+  }
   deleteProjeto(id:number) {
     return this.http.delete<Projeto>(this.PROJETO_URL+id);
   }

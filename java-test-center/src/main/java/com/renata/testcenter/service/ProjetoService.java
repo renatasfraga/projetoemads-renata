@@ -33,4 +33,11 @@ public class ProjetoService {
 	public List<Projeto> getProjetosByUsuario(String email) {
 		return this.repository.getProjetosByUsuario(email);
 	}
+	
+	public Projeto updateProjeto(Projeto projeto) {
+		if(projeto.getId() != null) {
+			return this.repository.saveAndFlush(projeto);
+		}
+		return null;
+	}
 }

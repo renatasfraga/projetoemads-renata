@@ -20,7 +20,8 @@
           <button mat-menu-item *ngIf="usuarioService.usuarioLogado.funcaoExercida=='PO' ||
                                        usuarioService.usuarioLogado.funcaoExercida == 'SM' || 
                                        usuarioService.usuarioLogado.funcaoExercida == 'L' ||
-                                       usuarioService.usuarioLogado.funcaoExercida == 'GP'">
+                                       usuarioService.usuarioLogado.funcaoExercida == 'GP'"
+                  [routerLink] = "['/projeto-editar', projetoService.projetoSelecionado.id]">
             <i class="fas fa-users-cog"></i>              
             Gerenciar Membros
             </button>
