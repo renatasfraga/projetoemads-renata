@@ -7,6 +7,7 @@ import { Usuario } from '../classes/usuario';
 import { Router, ActivatedRoute } from '@angular/router';
 import { FormGroup, FormBuilder, Validators, NgForm } from '@angular/forms';
 import { Projeto } from '../classes/projeto';
+import * as ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 
 @Component({
   selector: 'app-historia-editar',
@@ -18,20 +19,12 @@ export class HistoriaEditarComponent implements OnInit {
   historia: HistoriaDeUsuario = new HistoriaDeUsuario();
   usuariosByProjeto:Usuario[] = [];
   selectParecer:Parecer[];
+  id:number = this.rotaAtiva.snapshot.params['id'];
 
   //referente a form
   historiaForm: FormGroup;
-  id:number = null;
-  titulo:string = '';
-  descricao:string = '';
-  dataCriacao:string = '';
-  tempoEstimado:string = '';
-  tempoDecorrido:string = '';
-  usuarioCriador:Usuario = null;
-  usuarioAtualizador: Usuario = null;
-  parecerQualidade:string = '';
-  descricaoParecer:string = '';
-  projeto:Projeto = null;
+  public Editor = ClassicEditor;
+
 
   constructor(private usuarioService:UsuarioService,
               private projetoService:ProjetoService,
@@ -59,9 +52,8 @@ export class HistoriaEditarComponent implements OnInit {
       'usuarioAtualizador':[this.usuarioService.usuarioLogado],
       'projeto':[this.projetoService.projetoSelecionado],
      });   
-     
      this.historiaForm.get("idCopy").disable();
-     this.historiaForm.get("usuarioAux").disable();
+   
   }
 
   getCarregarSelectParecer() {
@@ -75,7 +67,6 @@ export class HistoriaEditarComponent implements OnInit {
   getHistoria(id) {
     this.historiaService.getHistoriaById(id)
         .subscribe( result => {
-          this.id = result.id;
           this.historiaForm.setValue({
             id: result.id,
             idCopy: result.id,
@@ -98,11 +89,18 @@ export class HistoriaEditarComponent implements OnInit {
       this.historiaService.updateHistoria(form)
           .subscribe( rest => {
             alert("História de usuário alterada com sucesso!");
-            this.router.navigate(['/historia-editar', this.id]);
+            this.router.navigate(['/historia-listar']);
           }, (err) => {
             console.log(err);
           });
-     }   
+     }  
+     
+     validaUserCriador() {
+      this.usuarioService.getUsuarioById(this.historiaForm.get('usuarioAux').value)
+          .subscribe(e => {
+            this.historiaForm.get('usuarioCriador').setValue(e);
+      });
+    }
 }
 export interface Parecer {
   value:string;

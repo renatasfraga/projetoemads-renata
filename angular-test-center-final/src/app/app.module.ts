@@ -28,6 +28,7 @@ import { UsuarioService } from './services/usuario.service';
 import { MenuLateralComponent } from './menu-lateral/menu-lateral.component';
 import { MenuSuperiorComponent } from './menu-superior/menu-superior.component';
 
+import {MatExpansionModule} from '@angular/material/expansion';
 import {MatSelectModule} from '@angular/material/select';
 import {MatGridListModule} from '@angular/material/grid-list';
 import {MatInputModule} from '@angular/material/input';
@@ -139,6 +140,7 @@ import { TipoConsultaPipe } from './tipo-consulta.pipe';
     MatSnackBarModule,
     MatPaginatorModule,
     ChartsModule,
+    MatExpansionModule,
   ],
   entryComponents: [AvisoLembreteComponent,AvisoLembreteExcluirComponent],
 

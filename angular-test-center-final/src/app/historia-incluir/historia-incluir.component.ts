@@ -6,6 +6,8 @@ import { ProjetoService } from '../services/projeto.service';
 import { HistoriaDeUsuarioService } from '../services/historia-de-usuario.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Projeto } from '../classes/projeto';
+import * as ClassicEditor from '@ckeditor/ckeditor5-build-classic';
+import { HistoriaDeUsuario } from '../classes/historia-de-usuario';
 
 @Component({
   selector: 'app-historia-incluir',
@@ -15,18 +17,9 @@ import { Projeto } from '../classes/projeto';
 export class HistoriaIncluirComponent implements OnInit {
 
   selectParecer:Parecer[];
-
   historiaForm: FormGroup;
-  titulo:string = '';
-  descricao:string = '';
-  dataCriacao:string = '';
-  tempoEstimado:string = '';
-  tempoDecorrido:string = '';
-  usuarioCriador:Usuario = null;
-  usuarioAtualizador: Usuario = null;
-  parecerQualidade:string = '';
-  descricaoParecer:string = '';
-  projeto:Projeto = null;
+ 
+  public Editor = ClassicEditor;
 
   constructor(private usuarioService:UsuarioService,
               private projetoService:ProjetoService,
@@ -46,12 +39,12 @@ export class HistoriaIncluirComponent implements OnInit {
       'usuarioCriador': [null, Validators.required],
       'tempoEstimado': [null],
       'tempoDecorrido':  [null],
-      'parecerQualidade':[null],
-      'descricaoParecer':[null],
       'usuarioAtualizador':[this.usuarioService.usuarioLogado],
       'projeto':[this.projetoService.projetoSelecionado],
 
     });
+
+
   }
 
   getCarregarSelectParecer() {
