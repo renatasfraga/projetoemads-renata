@@ -27,6 +27,9 @@ public class TesteDeAceitacao {
 	@NotNull
 	private Long idOrdenacao;
 	@NotNull
+	private String titulo;
+	
+	@NotNull
 	@Size(max = 200)
 	private String descricaoLinha;
 	
@@ -146,6 +149,12 @@ public class TesteDeAceitacao {
 	public void setUsuarioAtualizador(Usuario usuarioAtualizador) {
 		this.usuarioAtualizador = usuarioAtualizador;
 	}
+	public String getTitulo() {
+		return titulo;
+	}
+	public void setTitulo(String titulo) {
+		this.titulo = titulo;
+	}
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -154,6 +163,7 @@ public class TesteDeAceitacao {
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
 		result = prime * result + ((idOrdenacao == null) ? 0 : idOrdenacao.hashCode());
 		result = prime * result + ((passou == null) ? 0 : passou.hashCode());
+		result = prime * result + ((titulo == null) ? 0 : titulo.hashCode());
 		result = prime * result + ((usuarioAtualizador == null) ? 0 : usuarioAtualizador.hashCode());
 		result = prime * result + ((usuarioCriador == null) ? 0 : usuarioCriador.hashCode());
 		return result;
@@ -186,6 +196,11 @@ public class TesteDeAceitacao {
 			if (other.passou != null)
 				return false;
 		} else if (!passou.equals(other.passou))
+			return false;
+		if (titulo == null) {
+			if (other.titulo != null)
+				return false;
+		} else if (!titulo.equals(other.titulo))
 			return false;
 		if (usuarioAtualizador == null) {
 			if (other.usuarioAtualizador != null)

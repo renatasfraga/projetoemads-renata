@@ -1,16 +1,19 @@
 
-<div class="row">
+<div class="w3-row">
     <div class="w3-col m12">
         <app-menu-superior></app-menu-superior>
     </div>
   </div>
-  <div class="row">
+  <div class="w3-row">
     <div class="w3-col m3">
         <app-menu-lateral></app-menu-lateral>
     </div>
     <div class="w3-col m9">
+    <mat-tab-group>
+        <mat-tab> 
+            <ng-template mat-tab-label> Editar [{{id}}] </ng-template>
       <form [formGroup]="testeForm" (ngSubmit)="onFormSubmit(testeForm.value)">
-          <div class="row" style="padding-top:2%" >
+          <div class="w3-row" style="padding-top:2%" >
               <div class="w3-col m12">
 
                     <input formGroupName="id" 
@@ -26,7 +29,7 @@
                   </mat-form-field>
               </div>
         </div>
-        <div class="row">
+        <div class="w3-row">
               <div class="w3-col m12">
                 <mat-form-field style="width: 95%" >
                   <mat-select placeholder="História de Usuário" 
@@ -41,7 +44,7 @@
                 </mat-form-field>
               </div>
         </div>
-          <div class="row">
+          <div class="w3-row">
             <div class="w3-col m12">
               <mat-form-field style="width: 95%">
                 <mat-select placeholder="Critério de Aceitação" 
@@ -49,13 +52,20 @@
                        <mat-option>Selecione um critério de aceitação</mat-option>
                        <mat-option *ngFor="let criterio of criterios" 
                                    [value]="criterio.id.idLinhaCriterio">
-                                    {{criterio.id.idLinhaCriterio}}
+                                  {{criterio.id.idLinhaCriterio}} - {{criterio.titulo}}
                        </mat-option>
                 </mat-select>
               </mat-form-field>
           </div>
       </div>
-        <div class="row">
+      <div class="w3-row">
+            <mat-form-field style="width: 95%">
+                <input matInput 
+                       formControlName="titulo"
+                       placeholder="Título">
+             </mat-form-field>   
+        </div>
+        <div class="w3-row">
           <div class="w3-col m2">
               <mat-form-field style="width: 90%">
                   <input matInput 
@@ -67,7 +77,8 @@
           <div class="w3-col m10">
               <mat-form-field style="width: 94%">
                   <mat-select placeholder="Usuario Criador" 
-                              formControlName="usuarioAux">
+                              formControlName="usuarioAux"
+                              (selectionChange)="validaUserCriador()">
                          <mat-option>Selecione um usuário</mat-option>
                          <mat-option *ngFor="let usuario of usuarioService.usuariosByProjeto" 
                                      [value]="usuario.email">
@@ -77,28 +88,25 @@
                </mat-form-field>
           </div>
         </div>
-        <div class="row">
-            <div class="w3-col m12">
-                <mat-form-field style="width: 95%">
-                    <textarea matInput 
-                              formControlName="descricaoLinha"
-                              placeholder="Descrição"></textarea>
-                </mat-form-field>
-            </div>
-        </div>
-        <div class="row">
+        <div class="w3-row">
             <div class="w3-col m4" style="padding-bottom: 2%">
-                  <mat-slide-toggle
+                    <mat-slide-toggle
                     class="example-margin"
                     [color]="color"
                     [checked]="checked"
                     (change)="trocaValor()"
                     formControlName="passou">
                     Passou? 
-              </mat-slide-toggle>
+                </mat-slide-toggle>
             </div>
         </div>
-        <div class="row">
+        <div class="w3-row">
+                <div class="w3-col m12" style="height: 100%;width: 95%; padding-bottom: 2%">
+                       <ckeditor [editor]="Editor"
+                                 formControlName="descricaoLinha"></ckeditor>
+                </div>
+            </div>   
+        <div class="w3-row">
           <div class="w3-col m12" align="right" style="padding-right:5%"> 
               <button mat-raised-button 
                       style="width: 20%"
@@ -107,5 +115,7 @@
           </div>
         </div>
       </form>
+      </mat-tab>
+      </mat-tab-group>
     </div>
   </div>

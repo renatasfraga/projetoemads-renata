@@ -8,6 +8,8 @@ import { Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators, NgForm } from '@angular/forms';
 import { HistoriaDeUsuario } from '../classes/historia-de-usuario';
 import { CriterioAceitacao } from '../classes/criterio-aceitacao';
+import * as ClassicEditor from '@ckeditor/ckeditor5-build-classic';
+
 
 @Component({
   selector: 'app-teste-incluir',
@@ -19,6 +21,8 @@ export class TesteIncluirComponent implements OnInit {
   testeForm:FormGroup;
   historias:HistoriaDeUsuario[];
   criterios:CriterioAceitacao[];
+  public Editor = ClassicEditor;
+
   
   constructor(private usuarioService:UsuarioService,
               private projetoService:ProjetoService,
@@ -34,6 +38,7 @@ export class TesteIncluirComponent implements OnInit {
     this.testeForm = this.formBuilder.group({
       'idOrdenacao': [null, Validators.required],
       'descricaoLinha' : [null, Validators.required],
+      'titulo':[null, Validators.required],
       'usuarioCriador': [null, Validators.required],
       'usuarioAtualizador':[this.usuarioService.usuarioLogado],
       'id': this.formBuilder.group({

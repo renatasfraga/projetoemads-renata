@@ -11,6 +11,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { TestePk } from '../classes/teste-pk';
 import { Usuario } from '../classes/usuario';
 import { CriterioPk } from '../classes/criterio-pk';
+import * as ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 
 @Component({
   selector: 'app-teste-editar',
@@ -23,14 +24,11 @@ export class TesteEditarComponent implements OnInit {
   criterios:CriterioAceitacao[];
   
   testeForm:FormGroup;
-  id:TestePk = null;
-  idOrdenacao:number  = null;
-  descricaoLinha:string = '';
-  usuarioCriador:Usuario = null;
-  usuarioAtualizador:Usuario = null;
+  id:string = this.rotaAtiva.snapshot.params['id']+" - "+this.rotaAtiva.snapshot.params['id2']+" - "+this.rotaAtiva.snapshot.params['id3'];
   passou:boolean = null;
   checked:boolean;
 
+  public Editor = ClassicEditor;
 
 
 
@@ -52,6 +50,7 @@ export class TesteEditarComponent implements OnInit {
     this.testeForm = this.formBuilder.group({
       'idOrdenacao': [null, Validators.required],
       'descricaoLinha' : [null, Validators.required],
+      'titulo': [null, Validators.required],
       'usuarioCriador': [null, Validators.required],
       'usuarioAtualizador':[this.usuarioService.usuarioLogado],
       'usuarioAux':[null, Validators.required],
@@ -71,7 +70,7 @@ export class TesteEditarComponent implements OnInit {
     this.testeForm.get("idCopy").disable();
     this.testeForm.get("historiaAux").disable();
     this.testeForm.get("criterioAux").disable();
-    this.testeForm.get("usuarioAux").disable();
+
   }
 
 
@@ -98,15 +97,11 @@ export class TesteEditarComponent implements OnInit {
     
     this.testeService.getTesteById(id,id2,id3)
        .subscribe( resultado => {
-         this.id = {
-           idLinhaTeste: id2,
-           criterioDeAceitacao: criterioVar
-         };
-         
          this.testeForm.setValue({
            id: resultado.id,
            idCopy: resultado.id.idLinhaTeste,
            idOrdenacao: resultado.idOrdenacao,
+           titulo: resultado.titulo,
            descricaoLinha: resultado.descricaoLinha,
            usuarioCriador: resultado.usuarioCriador,
            usuarioAtualizador: resultado.usuarioAtualizador,
@@ -124,8 +119,7 @@ export class TesteEditarComponent implements OnInit {
         this.testeService.updateTeste(form)
             .subscribe( rest => {
               alert("Teste de aceitação alterado com sucesso!");
-              this.router.navigate(['/teste-editar', this.id.criterioDeAceitacao.historiaDeUsuario.id, this.id.criterioDeAceitacao.idLinhaCriterio,
-                                                     this.id.idLinhaTeste]);
+              this.router.navigate(['/teste-listar']);
             }, (err) => {
               console.log(err);
             });
@@ -134,6 +128,13 @@ export class TesteEditarComponent implements OnInit {
 
     trocaValor() {
       this.checked = this.testeForm.get("passou").value;
+    }
+
+    validaUserCriador() {
+      this.usuarioService.getUsuarioById(this.testeForm.get('usuarioAux').value)
+          .subscribe(e => {
+            this.testeForm.get('usuarioCriador').setValue(e);
+      });
     }
 }
 

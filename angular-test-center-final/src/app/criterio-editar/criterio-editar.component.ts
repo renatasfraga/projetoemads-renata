@@ -22,7 +22,8 @@ export class CriterioEditarComponent implements OnInit {
 
   //reference a form
   criterioForm: FormGroup;
-  id:number = this.rotaAtiva.snapshot.params['id'];
+  id:string = this.rotaAtiva.snapshot.params['id']+" - "+this.rotaAtiva.snapshot.params['id2'];
+  
   public Editor = ClassicEditor;
 
   constructor(private usuarioService:UsuarioService,

@@ -37,11 +37,10 @@
                      <mat-option>Selecione um critério de aceitação</mat-option>
                      <mat-option *ngFor="let criterio of criterios" 
                                  [value]="criterio">
-                                  {{criterio.id.idLinhaCriterio}}
+                                  {{criterio.id.idLinhaCriterio}} - {{criterio.titulo}}
                      </mat-option>
               </mat-select>
       </mat-form-field>
-
 
     </div>
     <div class="w3-col m2">
@@ -63,8 +62,8 @@
             
             <!-- Name Column -->
             <ng-container matColumnDef="descricao">
-            <th mat-header-cell *matHeaderCellDef> Descrição </th>
-            <td mat-cell *matCellDef="let teste"> {{teste.descricaoLinha}} </td>
+            <th mat-header-cell *matHeaderCellDef> Título </th>
+            <td mat-cell *matCellDef="let teste"> {{teste.titulo}} </td>
             </ng-container>
             
             <!-- Weight Column -->

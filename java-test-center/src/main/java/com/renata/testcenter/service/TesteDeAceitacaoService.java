@@ -20,7 +20,11 @@ public class TesteDeAceitacaoService {
 	}
 
 	public TesteDeAceitacao saveTesteDeAceitacao(TesteDeAceitacao testeDeAceitacao) {
-		testeDeAceitacao.getId().setIdLinhaTeste(this.gerarIdLinhaTeste());
+		if(this.gerarIdLinhaTeste() == null) {
+			testeDeAceitacao.getId().setIdLinhaTeste(Long.valueOf(1));
+		} else {
+			testeDeAceitacao.getId().setIdLinhaTeste(this.repository.gerarIdLinhaTeste());
+		}	
 		return this.repository.save(testeDeAceitacao);
 	}
 
