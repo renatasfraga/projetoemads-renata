@@ -19,22 +19,17 @@ export class PlanoEditarComponent implements OnInit {
   checked:boolean;
   Editor = ClassicEditor;
 
-  id:number = null;
-  titulo:string = '';
-  dataCriacao:string = '';
-  usuarioCriador:Usuario = null;
-  usuarioAtualizador:Usuario = null;
-  conteudo:string = '';
+  id:number = this.rotaAtiva.snapshot.params['id'];
+  
   passou:boolean = null;
-  projeto:Projeto = null;
+
 
   constructor(private usuarioService:UsuarioService,
               private projetoService:ProjetoService,
               private planoService: PlanoDeTesteService,
               private router : Router,
               private rotaAtiva: ActivatedRoute,
-              private formBuilder: FormBuilder,
-              ) { }
+              private formBuilder: FormBuilder) { }
 
   ngOnInit() {
     this.usuarioService.getUsuariosByProjeto(this.projetoService.projetoSelecionado.id);
@@ -53,7 +48,6 @@ export class PlanoEditarComponent implements OnInit {
     });
 
     this.planoForm.get("idCopy").disable();
-    this.planoForm.get("usuarioAux").disable();
   }
 
   getPlano(id) {
@@ -82,7 +76,7 @@ export class PlanoEditarComponent implements OnInit {
     this.planoService.updatePlano(form)
         .subscribe( rest => {
           alert("Plano de teste alterado com sucesso!");
-          this.router.navigate(['/plano-editar', this.id]);
+          this.router.navigate(['/plano-listar']);
         }, (err) => {
           console.log(err);
         });
@@ -90,6 +84,13 @@ export class PlanoEditarComponent implements OnInit {
 
   trocaValor() {
     this.checked = this.planoForm.get("passou").value;
+  }
+
+  validaUserCriador() {
+    this.usuarioService.getUsuarioById(this.planoForm.get('usuarioAux').value)
+        .subscribe(e => {
+          this.planoForm.get('usuarioCriador').setValue(e);
+    });
   }
 
 }
