@@ -16,7 +16,7 @@ import { DefeitoService } from '../services/defeito.service';
 })
 export class DefeitoEditarComponent implements OnInit {
 
-  id:number; 
+  id:number = this.rotaAtiva.snapshot.params['id'];
   defeitoForm: FormGroup;
   public Editor = ClassicEditor;
 
@@ -73,7 +73,6 @@ export class DefeitoEditarComponent implements OnInit {
   getDefeito(id) {
     this.defeitoService.getDefeitoById(id) 
         .subscribe(resultado => {
-          this.id = resultado.id;
           this.defeitoForm.setValue({
              id:resultado.id,
              idCopy: resultado.id,

@@ -25,7 +25,7 @@ export class DefeitoIncluirComponent implements OnInit {
 
   defeitoForm: FormGroup;
   public Editor = ClassicEditor;
-
+  
   listaCritic: Nivel[] = [
     {value: '1', description: 'Nível 1'},
     {value: '2', description: 'Nível 2'},
