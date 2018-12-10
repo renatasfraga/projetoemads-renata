@@ -32,7 +32,8 @@
              Perfil
         </button>
         <mat-menu #perfil="matMenu">
-          <button mat-menu-item>
+          <button mat-menu-item
+                  [routerLink] = "['/usuario-editar', usuarioService.usuarioLogado.email]">
             <i class="fas fa-user-edit"></i>
             Editar 
           </button>

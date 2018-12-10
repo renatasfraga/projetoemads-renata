@@ -9,7 +9,6 @@ import javax.persistence.Id;
 import javax.persistence.JoinTable;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
-import javax.persistence.Transient;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
@@ -31,9 +30,6 @@ public class Usuario {
 	@NotNull
 	@Size(max = 12)
 	private String senha;
-	@Transient
-	@Size(max = 12)
-	private String repitaSenha;
 	@NotNull
 	@CreatedDate
 	private Date dataIngressoSistema;
@@ -65,12 +61,7 @@ public class Usuario {
 	public void setSenha(String senha) {
 		this.senha = senha;
 	}
-	public String getRepitaSenha() {
-		return repitaSenha;
-	}
-	public void setRepitaSenha(String repitaSenha) {
-		this.repitaSenha = repitaSenha;
-	}
+
 	public Date getDataIngressoSistema() {
 		return dataIngressoSistema;
 	}
@@ -98,7 +89,6 @@ public class Usuario {
 		result = prime * result + ((funcaoExercida == null) ? 0 : funcaoExercida.hashCode());
 		result = prime * result + ((nome == null) ? 0 : nome.hashCode());
 		result = prime * result + ((projetos == null) ? 0 : projetos.hashCode());
-		result = prime * result + ((repitaSenha == null) ? 0 : repitaSenha.hashCode());
 		result = prime * result + ((senha == null) ? 0 : senha.hashCode());
 		return result;
 	}
@@ -132,11 +122,6 @@ public class Usuario {
 			if (other.projetos != null)
 				return false;
 		} else if (!projetos.equals(other.projetos))
-			return false;
-		if (repitaSenha == null) {
-			if (other.repitaSenha != null)
-				return false;
-		} else if (!repitaSenha.equals(other.repitaSenha))
 			return false;
 		if (senha == null) {
 			if (other.senha != null)

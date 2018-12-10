@@ -1,12 +1,10 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Usuario } from '../classes/usuario';
+import { Observable } from 'rxjs';
 
 const httpOptions = {
-  headers: new HttpHeaders({
-    'Content-Type':  'application/json',
-    'Authorization': 'Basic my-auth-token'
-  })
+  headers: new HttpHeaders({'Content-Type': 'application/json'})
 };
 
 @Injectable({
@@ -21,12 +19,16 @@ export class UsuarioService {
   constructor(private http: HttpClient) { }
 
 
+  updateUsuario(usuario): Observable<any> {
+    return this.http.put<Usuario>(this.USUARIO_URL,usuario,httpOptions)
+  }
+
   getUsuarioById(email:string) {
     return this.http.get<Usuario>(this.USUARIO_URL+email);
   }
 
-  saveUsuario(usuario:Usuario) {
-    return this.http.post<Usuario>(this.USUARIO_URL,usuario);
+  saveUsuario(usuario): Observable<Usuario>{
+    return this.http.post<Usuario>(this.USUARIO_URL,usuario,httpOptions);
   }
 
   deleteUsuario(email:string) {

@@ -2,7 +2,6 @@ package com.renata.testcenter.restcontroller;
 
 import java.util.List;
 
-import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -57,9 +56,9 @@ public class UsuarioController {
 		return this.service.getUsuariosByProjeto(id);
 	}
 	
-	@PutMapping(path = {"/{email}"})
-	public Usuario updateUsuario(@Valid @RequestBody Usuario usuario, @PathVariable("email") String email) {
-		return this.service.updateUsuario(email, usuario);
+	@PutMapping
+	public Usuario updateUsuario(@RequestBody Usuario usuario) {
+		return this.service.updateUsuario(usuario);
 	}
 	
 }

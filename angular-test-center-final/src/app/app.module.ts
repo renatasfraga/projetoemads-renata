@@ -69,6 +69,7 @@ import { RepositorioIncluirComponent } from './repositorio-incluir/repositorio-i
 import { UsuarioIncluirComponent } from './usuario-incluir/usuario-incluir.component';
 import { TipoGraficoPipe } from './tipo-grafico.pipe';
 import { TipoConsultaPipe } from './tipo-consulta.pipe';
+import { ProjetoIncluirComponent } from './projeto-incluir/projeto-incluir.component';
 
 @NgModule({
   declarations: [
@@ -111,6 +112,7 @@ import { TipoConsultaPipe } from './tipo-consulta.pipe';
     UsuarioIncluirComponent,
     TipoGraficoPipe,
     TipoConsultaPipe,
+    ProjetoIncluirComponent,
   ],
   imports: [
     BrowserModule,

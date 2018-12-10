@@ -28,5 +28,13 @@
                         color="primary">Acessar</button>
 
             </mat-card-actions>
+            <div align="center">
+              <a *ngIf="usuarioService.usuarioLogado.funcaoExercida=='PO' ||
+                                        usuarioService.usuarioLogado.funcaoExercida == 'SM' || 
+                                        usuarioService.usuarioLogado.funcaoExercida == 'L' ||
+                                        usuarioService.usuarioLogado.funcaoExercida == 'GP'"
+                routerLink="/projeto-incluir"
+                style="color:#292f33; text-decoration: none"> Criar novo projeto </a>
+            </div>   
           </mat-card>
     </div>
