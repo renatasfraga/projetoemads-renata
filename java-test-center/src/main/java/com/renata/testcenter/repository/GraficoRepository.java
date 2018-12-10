@@ -47,6 +47,6 @@ public interface GraficoRepository extends JpaRepository<Grafico, Long> {
 	
 	@Query("Select new com.renata.testcenter.model.GraficoAux(count(d), d.status) from Defeito d"
 			+ " where d.projeto.id = :idProjeto group by (d.status) order by d.status asc")
-	public List<GraficoAux> graficoPorStatus(@Param("id") Long id);
+	public List<GraficoAux> graficoPorStatus(@Param("idProjeto") Long id);
 	
 } 

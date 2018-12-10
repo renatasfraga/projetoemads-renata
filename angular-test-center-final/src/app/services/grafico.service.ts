@@ -63,7 +63,7 @@ export class GraficoService {
   }
 
   gerarGraficoStatus(id:number) {
-    return this.http.get<GraficoAux[]>(this.GRAFICO_URL+id);
+    return this.http.get<GraficoAux[]>(this.GRAFICO_URL+"status/"+id);
   }
 
   pesquisarPorCriador(id:number,email:string) {

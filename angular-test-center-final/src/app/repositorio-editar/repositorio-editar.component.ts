@@ -13,6 +13,7 @@ import { RepositorioService } from '../services/repositorio.service';
 export class RepositorioEditarComponent implements OnInit {
 
   repositorioForm:FormGroup;
+  id:number = this.rotaAtiva.snapshot.params['id'];
   
   constructor(private projetoService:ProjetoService,
               private usuarioService:UsuarioService,

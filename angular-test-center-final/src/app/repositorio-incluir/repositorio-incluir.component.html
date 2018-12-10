@@ -8,6 +8,9 @@
         <app-menu-lateral></app-menu-lateral>
      </div>
      <div class="w3-col m9">
+        <mat-tab-group>
+         <mat-tab> 
+          <ng-template mat-tab-label> Novo</ng-template>
         <form [formGroup]="repositorioForm">
                 <div class="row" style="padding-top:2%">
                         <div class="w3-col m12">
@@ -47,11 +50,9 @@
                 </div>
                 <div class="row">
                     <div class="w3-col m12">
-    
-                            <input formControlName="conteudo"
-                                   placeholder="Título"
-                                   type="file">
-                         
+                        <input formControlName="conteudo"
+                               placeholder="Título"
+                               type="file">
                     </div>
                 </div>
                 <div class="row">
@@ -63,5 +64,7 @@
                     </div>
                </div>
         </form>
+        </mat-tab>
+        </mat-tab-group>
      </div>    
 </div>    

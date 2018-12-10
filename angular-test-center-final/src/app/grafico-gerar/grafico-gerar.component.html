@@ -12,10 +12,11 @@
 
     <mat-tab-group>
       
-        <mat-tab label="Edição">
+        <mat-tab>
+            <ng-template mat-tab-label> Edição [{{id}}]</ng-template>
             <div class="w3-row" style="margin-top:2%">
                 <div class="w3-col m12">
-                    <mat-form-field style="margin-right:77%">
+                    <mat-form-field style="margin-right:76%">
                         <input matInput 
                             formControlName="idCopy"
                             type="number" 

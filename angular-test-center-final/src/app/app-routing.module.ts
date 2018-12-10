@@ -25,6 +25,8 @@ import { GraficoIncluirComponent } from './grafico-incluir/grafico-incluir.compo
 import { RepositorioEditarComponent } from './repositorio-editar/repositorio-editar.component';
 import { RepositorioListarComponent } from './repositorio-listar/repositorio-listar.component';
 import { RepositorioIncluirComponent } from './repositorio-incluir/repositorio-incluir.component';
+import { UsuarioIncluirComponent } from './usuario-incluir/usuario-incluir.component';
+import { UsuarioEditarComponent } from './usuario-editar/usuario-editar.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
@@ -52,6 +54,9 @@ const routes: Routes = [
   { path:'repositorio-incluir', component: RepositorioIncluirComponent},
   { path:'repositorio-editar/:id', component: RepositorioEditarComponent },
   { path:'repositorio-listar', component: RepositorioListarComponent },
+  { path:'usuario-incluir', component: UsuarioIncluirComponent},
+  { path:'usuario-editar/:id', component: UsuarioEditarComponent },
+
   
   
 ];

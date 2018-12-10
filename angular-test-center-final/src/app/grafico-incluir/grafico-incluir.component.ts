@@ -4,6 +4,7 @@ import { ProjetoService } from '../services/projeto.service';
 import { UsuarioService } from '../services/usuario.service';
 import { GraficoService } from '../services/grafico.service';
 import { Grafico } from '../classes/grafico';
+import { Router } from '@angular/router';
 
 export interface TipoConsulta {
   value:string;
@@ -44,7 +45,8 @@ export class GraficoIncluirComponent implements OnInit {
   constructor(private projetoService:ProjetoService,
               private usuarioService:UsuarioService,
               private graficoService:GraficoService,
-              private formBuider: FormBuilder) { }
+              private formBuider: FormBuilder,
+              private router:Router) { }
 
   ngOnInit() {
 
@@ -64,7 +66,7 @@ export class GraficoIncluirComponent implements OnInit {
   onFormSubmit(form:NgForm) {
     this.graficoService.saveGrafico(form).subscribe(res => {
       alert("Gráfico incluído com sucesso!");
-      
+      this.router.navigate(['/grafico-listar']);
     });
   }
 

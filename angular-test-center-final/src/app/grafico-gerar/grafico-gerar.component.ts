@@ -17,7 +17,7 @@ import { TipoGrafico, TipoConsulta } from '../grafico-incluir/grafico-incluir.co
 export class GraficoGerarComponent implements OnInit {
 
   graficoForm:FormGroup;
-  id:number;  
+  id:number = this.rotaAtiva.snapshot.params['id'];
   grafico:Grafico;
   graficoAux:GraficoAux[];
   tipoGraficoTemp:TipoGrafico[];
@@ -89,7 +89,7 @@ export class GraficoGerarComponent implements OnInit {
     });  
     this.graficoForm.get('idCopy').disable();  
     this.graficoForm.get('tipoGrafico').disable();
-    if(this.graficoForm.get('usuarioAuxCopy').value == null) {
+    if(this.graficoForm.get('usuarioAux').value == null) {
       this.graficoForm.get('usuarioAuxCopy').disable();
     }
     this.graficoService.getGraficoById(this.rotaAtiva.snapshot.params['id'])
@@ -117,12 +117,12 @@ export class GraficoGerarComponent implements OnInit {
               this.graficoAux = res;
               if(this.grafico.tipoGrafico == 'pie') {
                 this.graficoAux.forEach(res => {
-                  this.pieChartLabels.push("Nível "+res.label);
+                  this.pieChartLabels.push(this.trataLabelQ(res.label));
                   this.pieChartData.push(res.valor);
                 });
              } else {
               this.graficoAux.forEach(res => {
-                this.doughnutChartLabels.push("Nível "+res.label);
+                this.doughnutChartLabels.push(this.trataLabelQ(res.label));
                 this.doughnutChartData.push(res.valor);
               });
              }
@@ -157,7 +157,7 @@ export class GraficoGerarComponent implements OnInit {
              }
             });
       } else if(this.grafico.tipoConsulta == 'GPA') {
-          this.graficoService.gerarGraficoPorAtribuido(this.graficoForm.get('usuarioCriadorCopy').value,this.projetoService.projetoSelecionado.id)
+          this.graficoService.gerarGraficoPorAtribuido(this.graficoForm.get('usuarioAuxCopy').value,this.projetoService.projetoSelecionado.id)
               .subscribe(res => {
                 this.graficoAux = res;
                 if(this.grafico.tipoGrafico == 'pie') {
@@ -172,18 +172,18 @@ export class GraficoGerarComponent implements OnInit {
                 });
                }
           });
-      } else {
+      } else if(this.grafico.tipoConsulta == 'GPS') {
           this.graficoService.gerarGraficoStatus(this.projetoService.projetoSelecionado.id) 
               .subscribe(res => {
                 this.graficoAux = res;
                 if(this.grafico.tipoGrafico == 'pie') {
                   this.graficoAux.forEach(res => {
-                    this.pieChartLabels.push("Nível "+res.label);
+                    this.pieChartLabels.push(this.trataStatus(res.label));
                     this.pieChartData.push(res.valor);
                   });
                } else {
                 this.graficoAux.forEach(res => {
-                  this.doughnutChartLabels.push("Nível "+res.label);
+                  this.doughnutChartLabels.push(this.trataStatus(res.label));
                   this.doughnutChartData.push(res.valor);
                 });
                }
@@ -193,11 +193,29 @@ export class GraficoGerarComponent implements OnInit {
    
   
   }
+
+  trataLabelQ(label:string) {
+    if(label == 'I') {
+      return 'Insatisfeito';
+    } else if(label == 'P') {
+      return 'Parcialmente Satisfeito';
+    } else {
+      return 'Satisfeito';
+    }
+  }
   
+  trataStatus(label:string) {
+    if(label == 'A') {
+      return 'Aprovado';
+    } else if(label == 'C') {
+      return 'Correção';
+    } else {
+      return 'Teste';
+    }
+  }
   getGrafico(id) {
     this.graficoService.getGraficoById(id)
         .subscribe(e => {
-          this.id = e.id;
           this.graficoForm.setValue({
               id: e.id,
               idCopy: e.id,
