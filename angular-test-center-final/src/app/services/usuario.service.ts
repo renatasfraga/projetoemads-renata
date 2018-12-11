@@ -36,7 +36,7 @@ export class UsuarioService {
   }
 
   getAllUsers() {
-    return this.http.get<Usuario>(this.USUARIO_URL);
+    return this.http.get<Usuario[]>(this.USUARIO_URL);
   }
 
   getLogin(email:string, senha:string) {
