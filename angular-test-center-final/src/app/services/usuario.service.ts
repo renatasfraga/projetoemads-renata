@@ -39,13 +39,18 @@ export class UsuarioService {
     return this.http.get<Usuario[]>(this.USUARIO_URL);
   }
 
-  getLogin(email:string, senha:string) {
-    return this.http.get<Usuario>(this.USUARIO_URL+"login/"+email+"/"+senha).subscribe(
-      result => {
-          this.usuarioLogado = result;
-      }
-    );
+  getLogin(email:string,senha:string) {
+    this.loginSalvarLogado(email,senha);
+    return this.http.get<Usuario>(this.USUARIO_URL+"login/"+email+"/"+senha);
   }
+
+  loginSalvarLogado(email:string,senha:string) {
+    return this.http.get<Usuario>(this.USUARIO_URL+"login/"+email+"/"+senha)
+               .subscribe(e => {
+                  this.usuarioLogado = e;
+               });
+  }
+
 
   getUsuariosByProjeto(id:number) {
     return this.http.get<Usuario[]>(this.USUARIO_URL+"usuariosbyprojeto/"+id)

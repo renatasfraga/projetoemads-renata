@@ -36,6 +36,9 @@
             <a style="color:#ff4081;text-decoration: none" routerLink='/esqueci-senha'><b>Esqueceu a senha?</b></a>
           </label>
        </div> 
+       <div class="w3-row" align="center" *ngIf="mostraAlerta == true">
+          <p style="color:red;text-decoration: none;"><b>Usuário ou senha incorretos.</b></p>
+       </div> 
         <div class="w3-row" style="margin-top:10%">
           <div class="w3-col m12">
             <button mat-raised-button 
@@ -45,7 +48,7 @@
           </div>
         </div>
         <div class="w3-row" align="center" style="margin-top:10%"> 
-          <a routerLink="/usuario-incluir" style="color:#292f33; text-decoration: none">Não possui conta? Crie.</a>
+          <a routerLink="/usuario-incluir" style="color:#292f33; text-decoration: none">Não possui conta? Crie agora.</a>
         </div>
       </div>
     </div>

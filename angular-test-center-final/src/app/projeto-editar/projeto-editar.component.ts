@@ -62,8 +62,17 @@ export class ProjetoEditarComponent implements OnInit {
       'usuarioCriador':[null, Validators.required],
       'metodologiaDesenvolvimento':[null, Validators.required],
     });
+    
+    if(this.usuarioService.usuarioLogado.funcaoExercida !='PO' &&
+       this.usuarioService.usuarioLogado.funcaoExercida != 'SM' && 
+       this.usuarioService.usuarioLogado.funcaoExercida != 'L' &&
+       this.usuarioService.usuarioLogado.funcaoExercida != 'GP') {
+        this.projetoForm.disable();
+    } else {
+      this.projetoForm.get('idCopy').disable();
+    }
+    
 
-    this.projetoForm.get('idCopy').disable();
   }
 
 

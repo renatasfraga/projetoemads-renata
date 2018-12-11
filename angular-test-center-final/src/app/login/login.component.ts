@@ -18,11 +18,15 @@ export class LoginComponent implements OnInit {
   ngOnInit() { }
 
   logarSe() {
-    this.usuarioService.getLogin(this.usuario.email,this.usuario.senha);
-    if(this.usuarioService.usuarioLogado) {
-      this.router.navigate(['/projeto-selecionar']);
-    } else {
-      this.mostraAlerta = true;
-    }
+    this.usuarioService.getLogin(this.usuario.email, this.usuario.senha)
+    .subscribe(resultado => {
+      if(resultado) {
+        this.mostraAlerta = false;
+        this.router.navigate(['/projeto-selecionar']);
+      } else {
+        this.mostraAlerta = true;
+      }
+    });
+
   }
 }

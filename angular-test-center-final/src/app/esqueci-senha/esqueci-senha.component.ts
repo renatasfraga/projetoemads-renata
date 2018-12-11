@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { UsuarioService } from '../services/usuario.service';
 import { FormControl, Validators, FormGroupDirective, NgForm } from '@angular/forms';
 import { ErrorStateMatcher } from '@angular/material/core';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -21,7 +22,8 @@ export class EsqueciSenhaComponent implements OnInit {
   matcher = new MyErrorStateMatcher();
 
  
-  constructor(private usuarioService:UsuarioService) { }
+  constructor(private usuarioService:UsuarioService,
+              private router:Router) { }
 
   ngOnInit() {
   }
@@ -36,6 +38,7 @@ export class EsqueciSenhaComponent implements OnInit {
             this.usuarioService.updateUsuario(e) 
                 .subscribe(res => {
                  alert("Sua senha é: "+this.senha);
+                 this.router.navigate(['/login'])
                 });
           } 
         })

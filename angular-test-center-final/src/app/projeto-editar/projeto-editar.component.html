@@ -97,7 +97,11 @@
                <div class="w3-col m10">
                         <mat-form-field style="width: 96%;margin-left:2%">
                                 <mat-select placeholder="Usuario Criador" 
-                                            [(ngModel)]="membroSelecionado">
+                                            [(ngModel)]="membroSelecionado"
+                                            [disabled]="usuarioService.usuarioLogado.funcaoExercida !='PO' &&
+                                                        usuarioService.usuarioLogado.funcaoExercida != 'SM' && 
+                                                        usuarioService.usuarioLogado.funcaoExercida != 'L' &&
+                                                        usuarioService.usuarioLogado.funcaoExercida != 'GP'">
                                        <mat-option>Selecione um membro</mat-option>
                                        <mat-option *ngFor="let usuario of membrosDisponiveis" 
                                                    [value]="usuario">
@@ -110,7 +114,11 @@
                         <button style="width: 90%;"
                                 mat-raised-button 
                                 color="accent"
-                                (click)="adicionarMembro()">Adicionar</button>
+                                (click)="adicionarMembro()"
+                                [disabled]="usuarioService.usuarioLogado.funcaoExercida !='PO' &&
+                                            usuarioService.usuarioLogado.funcaoExercida != 'SM' && 
+                                            usuarioService.usuarioLogado.funcaoExercida != 'L' &&
+                                            usuarioService.usuarioLogado.funcaoExercida != 'GP'">Adicionar</button>
                 </div>
             </div>
             <div class="w3-row">
