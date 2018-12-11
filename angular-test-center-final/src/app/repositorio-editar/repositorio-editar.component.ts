@@ -16,6 +16,9 @@ export class RepositorioEditarComponent implements OnInit {
   id:number = this.rotaAtiva.snapshot.params['id'];
   conteudo:string;
   arquivo:any;
+  regBase = new RegExp("(.*base64,)(.*)");
+  
+
 
   constructor(private projetoService:ProjetoService,
               private usuarioService:UsuarioService,
@@ -41,7 +44,8 @@ export class RepositorioEditarComponent implements OnInit {
     });
     this.repositorioService.getRepositorioById(this.rotaAtiva.snapshot.params['id'])
         .subscribe(e => {
-          this.conteudo = window.atob(e.conteudo.replace('/home/renatasfraga/Vídeos/projetoemads-renata/java-test-center/data:text/html;base64,',''));
+          this.arquivo = this.regBase.exec(e.conteudo);
+          this.conteudo = window.atob(this.arquivo[2]);
         })
   }
 
