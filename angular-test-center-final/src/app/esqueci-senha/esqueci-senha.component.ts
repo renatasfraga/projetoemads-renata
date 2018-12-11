@@ -3,6 +3,7 @@ import { UsuarioService } from '../services/usuario.service';
 import { FormControl, Validators, FormGroupDirective, NgForm } from '@angular/forms';
 import { ErrorStateMatcher } from '@angular/material/core';
 
+
 @Component({
   selector: 'app-esqueci-senha',
   templateUrl: './esqueci-senha.component.html',
@@ -19,6 +20,7 @@ export class EsqueciSenhaComponent implements OnInit {
 
   matcher = new MyErrorStateMatcher();
 
+ 
   constructor(private usuarioService:UsuarioService) { }
 
   ngOnInit() {
@@ -33,12 +35,13 @@ export class EsqueciSenhaComponent implements OnInit {
             this.senha = e.senha;
             this.usuarioService.updateUsuario(e) 
                 .subscribe(res => {
-                  alert("Sua senha é: "+this.senha);
+                 alert("Sua senha é: "+this.senha);
                 });
           } 
         })
   }
 
+  
 }
 export class MyErrorStateMatcher implements ErrorStateMatcher {
   isErrorState(control: FormControl | null, form: FormGroupDirective | NgForm | null): boolean {

@@ -1,6 +1,8 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { LoginComponent } from './login/login.component';
+import { AuthGuard } from './auth.guard';
+
 import { ProjetoSelecionarComponent } from './projeto-selecionar/projeto-selecionar.component';
 import { LembretesListarComponent } from './lembretes-listar/lembretes-listar.component';
 import { HistoriaListarComponent } from './historia-listar/historia-listar.component';
@@ -34,33 +36,33 @@ import { EsqueciSenhaComponent } from './esqueci-senha/esqueci-senha.component';
 const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
   { path:'login', component: LoginComponent},
-  { path:'projeto-selecionar', component: ProjetoSelecionarComponent},
-  { path:'lembretes', component: LembretesListarComponent},
-  { path:'historia-listar', component: HistoriaListarComponent},
-  { path:'historia-incluir', component: HistoriaIncluirComponent},
-  { path:'historia-editar/:id', component: HistoriaEditarComponent },
-  { path:'criterio-listar', component: CriterioListarComponent},
-  { path:'criterio-incluir', component: CriterioIncluirComponent},
-  { path:'criterio-editar/:id/:id2', component: CriterioEditarComponent },
-  { path:'teste-listar', component: TesteListarComponent},
-  { path:'teste-incluir', component: TesteIncluirComponent},
-  { path:'teste-editar/:id/:id2/:id3', component: TesteEditarComponent },
-  { path:'plano-listar', component: PlanoListarComponent},
-  { path:'plano-incluir', component: PlanoIncluirComponent},
-  { path:'plano-editar/:id', component: PlanoEditarComponent },
-  { path:'defeito-listar', component: DefeitoListarComponent},
-  { path:'defeito-incluir', component: DefeitoIncluirComponent},
-  { path:'defeito-editar/:id', component: DefeitoEditarComponent },
-  { path:'grafico-listar', component: GraficoListarComponent},
-  { path:'grafico-incluir', component: GraficoIncluirComponent},
-  { path:'grafico-editar/:id', component: GraficoGerarComponent },
-  { path:'repositorio-incluir', component: RepositorioIncluirComponent},
-  { path:'repositorio-editar/:id', component: RepositorioEditarComponent },
-  { path:'repositorio-listar', component: RepositorioListarComponent },
+  { path:'projeto-selecionar', component: ProjetoSelecionarComponent, canActivate:[AuthGuard]},
+  { path:'lembretes', component: LembretesListarComponent, canActivate:[AuthGuard]},
+  { path:'historia-listar', component: HistoriaListarComponent, canActivate:[AuthGuard]},
+  { path:'historia-incluir', component: HistoriaIncluirComponent, canActivate:[AuthGuard]},
+  { path:'historia-editar/:id', component: HistoriaEditarComponent, canActivate:[AuthGuard]},
+  { path:'criterio-listar', component: CriterioListarComponent, canActivate:[AuthGuard]},
+  { path:'criterio-incluir', component: CriterioIncluirComponent, canActivate:[AuthGuard]},
+  { path:'criterio-editar/:id/:id2', component: CriterioEditarComponent, canActivate:[AuthGuard]},
+  { path:'teste-listar', component: TesteListarComponent, canActivate:[AuthGuard]},
+  { path:'teste-incluir', component: TesteIncluirComponent, canActivate:[AuthGuard]},
+  { path:'teste-editar/:id/:id2/:id3', component: TesteEditarComponent, canActivate:[AuthGuard]},
+  { path:'plano-listar', component: PlanoListarComponent, canActivate:[AuthGuard]},
+  { path:'plano-incluir', component: PlanoIncluirComponent, canActivate:[AuthGuard]},
+  { path:'plano-editar/:id', component: PlanoEditarComponent, canActivate:[AuthGuard] },
+  { path:'defeito-listar', component: DefeitoListarComponent, canActivate:[AuthGuard]},
+  { path:'defeito-incluir', component: DefeitoIncluirComponent, canActivate:[AuthGuard]},
+  { path:'defeito-editar/:id', component: DefeitoEditarComponent, canActivate:[AuthGuard]},
+  { path:'grafico-listar', component: GraficoListarComponent, canActivate:[AuthGuard]},
+  { path:'grafico-incluir', component: GraficoIncluirComponent, canActivate:[AuthGuard]},
+  { path:'grafico-editar/:id', component: GraficoGerarComponent, canActivate:[AuthGuard]},
+  { path:'repositorio-incluir', component: RepositorioIncluirComponent, canActivate:[AuthGuard]},
+  { path:'repositorio-editar/:id', component: RepositorioEditarComponent, canActivate:[AuthGuard]},
+  { path:'repositorio-listar', component: RepositorioListarComponent, canActivate:[AuthGuard]},
   { path:'usuario-incluir', component: UsuarioIncluirComponent},
-  { path:'usuario-editar/:id', component: UsuarioEditarComponent },
-  { path:'projeto-incluir', component: ProjetoIncluirComponent},
-  { path:'projeto-editar/:id', component: ProjetoEditarComponent},
+  { path:'usuario-editar/:id', component: UsuarioEditarComponent, canActivate:[AuthGuard]},
+  { path:'projeto-incluir', component: ProjetoIncluirComponent, canActivate:[AuthGuard]},
+  { path:'projeto-editar/:id', component: ProjetoEditarComponent, canActivate:[AuthGuard]},
   { path:'esqueci-senha', component: EsqueciSenhaComponent},
   
   

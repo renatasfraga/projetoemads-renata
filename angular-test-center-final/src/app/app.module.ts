@@ -71,16 +71,25 @@ import { TipoGraficoPipe } from './tipo-grafico.pipe';
 import { TipoConsultaPipe } from './tipo-consulta.pipe';
 import { ProjetoIncluirComponent } from './projeto-incluir/projeto-incluir.component';
 import { EsqueciSenhaComponent } from './esqueci-senha/esqueci-senha.component';
+import { AuthGuard } from './auth.guard';
+
 
 import xml from 'highlight.js/lib/languages/xml';
 import scss from 'highlight.js/lib/languages/scss';
 import typescript from 'highlight.js/lib/languages/typescript';
+import json from 'highlight.js/lib/languages/json';
+import javascript from 'highlight.js/lib/languages/javascript';
+import java from 'highlight.js/lib/languages/java';
+
 
 export function hljsLanguages() {
   return [
     {name: 'typescript', func: typescript},
     {name: 'scss', func: scss},
-    {name: 'xml', func: xml}
+    {name: 'xml', func: xml},
+    {name: 'javascript', func:javascript},
+    {name: 'java', func: java},
+    {name: 'json', func: json},
   ];
 }
 
@@ -162,7 +171,7 @@ export function hljsLanguages() {
   ],
   entryComponents: [AvisoLembreteComponent,AvisoLembreteExcluirComponent],
 
-  providers: [ProjetoService, UsuarioService, HistoriaDeUsuarioService, CriterioDeAceitacaoService],
+  providers: [ProjetoService, UsuarioService, HistoriaDeUsuarioService, CriterioDeAceitacaoService,AuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
