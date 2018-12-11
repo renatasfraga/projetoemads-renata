@@ -1,99 +1,85 @@
-<div class="row">
-                <div class="w3-col m12">
-                    <app-menu-superior></app-menu-superior>
+<div class="w3-row">
+        <div class="w3-col m12">
+            <app-menu-superior></app-menu-superior>
+        </div>
+    </div>
+    <div class="w3-row">
+        <div class="w3-col m3">
+           <app-menu-lateral></app-menu-lateral>
+        </div>
+        <div class="w3-col m9">
+           <div class="row" style="padding-top:2%">
+                <div class="w3-col m2">
+                   <button style="width: 90%;"
+                           mat-raised-button 
+                           color="accent"
+                           routerLink="/plano-incluir">Novo</button>
                 </div>
+                <div class="w3-col m8">
+                   <mat-form-field style="width: 98%">
+                           <input matInput
+                                   placeholder="Buscar por título" 
+                                   name="nome"
+                                   [(ngModel)]="titulo">
+                   </mat-form-field>
+               </div>
+               <div class="w3-col m2">
+                   <button style="width: 90%;"
+                           mat-raised-button 
+                           color="primary"
+                           (click)="buscar(titulo)">Buscar</button>
               </div>
-              <div class="row">
-                 <div class="w3-col m3">
-                    <app-menu-lateral></app-menu-lateral>
-                 </div>
-                 <div class="w3-col m9">
-                   <mat-tab-group>
-                        <mat-tab> 
-                        <ng-template mat-tab-label> Editar [{{id}}] </ng-template>
-                    <form [formGroup]="planoForm" (ngSubmit)="onFormSubmit(planoForm.value)">
-                        <div class="row" style="padding-top:2%">
-                                <div class="w3-col m12">
-                                  <input formControlName="id"
-                                          type="hidden">
-                                  <mat-form-field style="width: 20%">
-                                          <input matInput 
-                                                  formControlName="idCopy"
-                                                  type="number" 
-                                                  placeholder="Id">
-                                  </mat-form-field>  
-                                </div>
-                          </div>
-                            <div class="row"> 
-                                    <div class="w3-col m12">
-                                         <mat-form-field style="width: 94%">
-                                            <input matInput 
-                                                   formControlName="titulo"
-                                                   placeholder="Título">
-                                         </mat-form-field>   
-                                    </div>
-                            </div>
-                            <div class="row">
-                                    <div class="w3-col m4">
-                                            <mat-form-field style="width: 94%">
-                                                    <input matInput 
-                                                           formControlName="dataCriacao"
-                                                           [matDatepicker]="picker1" 
-                                                           placeholder="Data de Criação">
-                                                            <mat-datepicker-toggle matSuffix 
-                                                                                  [for]="picker1">
-                                                            </mat-datepicker-toggle>
-                                                            <mat-datepicker #picker1></mat-datepicker>
-                                            </mat-form-field>
-                                    </div>
-                                    <div class="w3-col m8">
-                                            <mat-form-field style="width: 92%">
-                                                    <mat-select placeholder="Usuario Criador" 
-                                                                formControlName="usuarioAux"
-                                                                (selectionChange)="validaUserCriador()">
-                                                           <mat-option>Selecione um usuário</mat-option>
-                                                           <mat-option *ngFor="let usuario of usuarioService.usuariosByProjeto" 
-                                                                       [value]="usuario.email">
-                                                                        {{usuario.nome}}
-                                                           </mat-option>
-                                                    </mat-select>
-                                                 </mat-form-field>
-                                    </div>
-                            </div>
-                            <div class="row">
-                                <div class="w3-col m4" style="padding-bottom: 2%">
-                                      <mat-slide-toggle
-                                        class="example-margin"
-                                        [color]="color"
-                                        [checked]="checked"
-                                        (change)="trocaValor()"
-                                        formControlName="passou">
-                                        Passou? 
-                                  </mat-slide-toggle>
-                                </div>
-                            </div>
-                            <div class="row">
-                                 <div class="w3-col m12" style="height: 100%;width: 95%; padding-bottom: 2%">
-                                    <ckeditor [editor]="Editor"
-                                              formControlName="conteudo"></ckeditor>
-              
-                                 </div>
-                                 
-                            </div>
-                            <div class="row">
-                                <div class="w3-col m12" align="right" style="padding-right:5%"> 
-                                        <button mat-raised-button 
-                                                    style="width: 20%"
-                                                    color="primary"
-                                                    type="submit">Salvar</button>
-                                </div>
-                           </div>
-                    </form>
-                    </mat-tab>
-                     <mat-tab> 
-                        <ng-template mat-tab-label> Membros </ng-template>
-                     </mat-tab>
-                    </mat-tab-group>
-                 </div>    
-              </div>    
-              
+           </div>
+           <div class="row">
+                   <div class="w3-col m12" style="width: 95%">
+                           <table mat-table [dataSource]="planoList">
+                           <ng-container matColumnDef="id">
+                           <th mat-header-cell *matHeaderCellDef> ID </th>
+                           <td mat-cell *matCellDef="let plano"> {{plano.id}} </td>
+                           </ng-container>
+                           
+                           <!-- Name Column -->
+                           <ng-container matColumnDef="titulo">
+                           <th mat-header-cell *matHeaderCellDef> Título </th>
+                           <td mat-cell *matCellDef="let plano"> {{plano.titulo}} </td>
+                           </ng-container>
+                           
+                           <!-- Weight Column -->
+                           <ng-container matColumnDef="criador">
+                           <th mat-header-cell *matHeaderCellDef> Autor </th>
+                           <td mat-cell *matCellDef="let plano"> {{plano.usuarioCriador.nome}} </td>
+                           </ng-container>
+                           
+                           <!-- Symbol Column -->
+                           <ng-container matColumnDef="data">
+                           <th mat-header-cell *matHeaderCellDef> Data Criação </th>
+                           <td mat-cell *matCellDef="let plano"> {{plano.dataCriacao | date:'dd/MM/yyyy'}} </td>
+                           </ng-container>
+    
+                            <!-- Symbol Column -->
+                            <ng-container matColumnDef="passou">
+                            <th mat-header-cell *matHeaderCellDef> Passou </th>
+                            <td mat-cell *matCellDef="let plano"> {{plano.passou == true ? 'Passou' : 'Falhou'}} </td>
+                            </ng-container>
+                           
+                           <ng-container matColumnDef="editarexcluir">
+                                   <th mat-header-cell *matHeaderCellDef>  </th>
+                                   <td mat-cell *matCellDef="let plano">
+                                           <button mat-button
+                                                   [routerLink] = "['/plano-editar', plano.id]">
+                                           <i class="fa fa-edit"></i>  
+                                           </button>
+                                           <button mat-button
+                                                   (click)="remover(plano.id)">
+                                                   <i class="fa fa-trash-alt"></i>  
+                                           </button>
+                                   </td>
+                           </ng-container>
+                   
+                           <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                           <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                           </table>
+                   </div>
+           </div>
+       </div>
+    </div>
