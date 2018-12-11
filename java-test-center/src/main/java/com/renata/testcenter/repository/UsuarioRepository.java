@@ -15,8 +15,13 @@ public interface UsuarioRepository extends JpaRepository<Usuario, String> {
 	public Usuario getLogin(@Param("email") String email,
 			                @Param("senha") String senha);
 	
-	@Query(value = "Select u.* FROM usuario u inner join membros m on u.email = m.usuario_email inner join projeto "
+	@Query(value = "Select u.* FROM usuario u inner join membro m on u.email = m.usuario_email inner join projeto "
 			      + " p on p.id = m.projeto_id and p.id = :id",
 		   nativeQuery = true)
 	public List<Usuario> getUsuariosByProjeto(@Param("id") Long id);
+	
+	@Query(value = "select u.* from usuario u where not exists (select m from membro "
+		     + "  m where m.usuario_email = u.email and m.projeto_id = :idProjeto)",
+	   nativeQuery = true)
+	public List<Usuario> listarUsuarioDisponiveis(@Param("idProjeto") Long id);
 }

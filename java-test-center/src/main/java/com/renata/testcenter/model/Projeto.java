@@ -1,22 +1,17 @@
 package com.renata.testcenter.model;
 
-import java.util.List;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
@@ -39,12 +34,6 @@ public class Projeto {
 	@ManyToOne(fetch= FetchType.EAGER)
 	@JoinColumn(name ="usuario_criador")
 	private Usuario usuarioCriador;
-	@JsonIgnore
-	@ManyToMany(fetch = FetchType.LAZY)
-    @JoinTable(name = "membros", 
-        	   joinColumns = { @JoinColumn(name = "projeto_id") }, 
-        	   inverseJoinColumns = { @JoinColumn(name = "usuario_email") })
-	private List<Usuario> usuarios;
 	
 	public Long getId() {
 		return id;
@@ -82,12 +71,6 @@ public class Projeto {
 	public void setUsuarioCriador(Usuario usuarioCriador) {
 		this.usuarioCriador = usuarioCriador;
 	}
-	public List<Usuario> getUsuarios() {
-		return usuarios;
-	}
-	public void setUsuarios(List<Usuario> usuarios) {
-		this.usuarios = usuarios;
-	}
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -98,7 +81,6 @@ public class Projeto {
 		result = prime * result + ((metodologiaDesenvolvimento == null) ? 0 : metodologiaDesenvolvimento.hashCode());
 		result = prime * result + ((nome == null) ? 0 : nome.hashCode());
 		result = prime * result + ((usuarioCriador == null) ? 0 : usuarioCriador.hashCode());
-		result = prime * result + ((usuarios == null) ? 0 : usuarios.hashCode());
 		return result;
 	}
 	@Override
@@ -136,11 +118,6 @@ public class Projeto {
 			if (other.usuarioCriador != null)
 				return false;
 		} else if (!usuarioCriador.equals(other.usuarioCriador))
-			return false;
-		if (usuarios == null) {
-			if (other.usuarios != null)
-				return false;
-		} else if (!usuarios.equals(other.usuarios))
 			return false;
 		return true;
 	}

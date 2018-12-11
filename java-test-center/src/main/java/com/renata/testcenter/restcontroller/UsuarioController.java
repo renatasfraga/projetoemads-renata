@@ -61,4 +61,9 @@ public class UsuarioController {
 		return this.service.updateUsuario(usuario);
 	}
 	
+	@GetMapping(path ={"/listardisponiveis/{id}"})
+	public List<Usuario> listarUsuarioDisponiveis(@PathVariable("id") Long id) {
+		return this.service.listarUsuarioDisponiveis(id);
+	}
+	
 }

@@ -10,7 +10,7 @@ import com.renata.testcenter.model.Projeto;
 
 public interface ProjetoRepository extends JpaRepository<Projeto, Long>{
 	
-	@Query("SELECT p FROM Projeto p inner join p.usuarios u where u.email = :email order by p.id asc")
+	@Query("select m.id.projeto from Membro m where m.id.usuario.email = :email order by m.id.projeto.nome asc")
 	public List<Projeto> getProjetosByUsuario(@Param("email") String email);
 	
 }

@@ -45,4 +45,8 @@ public class UsuarioService {
 	   return null;
 	}
 	
+	public List<Usuario> listarUsuarioDisponiveis(Long id) {
+		return this.repository.listarUsuarioDisponiveis(id);
+	}
+	
 }

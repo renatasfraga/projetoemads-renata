@@ -1,4 +1,4 @@
-﻿INSERT INTO public.membros(
+﻿INSERT INTO public.membro(
             usuario_email, projeto_id)
     VALUES ('renatysf@hotmail.com', 1),
             ('eduardacastro@ig.com.br',1),

@@ -54,5 +54,8 @@ export class UsuarioService {
                     });
   }
 
+  listarUsuarioDisponiveis(id:number) {
+    return this.http.get<Usuario[]>(this.USUARIO_URL+"listardisponiveis/"+id);
+  }
 
 }
