@@ -50,9 +50,10 @@
                 </div>
                 <div class="row">
                     <div class="w3-col m12">
-                        <input formControlName="conteudo"
-                               placeholder="Título"
-                               type="file">
+                        <input placeholder="Arquivo"
+                               type="file"
+                               (change)="onFileChange($event)"
+                               id="arquivo">
                     </div>
                 </div>
                 <div class="row">

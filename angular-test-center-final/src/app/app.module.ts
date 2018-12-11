@@ -26,6 +26,7 @@ import { ProjetoService } from './services/projeto.service';
 import { UsuarioService } from './services/usuario.service';
 import { MenuLateralComponent } from './menu-lateral/menu-lateral.component';
 import { MenuSuperiorComponent } from './menu-superior/menu-superior.component';
+import { HighlightModule } from 'ngx-highlightjs';
 
 import {MatExpansionModule} from '@angular/material/expansion';
 import {MatSelectModule} from '@angular/material/select';
@@ -69,6 +70,19 @@ import { UsuarioIncluirComponent } from './usuario-incluir/usuario-incluir.compo
 import { TipoGraficoPipe } from './tipo-grafico.pipe';
 import { TipoConsultaPipe } from './tipo-consulta.pipe';
 import { ProjetoIncluirComponent } from './projeto-incluir/projeto-incluir.component';
+import { EsqueciSenhaComponent } from './esqueci-senha/esqueci-senha.component';
+
+import xml from 'highlight.js/lib/languages/xml';
+import scss from 'highlight.js/lib/languages/scss';
+import typescript from 'highlight.js/lib/languages/typescript';
+
+export function hljsLanguages() {
+  return [
+    {name: 'typescript', func: typescript},
+    {name: 'scss', func: scss},
+    {name: 'xml', func: xml}
+  ];
+}
 
 @NgModule({
   declarations: [
@@ -111,6 +125,7 @@ import { ProjetoIncluirComponent } from './projeto-incluir/projeto-incluir.compo
     TipoGraficoPipe,
     TipoConsultaPipe,
     ProjetoIncluirComponent,
+    EsqueciSenhaComponent,
   ],
   imports: [
     BrowserModule,
@@ -141,6 +156,9 @@ import { ProjetoIncluirComponent } from './projeto-incluir/projeto-incluir.compo
     MatPaginatorModule,
     ChartsModule,
     MatExpansionModule,
+    HighlightModule.forRoot({
+      languages: hljsLanguages
+    })
   ],
   entryComponents: [AvisoLembreteComponent,AvisoLembreteExcluirComponent],
 

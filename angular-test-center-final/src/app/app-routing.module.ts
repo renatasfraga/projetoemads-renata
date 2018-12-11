@@ -29,6 +29,7 @@ import { UsuarioIncluirComponent } from './usuario-incluir/usuario-incluir.compo
 import { UsuarioEditarComponent } from './usuario-editar/usuario-editar.component';
 import { ProjetoIncluirComponent } from './projeto-incluir/projeto-incluir.component';
 import { ProjetoEditarComponent } from './projeto-editar/projeto-editar.component';
+import { EsqueciSenhaComponent } from './esqueci-senha/esqueci-senha.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
@@ -60,6 +61,7 @@ const routes: Routes = [
   { path:'usuario-editar/:id', component: UsuarioEditarComponent },
   { path:'projeto-incluir', component: ProjetoIncluirComponent},
   { path:'projeto-editar/:id', component: ProjetoEditarComponent},
+  { path:'esqueci-senha', component: EsqueciSenhaComponent},
   
   
 ];

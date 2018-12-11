@@ -4,7 +4,8 @@ import { Projeto } from "./projeto";
 export class Repositorio {
     id:number;
     titulo:string;
-    conteudo:File;
+    conteudo:string;
+    formato:string;
     dataCriacao:Date;
     usuarioCriador:Usuario;
     projeto:Projeto;

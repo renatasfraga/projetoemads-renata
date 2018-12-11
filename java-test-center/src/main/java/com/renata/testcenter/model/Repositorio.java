@@ -1,5 +1,6 @@
 package com.renata.testcenter.model;
 
+
 import java.io.File;
 
 import javax.persistence.Entity;
@@ -25,6 +26,8 @@ public class Repositorio {
 	private String titulo;
 	@NotNull
 	private File conteudo;
+	@NotNull
+	private String formato;
 	@NotNull
 	private String dataCriacao;
 	@NotNull
@@ -73,12 +76,20 @@ public class Repositorio {
 	public void setProjeto(Projeto projeto) {
 		this.projeto = projeto;
 	}
+	
+	public String getFormato() {
+		return formato;
+	}
+	public void setFormato(String formato) {
+		this.formato = formato;
+	}
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + ((conteudo == null) ? 0 : conteudo.hashCode());
 		result = prime * result + ((dataCriacao == null) ? 0 : dataCriacao.hashCode());
+		result = prime * result + ((formato == null) ? 0 : formato.hashCode());
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
 		result = prime * result + ((projeto == null) ? 0 : projeto.hashCode());
 		result = prime * result + ((titulo == null) ? 0 : titulo.hashCode());
@@ -104,6 +115,11 @@ public class Repositorio {
 				return false;
 		} else if (!dataCriacao.equals(other.dataCriacao))
 			return false;
+		if (formato == null) {
+			if (other.formato != null)
+				return false;
+		} else if (!formato.equals(other.formato))
+			return false;
 		if (id == null) {
 			if (other.id != null)
 				return false;
@@ -126,4 +142,5 @@ public class Repositorio {
 			return false;
 		return true;
 	}
+	
 }
