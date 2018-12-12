@@ -38,7 +38,7 @@
                         <mat-option>Selecione uma história de usuário</mat-option>
                         <mat-option *ngFor="let historia of historias" 
                                     [value]="historia.id">
-                                    {{historia.titulo}}
+                                    {{historia.id}} - {{historia.titulo}}
                         </mat-option>
                   </mat-select>
                 </mat-form-field>
