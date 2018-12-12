@@ -103,7 +103,7 @@
                         </div>
         </mat-tab>  
         <mat-tab label="Visualização">
-                <div style="display: block" *ngIf="grafico.tipoGrafico == 'pie'">
+                <div style="display: block" *ngIf="pieChartType == 'pie'">
                     <canvas baseChart
                         [data]="pieChartData"
                         [labels]="pieChartLabels"
@@ -111,7 +111,7 @@
                         (chartHover)="chartHovered($event)"
                         [colors]="chartColors"></canvas>
                 </div>
-                <div style="display: block" *ngIf="grafico.tipoGrafico == 'doughnut'">
+                <div style="display: block" *ngIf="doughnutChartType == 'doughnut'">
                     <canvas baseChart
                           [data]="doughnutChartData"
                           [labels]="doughnutChartLabels"
@@ -120,7 +120,7 @@
                 </div>
         
                            
-                 <div style="display: block" *ngIf="grafico.tipoGrafico == 'bar'">
+                 <div style="display: block" *ngIf="barChartType == 'bar'">
                     <canvas baseChart
                             [datasets]="barChartData"
                             [labels]="barChartLabels"

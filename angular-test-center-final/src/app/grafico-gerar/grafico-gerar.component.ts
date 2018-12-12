@@ -44,20 +44,20 @@ export class GraficoGerarComponent implements OnInit {
   //pie
   public pieChartLabels:string[] = [];
   public pieChartData:number[] = [];
-  public pieChartType:string = 'pie';
+  public pieChartType:string;
        
   // Doughnut
   public doughnutChartLabels:string[] = [];
   public doughnutChartData:number[] = [];
-  public doughnutChartType:string = 'doughnut';
+  public doughnutChartType:string;
  
   public barChartOptions:any = {
-    scaleShowVerticalLines: false,
+    scaleShowVerticalLines: true,
     responsive: true
   };
   public barChartLabels:string[] = [];
   public barChartType:string = 'bar';
-  public barChartLegend:boolean = true;
+  public barChartLegend:boolean = false;
  
   public barChartData:any[] = [];
  
@@ -103,11 +103,13 @@ export class GraficoGerarComponent implements OnInit {
                   this.graficoAux.forEach(res => {
                     this.pieChartLabels.push("Nível "+res.label);
                     this.pieChartData.push(res.valor);
+                    this.pieChartType = 'pie';
                   });
                } else {
                 this.graficoAux.forEach(res => {
                   this.doughnutChartLabels.push("Nível "+res.label);
                   this.doughnutChartData.push(res.valor);
+                  this.doughnutChartType ='doughnut';
                 });
                }
           }); 
@@ -119,11 +121,13 @@ export class GraficoGerarComponent implements OnInit {
                 this.graficoAux.forEach(res => {
                   this.pieChartLabels.push(this.trataLabelQ(res.label));
                   this.pieChartData.push(res.valor);
+                  this.pieChartType = 'pie';
                 });
              } else {
               this.graficoAux.forEach(res => {
                 this.doughnutChartLabels.push(this.trataLabelQ(res.label));
                 this.doughnutChartData.push(res.valor);
+                this.doughnutChartType ='doughnut';
               });
              }
             });
@@ -131,14 +135,14 @@ export class GraficoGerarComponent implements OnInit {
           this.graficoService.gerarGraficoBugsPorMes(this.projetoService.projetoSelecionado.id)
           .subscribe(res => {
               this.graficoAux = res;  
-              let data:number[] = [];
+              let data:any[] = [];
               let labels:string[] = [];
               this.graficoAux.forEach(e => {
                 data.push(e.valor);
                 labels.push(e.label.substring(8,10)+"/"+e.label.substring(5,7)+"/"+e.label.substring(0,4));
               });
+              this.barChartLabels =  labels;
               this.barChartData.push({data:data,label:'Bugs'});
-              this.barChartLabels = labels;
           });
       } else if(this.grafico.tipoConsulta == 'GPC') {
         this.graficoService.gerarGraficoPorCriador(this.graficoForm.get('usuarioCriadorCopy').value,this.projetoService.projetoSelecionado.id)
@@ -148,11 +152,13 @@ export class GraficoGerarComponent implements OnInit {
                 this.graficoAux.forEach(res => {
                   this.pieChartLabels.push("Nível "+res.label);
                   this.pieChartData.push(res.valor);
+                  this.pieChartType = 'pie';
                 });
              } else {
               this.graficoAux.forEach(res => {
                 this.doughnutChartLabels.push("Nível "+res.label);
                 this.doughnutChartData.push(res.valor);
+                this.doughnutChartType ='doughnut';
               });
              }
             });
@@ -164,11 +170,13 @@ export class GraficoGerarComponent implements OnInit {
                   this.graficoAux.forEach(res => {
                     this.pieChartLabels.push("Nível "+res.label);
                     this.pieChartData.push(res.valor);
+                    this.pieChartType = 'pie';
                   });
                } else {
                 this.graficoAux.forEach(res => {
                   this.doughnutChartLabels.push("Nível "+res.label);
                   this.doughnutChartData.push(res.valor);
+                  this.doughnutChartType ='doughnut';
                 });
                }
           });
@@ -180,11 +188,13 @@ export class GraficoGerarComponent implements OnInit {
                   this.graficoAux.forEach(res => {
                     this.pieChartLabels.push(this.trataStatus(res.label));
                     this.pieChartData.push(res.valor);
+                    this.pieChartType = 'pie';
                   });
                } else {
                 this.graficoAux.forEach(res => {
                   this.doughnutChartLabels.push(this.trataStatus(res.label));
                   this.doughnutChartData.push(res.valor);
+                  this.doughnutChartType ='doughnut';
                 });
                }
           });
